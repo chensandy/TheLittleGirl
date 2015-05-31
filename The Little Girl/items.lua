@@ -15,18 +15,20 @@ end
 
 function items_draw()
 	for i = 1, #items do
-		itemGraphics = love.graphics.newImage(items[i])
-		love.graphics.draw(itemGraphics, firstX + (i-1)*(80), firstY)
-		if i == selectItems then
-			r, g, b, a = love.graphics.getColor( )
-			love.graphics.setColor( 255, 0, 0)
-			
-			love.graphics.line(firstX + (i-1)*(80), firstY, firstX + (i-1)*(80) + 70, firstY)
-			love.graphics.line(firstX + (i-1)*(80) + 70, firstY, firstX + (i-1)*(80) + 70, firstY + 70)
-			love.graphics.line(firstX + (i-1)*(80) + 70, firstY + 70, firstX + (i-1)*(80), firstY + 70)
-			love.graphics.line(firstX + (i-1)*(80), firstY + 70, firstX + (i-1)*(80), firstY)
+		if love.filesystem.exists( items[i] ) then
+			itemGraphics = love.graphics.newImage(items[i])		
+			love.graphics.draw(itemGraphics, firstX + (i-1)*(80), firstY)
+			if i == selectItems then
+				r, g, b, a = love.graphics.getColor( )
+				love.graphics.setColor( 255, 0, 0)
+				
+				love.graphics.line(firstX + (i-1)*(80), firstY, firstX + (i-1)*(80) + 70, firstY)
+				love.graphics.line(firstX + (i-1)*(80) + 70, firstY, firstX + (i-1)*(80) + 70, firstY + 70)
+				love.graphics.line(firstX + (i-1)*(80) + 70, firstY + 70, firstX + (i-1)*(80), firstY + 70)
+				love.graphics.line(firstX + (i-1)*(80), firstY + 70, firstX + (i-1)*(80), firstY)
 
-			love.graphics.setColor(r, g, b, a)
+				love.graphics.setColor(r, g, b, a)
+			end
 		end
 	end
 end
@@ -45,7 +47,9 @@ function items_mousepressed(x, y, button)
 end
 
 function items_add(item)
-	items[#items + 1] = item
+	if love.filesystem.exists( item ) then
+		items[#items + 1] = item
+	end
 end
 
 function items_delete(item)
