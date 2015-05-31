@@ -1,7 +1,7 @@
 function love.load()
 	require "class"
 	require "menu"
-	
+	require "items"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	
@@ -15,6 +15,11 @@ function love.load()
 	--love.window.setIcon(love.graphics.newImage("graphics/icon.gif"))
 	
 	changegamestate("menu")
+	--local x = love.mouse.getX()
+	--if x < 10 then
+		changegamestate("items")
+	--end
+		
 	
 	gameover = false
 end
@@ -31,8 +36,6 @@ function love.draw()
 	end
 end
 
-
-
 function playsound(s)
 	love.audio.stop(s)
 	love.audio.play(s)
@@ -47,6 +50,12 @@ end
 function love.mousereleased(x, y, button)
     if _G[gamestate .. "_mousereleased"] then
 		_G[gamestate .. "_mousereleased"](x, y, button)
+	end
+end
+
+function love.keypressed(key, unicode)
+    if _G[gamestate .. "_keypressed"] then
+		_G[gamestate .. "_keypressed"](key, unicode)
 	end
 end
 
