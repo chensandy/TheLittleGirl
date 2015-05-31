@@ -2,6 +2,7 @@ function love.load()
 	require "class"
 	require "menu"
 	require "items"
+	require "game"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	
@@ -17,7 +18,7 @@ function love.load()
 	changegamestate("menu")
 	--local x = love.mouse.getX()
 	--if x < 10 then
-		changegamestate("items")
+		changegamestate("game")
 	--end
 		
 	
