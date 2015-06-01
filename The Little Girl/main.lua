@@ -3,6 +3,7 @@ function love.load()
 	require "menu"
 	require "items"
 	require "game"
+	require "door"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	
