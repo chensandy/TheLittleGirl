@@ -1,20 +1,19 @@
 door = class:new()
 
 function door_load()
-	doorMap = {1, 1}
-	doorId = {1, 2}
-	doorLock = {0, 1}
-	doorKey = {0, 101}
-	doorGo = {2, 3}
-	doorGoBranch = {0, 0}
+	doorMap = {1, 1, 1}
+	doorId = {1, 2, 3}
+	doorLock = {1, 0, 1}
+	doorKey = {202, 0, 501}
+	doorGo = {3, 2, 8}
+	doorGoBranch = {1, 0, 0}
 end
 function door:init(m, id, l, k, go, b)
 	self.lock = l
 	self.map = m
 	self.index = id
 	self.key = k
-	self.goto = go
-	self.gotob = b
+	self.goto = {go, b, 0}
 end
 
 function door:islock()
