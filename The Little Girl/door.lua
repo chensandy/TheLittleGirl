@@ -2,7 +2,7 @@ door = class:new()
 
 function door_load()
 	doorMap = {1, 1, 1}
-	doorId = {1, 2, 3}
+	doorId = {2, 1, 3}
 	doorLock = {1, 0, 1}
 	doorKey = {202, 0, 501}
 	doorGo = {3, 2, 8}

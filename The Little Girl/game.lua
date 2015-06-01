@@ -2,7 +2,8 @@ function game_load()
 	
 	mapNum = 2
 	doorNum = 3
-	itemNum = 6
+	branchNum = 3
+	itemNum = 3
 	
 	screendarkness = 1
 	mainFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 40);
@@ -15,9 +16,14 @@ function game_load()
 	items_load()
 	objects = {}
 	door_load()
+	branch_load()
 	objects.door = {}
+	objects.branch = {}
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
+	end
+	for i=1,branchNum do
+		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
 	end
 	--music:stop()
 	--musicrev:play()
@@ -28,7 +34,7 @@ end
 
 function game_update(dt)
 	if screendarkness > 0 then
-		screendarkness = math.max(0, screendarkness - dt/2)
+		screendarkness = math.max(0, screendarkness - dt)
 	end
 	
 end
@@ -60,18 +66,27 @@ function game_mousepressed(x, y, button)
 		--door 0 0
 		if r==0 and g==0 then 
 			clickMessage = "door:".. b/50 .. " " .. x .. " ".. y
-			--clickDoor(b/50)
+			clickDoor(b/50)
+		--branch 255 0
+		elseif r==255 and g==0 then 
+			clickMessage = "branch:".. b/50 .. " " .. x .. " ".. y
+			clickBranch(b/50)
 		end
 	else
 		clickMessage=""
 	end
 	items_mousepressed(x, y, button)
 end
+
 function game_keypressed(key)
 	if key == 'a' then
 		moveMap(mainMap[1], 1, 0)
+	elseif key == 'b' then
+		moveMap(1, 0, 0)
 	elseif key == 'z' then
 		moveMap(mainMap[1], 0, 0)
+	elseif key == 's' then
+		moveMap(mainMap[1], 2, 0)
 	elseif key == 'd' then
 		if objects.door[-1*mainMap[2]]:islock() then
 		else
@@ -97,5 +112,38 @@ function moveMap(id1, id2, id3)
 		map = love.graphics.newImage("maps/map" .. mainMap[1] .. ".png");
 		mask = love.image.newImageData("maps/map" .. mainMap[1] .. "_mask.png");
 	end
-	screendarkness = 1
+	screendarkness = 0.5
+end
+
+function clickDoor(id)
+	d = 0
+	for i=1,doorNum do
+		if objects.door[i].map == mainMap[1] and objects.door[i].index == id then
+			d = i
+		end
+	end
+	if d ~=0 then
+		if objects.door[d]:islock() then
+			-- print lock message
+			-- playsound
+		else
+			local tmp = objects.door[d]:go()
+			-- playsound
+			moveMap(tmp[1], tmp[2], tmp[3])
+		end
+	end
+end
+
+function clickBranch(id)
+	d = 0
+	for i=1,branchNum do
+		if objects.branch[i].map == mainMap[1] and objects.branch[i].index == id then
+			d = i
+		end
+	end
+	if d ~=0 then
+		local tmp = objects.branch[d]:go()
+		-- playsound
+		moveMap(tmp[1], tmp[2], tmp[3])
+	end
 end
