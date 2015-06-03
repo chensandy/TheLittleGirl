@@ -3,8 +3,8 @@ function items_load()
 	--items = {"Items/1.gif", "Items/2.gif", "Items/3.gif"}
 	items = {}
 	selectItems = 0;
-	firstX = 10
-	firstY = 10
+	firstX = 20
+	firstY = 20
 end
 
 function items_update(dt)
@@ -14,6 +14,14 @@ function items_update(dt)
 end
 
 function items_draw()
+	itemGraphics = love.graphics.newImage("graphics/bags.png")		
+	love.graphics.draw(itemGraphics, 10, 10)
+	
+	for i = 1, 9 do
+		itemGraphics = love.graphics.newImage("graphics/grid.png")		
+		love.graphics.draw(itemGraphics, firstX + (i-1)*(80), firstY)
+	end
+
 	for i = 1, #items do
 		if love.filesystem.exists( items[i] ) then
 			itemGraphics = love.graphics.newImage(items[i])		
