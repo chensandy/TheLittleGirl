@@ -14,6 +14,7 @@ function game_load()
 	mainMap = {1, 0, 0};
 	
 	items_load()
+	talk_load()
 	objects = {}
 	door_load()
 	branch_load()
@@ -58,6 +59,7 @@ function game_draw()
 	love.graphics.setColor(255, 255, 255)
 	
 	items_draw()
+	talk_draw()
 end
 
 function game_mousepressed(x, y, button)
@@ -76,6 +78,7 @@ function game_mousepressed(x, y, button)
 		clickMessage=""
 	end
 	items_mousepressed(x, y, button)
+	talk_mousepressed(x, y, button)
 end
 
 function game_keypressed(key)
@@ -95,6 +98,7 @@ function game_keypressed(key)
 		end
 	else
 		items_keypressed(key)
+		talk_keypressed(key)
 	end
 end
 

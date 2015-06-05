@@ -14,7 +14,7 @@ function items_update(dt)
 end
 
 function items_draw()
-	itemGraphics = love.graphics.newImage("graphics/bags.png")		
+	local itemGraphics = love.graphics.newImage("graphics/bags.png")		
 	love.graphics.draw(itemGraphics, 10, 10)
 	
 	for i = 1, 9 do
@@ -27,7 +27,7 @@ function items_draw()
 			itemGraphics = love.graphics.newImage(items[i])		
 			love.graphics.draw(itemGraphics, firstX + (i-1)*(80), firstY)
 			if i == selectItems then
-				r, g, b, a = love.graphics.getColor( )
+				local r, g, b, a = love.graphics.getColor( )
 				love.graphics.setColor( 255, 0, 0)
 				
 				love.graphics.line(firstX + (i-1)*(80), firstY, firstX + (i-1)*(80) + 70, firstY)
@@ -77,7 +77,7 @@ function items_delete(item)
 end
 
 function items_keypressed(key)
-	deleteItem = false
+	local deleteItem = false
     for i = 1, #items do
 		if items[i] == "Items/" .. key  .. ".gif" then
 			items_delete("Items/" .. key  .. ".gif")

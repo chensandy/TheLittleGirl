@@ -5,6 +5,7 @@ function love.load()
 	require "game"
 	require "door"
 	require "branch"
+	require "talk"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	
