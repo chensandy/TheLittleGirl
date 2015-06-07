@@ -1,9 +1,10 @@
 function game_load()
 	
-	mapNum = 2
-	doorNum = 3
-	branchNum = 3
+	--mapNum = 2
+	doorNum = 9
+	branchNum = 14
 	itemNum = 3
+	r_bottonNum = 8
 	
 	screendarkness = 1
 	mainFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 40);
@@ -18,10 +19,15 @@ function game_load()
 	objects = {}
 	door_load()
 	branch_load()
+	r_botton_load()
 	objects.door = {}
+	objects.r_botton = {}
 	objects.branch = {}
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
+	end
+	for i=1,r_bottonNum do
+		objects.r_botton[i] = r_botton:new(rMap[i], rId[i], rGo[i], rGoBranch[i], rGoBranch2[i])
 	end
 	for i=1,branchNum do
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
@@ -67,12 +73,15 @@ function game_mousepressed(x, y, button)
 		local r, g, b, a = mask:getPixel(x, y)
 		--door 0 0
 		if r==0 and g==0 then 
-			clickMessage = "door:".. b/50 .. " " .. x .. " ".. y
-			clickDoor(b/50)
+			clickMessage = "door:".. b/25 .. " " .. x .. " ".. y
+			clickDoor(b/25)
 		--branch 255 0
 		elseif r==255 and g==0 then 
-			clickMessage = "branch:".. b/50 .. " " .. x .. " ".. y
-			clickBranch(b/50)
+			clickMessage = "branch:".. b/25 .. " " .. x .. " ".. y
+			clickBranch(b/25)
+		elseif r==128 and g==128 then 
+			clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
+			clickRbotton(b/25)
 		end
 	else
 		clickMessage=""
@@ -147,6 +156,20 @@ function clickBranch(id)
 	end
 	if d ~=0 then
 		local tmp = objects.branch[d]:go()
+		-- playsound
+		moveMap(tmp[1], tmp[2], tmp[3])
+	end
+end
+
+function clickRbotton(id)
+	d = 0
+	for i=1,r_bottonNum do
+		if objects.r_botton[i].map == mainMap[1] and objects.r_botton[i].index == id then
+			d = i
+		end
+	end
+	if d ~=0 then
+		local tmp = objects.r_botton[d]:go()
 		-- playsound
 		moveMap(tmp[1], tmp[2], tmp[3])
 	end
