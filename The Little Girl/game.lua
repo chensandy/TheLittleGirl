@@ -1,10 +1,10 @@
 function game_load()
 	
 	--mapNum = 2
-	doorNum = 9
-	branchNum = 14
+	doorNum = 14
+	branchNum = 29
 	itemNum = 3
-	r_bottonNum = 8
+	r_bottonNum = 39
 	
 	screendarkness = 1
 	mainFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 40);
