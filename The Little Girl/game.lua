@@ -68,7 +68,7 @@ function game_mousepressed(x, y, button)
 	--有話要說或有問題要回答時，只對 talk_mousepressed 有反應
 	if have_talk_or_question() then
 		talk_mousepressed(x, y, button)
-	else
+	elseif items_mousepressed(x, y, button) == false then
 		if button=='l' then
 			local r, g, b, a = mask:getPixel(x, y)
 			--door 0 0
@@ -86,7 +86,6 @@ function game_mousepressed(x, y, button)
 		else
 			clickMessage=""
 		end
-		items_mousepressed(x, y, button)
 	end
 end
 

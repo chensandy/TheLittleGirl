@@ -65,10 +65,14 @@ function items_mousepressed(x, y, button)
 				elseif m_selectItems == 0 or item_combination(m_items[m_selectItems], m_items[i]) == false then
 					m_selectItems = i
 				end
-				break
+				return true
 			end
 		end
 	end
+	if x > 10 and x < m_itemBags:getWidth() and y > 10 and y < m_itemBags:getHeight() then
+		return true
+	end
+	return false
 end
 
 function items_add(item)
