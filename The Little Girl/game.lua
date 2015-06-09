@@ -47,11 +47,7 @@ function game_update(dt)
 end
 
 function game_draw()
-	
-	
 	love.graphics.draw(map, 0, 0)
-	
-	
 	love.graphics.setColor(0, 0, 0)
 	love.graphics.setFont(mainFont);
 	
@@ -69,45 +65,52 @@ function game_draw()
 end
 
 function game_mousepressed(x, y, button)
-	if button=='l' then
-		local r, g, b, a = mask:getPixel(x, y)
-		--door 0 0
-		if r==0 and g==0 then 
-			clickMessage = "door:".. b/25 .. " " .. x .. " ".. y
-			clickDoor(b/25)
-		--branch 255 0
-		elseif r==255 and g==0 then 
-			clickMessage = "branch:".. b/25 .. " " .. x .. " ".. y
-			clickBranch(b/25)
-		elseif r==128 and g==128 then 
-			clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
-			clickRbotton(b/25)
-		end
+	--有話要說或有問題要回答時，只對 talk_mousepressed 有反應
+	if have_talk_or_question() then
+		talk_mousepressed(x, y, button)
 	else
-		clickMessage=""
+		if button=='l' then
+			local r, g, b, a = mask:getPixel(x, y)
+			--door 0 0
+			if r==0 and g==0 then 
+				clickMessage = "door:".. b/25 .. " " .. x .. " ".. y
+				clickDoor(b/25)
+			--branch 255 0
+			elseif r==255 and g==0 then 
+				clickMessage = "branch:".. b/25 .. " " .. x .. " ".. y
+				clickBranch(b/25)
+			elseif r==128 and g==128 then 
+				clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
+				clickRbotton(b/25)
+			end
+		else
+			clickMessage=""
+		end
+		items_mousepressed(x, y, button)
 	end
-	items_mousepressed(x, y, button)
-	talk_mousepressed(x, y, button)
 end
 
 function game_keypressed(key)
-	if key == 'a' then
-		moveMap(mainMap[1], 1, 0)
-	elseif key == 'b' then
-		moveMap(1, 0, 0)
-	elseif key == 'z' then
-		moveMap(mainMap[1], 0, 0)
-	elseif key == 's' then
-		moveMap(mainMap[1], 2, 0)
-	elseif key == 'd' then
-		if objects.door[-1*mainMap[2]]:islock() then
+	--有話要說或有問題要回答時，對鍵盤無效
+	if have_talk_or_question() == false then
+		if key == 'a' then
+			moveMap(mainMap[1], 1, 0)
+		elseif key == 'b' then
+			moveMap(1, 0, 0)
+		elseif key == 'z' then
+			moveMap(mainMap[1], 0, 0)
+		elseif key == 's' then
+			moveMap(mainMap[1], 2, 0)
+		elseif key == 'd' then
+			if objects.door[-1*mainMap[2]]:islock() then
+			else
+				tmp = objects.door[-1*mainMap[2]]:go()
+				moveMap(tmp[1], tmp[2], tmp[3])
+			end
 		else
-			tmp = objects.door[-1*mainMap[2]]:go()
-			moveMap(tmp[1], tmp[2], tmp[3])
+			items_keypressed(key)
+			talk_keypressed(key)
 		end
-	else
-		items_keypressed(key)
-		talk_keypressed(key)
 	end
 end
 
