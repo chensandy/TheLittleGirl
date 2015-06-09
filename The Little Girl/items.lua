@@ -1,12 +1,16 @@
 function items_load()
 	screendarkness = 1
-	m_items = {}
+	m_items = {"Items/5-1.png"}
+	--m_items = {}
 	m_selectItems = 0;
 	m_oldSelectItems = 0;
 	m_itemBags = love.graphics.newImage("graphics/bags.png")
 	m_itemGrid = love.graphics.newImage("graphics/grid.png")
 	m_combination = {}
 	initialCombination()
+	local imageData = love.image.newImageData( "Items/mouse.png" )
+	local cursor = love.mouse.newCursor( imageData, 0, 0 )
+	love.mouse.setCursor( cursor )
 end
 
 function items_update(dt)
@@ -38,11 +42,14 @@ function items_draw()
 	end
 	
 	if m_oldSelectItems ~= m_selectItems then
+		local mouseImage = love.image.newImageData( "Items/mouse.png" )
 		if m_selectItems == 0 then
-			local i_beam_cursor = love.mouse.getSystemCursor("arrow")
-			love.mouse.setCursor(i_beam_cursor)
+			local cursor = love.mouse.newCursor( mouseImage, 0, 0 )
+			love.mouse.setCursor( cursor )
 		else
-			local cursor = love.mouse.newCursor( m_items[m_selectItems], 0, 0 )
+			local imageData = love.image.newImageData( m_items[m_selectItems] )
+			imageData:paste(mouseImage, 0, 0, 0, 0)
+			local cursor = love.mouse.newCursor( imageData, 0, 0 )
 			love.mouse.setCursor( cursor )
 		end
 		m_oldSelectItems = m_selectItems
