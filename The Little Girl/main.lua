@@ -20,12 +20,6 @@ function love.load()
 	--love.window.setIcon(love.graphics.newImage("graphics/icon.gif"))
 	
 	changegamestate("menu")
-	--local x = love.mouse.getX()
-	--if x < 10 then
-		changegamestate("game")
-	--end
-		
-	
 	gameover = false
 end
 
