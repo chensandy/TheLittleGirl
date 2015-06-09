@@ -1,54 +1,62 @@
 function items_load()
 	screendarkness = 1
-	--items = {"Items/1.gif", "Items/2.gif", "Items/3.gif"}
 	items = {}
 	selectItems = 0;
-	firstX = 20
-	firstY = 20
+	old_selectItems = 0;
+	itemBags = love.graphics.newImage("graphics/bags.png")
+	itemGrid = love.graphics.newImage("graphics/grid.png")
 end
 
 function items_update(dt)
 	if screendarkness > 0 then
-		screendarkness = math.max(0, screendarkness - dt/2)
+		screendarkness = math.max(0, screendarkness - dt)
 	end
 end
 
-function items_draw()
-	local itemGraphics = love.graphics.newImage("graphics/bags.png")		
-	love.graphics.draw(itemGraphics, 10, 10)
-	
-	for i = 1, 9 do
-		itemGraphics = love.graphics.newImage("graphics/grid.png")		
-		love.graphics.draw(itemGraphics, firstX + (i-1)*(80), firstY)
+function items_draw()		
+	love.graphics.draw(itemBags, 10, 10)	
+	for i = 1, 9 do		
+		love.graphics.draw(itemGrid, 20 + (i-1)*(80), 20)
 	end
-
+	
 	for i = 1, #items do
-		if love.filesystem.exists( items[i] ) then
-			itemGraphics = love.graphics.newImage(items[i])		
-			love.graphics.draw(itemGraphics, firstX + (i-1)*(80), firstY)
-			if i == selectItems then
-				local r, g, b, a = love.graphics.getColor( )
-				love.graphics.setColor( 255, 0, 0)
-				
-				love.graphics.line(firstX + (i-1)*(80), firstY, firstX + (i-1)*(80) + 70, firstY)
-				love.graphics.line(firstX + (i-1)*(80) + 70, firstY, firstX + (i-1)*(80) + 70, firstY + 70)
-				love.graphics.line(firstX + (i-1)*(80) + 70, firstY + 70, firstX + (i-1)*(80), firstY + 70)
-				love.graphics.line(firstX + (i-1)*(80), firstY + 70, firstX + (i-1)*(80), firstY)
+		local itemGraphics = love.graphics.newImage(items[i])		
+		love.graphics.draw(itemGraphics, 20 + (i-1)*(80), 20)
+		if i == selectItems then
+			local r, g, b, a = love.graphics.getColor( )
+			love.graphics.setColor( 255, 0, 0)
+			
+			love.graphics.line(20 + (i-1)*(80), 20, 20 + (i-1)*(80) + 70, 20)
+			love.graphics.line(20 + (i-1)*(80) + 70, 20, 20 + (i-1)*(80) + 70, 20 + 70)
+			love.graphics.line(20 + (i-1)*(80) + 70, 20 + 70, 20 + (i-1)*(80), 20 + 70)
+			love.graphics.line(20 + (i-1)*(80), 20 + 70, 20 + (i-1)*(80), 20)
 
-				love.graphics.setColor(r, g, b, a)
-			end
+			love.graphics.setColor(r, g, b, a)
 		end
+	end
+	
+	if old_selectItems ~= selectItems then
+		if selectItems == 0 then
+			local i_beam_cursor = love.mouse.getSystemCursor("arrow")
+			love.mouse.setCursor(i_beam_cursor)
+		else
+			local cursor = love.mouse.newCursor( items[selectItems], 0, 0 )
+			love.mouse.setCursor( cursor )
+		end
+		old_selectItems = selectItems
 	end
 end
 
 function items_mousepressed(x, y, button)
-	for i = 1, 9 do
-		if love.mouse.getX( ) > firstX + (i-1)*(80) and love.mouse.getX( ) < firstX + (i-1)*(80) + 70 
-			and love.mouse.getY( ) > firstY and love.mouse.getY( ) < firstY + 70 then
-			if selectItems == i then
-				selectItems = 0
-			else
-				selectItems = i
+	if button=='l' then
+		for i = 1, #items do
+			if x > 20 + (i-1)*(80) and x < 20 + (i-1)*(80) + 70 
+				and y > 20 and y < 20 + 70 then
+				if selectItems == i then
+					selectItems = 0
+				else
+					selectItems = i
+				end
 			end
 		end
 	end
@@ -61,19 +69,21 @@ function items_add(item)
 end
 
 function items_delete(item)
-	for i = 1, #items do
-		if items[i] == item then
-			for j = i + 1, #items do
-				items[j - 1] = items[j]
+	if love.filesystem.exists( item ) then
+		for i = 1, #items do
+			if items[i] == item then
+				for j = i + 1, #items do
+					items[j - 1] = items[j]
+				end
+				if selectItems == i then
+					selectItems = 0
+				elseif selectItems > i then
+					selectItems = selectItems - 1
+				end
+				items[#items] = NULL
 			end
-			if selectItems == i then
-				selectItems = 0
-			elseif selectItems > i then
-				selectItems = selectItems - 1
-			end
-			items[#items] = NULL
 		end
-	end
+	end	
 end
 
 function items_keypressed(key)
