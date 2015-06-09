@@ -1,6 +1,6 @@
 function items_load()
 	screendarkness = 1
-	m_items = {"Items/5-1.png", "Items/2-2.png"}
+	m_items = {"Items/5-1.png"}
 	--m_items = {}
 	m_selectItems = 0;
 	m_oldSelectItems = 0;
@@ -62,7 +62,7 @@ function items_mousepressed(x, y, button)
 			if x > 20 + (i-1)*(80) and x < 20 + (i-1)*(80) + 70 and y > 20 and y < 20 + 70 then
 				if m_selectItems == i then
 					m_selectItems = 0
-				elseif m_selectItems == 0 or item_combination(m_items[m_selectItems], m_items[i]) == false then
+				elseif m_selectItems == 0 or items_combination(m_items[m_selectItems], m_items[i]) == false then
 					m_selectItems = i
 				end
 				return true
@@ -75,15 +75,15 @@ function items_mousepressed(x, y, button)
 	return false
 end
 
-function items_add(item)
-	if love.filesystem.exists( item ) and #m_items < 9 then
-		m_items[#m_items + 1] = item
+function items_add(someItem)
+	if love.filesystem.exists( someItem ) and #m_items < 9 then
+		m_items[#m_items + 1] = someItem
 	end
 end
 
-function items_delete(item)
+function items_delete(someItem)
 	for i = 1, #m_items do
-		if m_items[i] == item then
+		if m_items[i] == someItem then
 			for j = i + 1, #m_items do
 				m_items[j - 1] = m_items[j]
 			end
@@ -119,7 +119,7 @@ function initialCombination()
 	m_combination[4] = {item1="Items/1.gif", item2="Items/5.gif", itemResult="Items/6.gif"}
 end
 
-function item_combination(oldItem, newItem)
+function items_combination(oldItem, newItem)
 	for i = 1, #m_combination do
 		if m_combination[i].item1 == oldItem and m_combination[i].item2 == newItem 
 			or m_combination[i].item1 == newItem and m_combination[i].item2 == oldItem then

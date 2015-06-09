@@ -7,6 +7,7 @@ function love.load()
 	require "branch"
 	require "r_botton"
 	require "talk"
+	require "item"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	

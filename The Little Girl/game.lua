@@ -3,7 +3,7 @@ function game_load()
 	--mapNum = 2
 	doorNum = 14
 	branchNum = 29
-	itemNum = 3
+	itemNum = 4
 	r_bottonNum = 39
 	
 	screendarkness = 1
@@ -20,9 +20,11 @@ function game_load()
 	door_load()
 	branch_load()
 	r_botton_load()
+	item_load()
 	objects.door = {}
 	objects.r_botton = {}
 	objects.branch = {}
+	objects.item = {}
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
 	end
@@ -31,6 +33,9 @@ function game_load()
 	end
 	for i=1,branchNum do
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
+	end
+	for i=1,itemNum do
+		objects.item[i] = item:new(itemMap1[i], itemMap2[i],itemMap3[i],itemId[i], itemStatus[i], itemX[i], itemY[i], itemLast[i])
 	end
 	--music:stop()
 	--musicrev:play()
@@ -48,9 +53,11 @@ end
 
 function game_draw()
 	love.graphics.draw(map, 0, 0)
+	item_draw(mainMap[1], mainMap[2], mainMap[3])
+	
 	love.graphics.setColor(0, 0, 0)
 	love.graphics.setFont(mainFont);
-	
+
 	--for debug
 	love.graphics.print("Map"..mainMap[1].." "..mainMap[2].." "..mainMap[3], 180, 150)
 	love.graphics.print(clickMessage, 180, 180)
@@ -82,6 +89,9 @@ function game_mousepressed(x, y, button)
 			elseif r==128 and g==128 then 
 				clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
 				clickRbotton(b/25)
+			elseif r==0 and g==255 then 
+				clickMessage = "item:".. b/25 .. " " .. x .. " ".. y
+				clickItem(b/25)
 			end
 		else
 			clickMessage=""
@@ -174,5 +184,18 @@ function clickRbotton(id)
 		local tmp = objects.r_botton[d]:go()
 		-- playsound
 		moveMap(tmp[1], tmp[2], tmp[3])
+	end
+end
+
+function clickItem(id)
+	d = 0
+	for i=1,itemNum do
+		if objects.item[i].map1 == mainMap[1] and objects.item[i].map2 == -mainMap[2] 
+				and objects.item[i].map3 == -mainMap[3] and objects.item[i].index == id then
+			d = i
+		end
+	end
+	if d ~=0 then
+		objects.item[d]:chang(d)
 	end
 end
