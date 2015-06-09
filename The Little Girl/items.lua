@@ -5,6 +5,8 @@ function items_load()
 	m_oldSelectItems = 0;
 	m_itemBags = love.graphics.newImage("graphics/bags.png")
 	m_itemGrid = love.graphics.newImage("graphics/grid.png")
+	m_combination = {}
+	initialCombination()
 end
 
 function items_update(dt)
@@ -50,38 +52,37 @@ end
 function items_mousepressed(x, y, button)
 	if button=='l' then
 		for i = 1, #m_items do
-			if x > 20 + (i-1)*(80) and x < 20 + (i-1)*(80) + 70 
-				and y > 20 and y < 20 + 70 then
+			if x > 20 + (i-1)*(80) and x < 20 + (i-1)*(80) + 70 and y > 20 and y < 20 + 70 then
 				if m_selectItems == i then
 					m_selectItems = 0
-				else
+				elseif m_selectItems == 0 or item_combination(m_items[m_selectItems], m_items[i]) == false then
 					m_selectItems = i
 				end
+				break
 			end
 		end
 	end
 end
 
 function items_add(item)
-	if love.filesystem.exists( item ) then
+	if love.filesystem.exists( item ) and #m_items < 9 then
 		m_items[#m_items + 1] = item
 	end
 end
 
 function items_delete(item)
-	if love.filesystem.exists( item ) then
-		for i = 1, #m_items do
-			if m_items[i] == item then
-				for j = i + 1, #m_items do
-					m_items[j - 1] = m_items[j]
-				end
-				if m_selectItems == i then
-					m_selectItems = 0
-				elseif m_selectItems > i then
-					m_selectItems = m_selectItems - 1
-				end
-				m_items[#m_items] = NULL
+	for i = 1, #m_items do
+		if m_items[i] == item then
+			for j = i + 1, #m_items do
+				m_items[j - 1] = m_items[j]
 			end
+			if m_selectItems == i then
+				m_selectItems = 0
+			elseif m_selectItems > i then
+				m_selectItems = m_selectItems - 1
+			end
+			m_items[#m_items] = NULL
+			break
 		end
 	end	
 end
@@ -98,4 +99,25 @@ function items_keypressed(key)
 	if deleteItem == false then
 		items_add("Items/" .. key  .. ".gif")
 	end
+end
+
+function initialCombination()
+	m_combination[1] = {item1="Items/1.gif", item2="Items/2.gif", itemResult="Items/3.gif"}
+	m_combination[2] = {item1="Items/1.gif", item2="Items/3.gif", itemResult="Items/4.gif"}
+	m_combination[3] = {item1="Items/1.gif", item2="Items/4.gif", itemResult="Items/5.gif"}
+	m_combination[4] = {item1="Items/1.gif", item2="Items/5.gif", itemResult="Items/6.gif"}
+end
+
+function item_combination(oldItem, newItem)
+	for i = 1, #m_combination do
+		if m_combination[i].item1 == oldItem and m_combination[i].item2 == newItem 
+			or m_combination[i].item1 == newItem and m_combination[i].item2 == oldItem then
+			items_delete(oldItem)
+			items_delete(newItem)
+			items_add(m_combination[i].itemResult)
+			m_selectItems = 0
+			return true
+		end
+	end
+	return false
 end
