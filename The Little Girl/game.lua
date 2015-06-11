@@ -1,11 +1,4 @@
 function game_load()
-	
-	--mapNum = 2
-	doorNum = 14
-	branchNum = 29
-	itemNum = 4
-	r_bottonNum = 39
-	
 	screendarkness = 1
 	mainFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 40);
 	love.graphics.setBackgroundColor(192, 192, 255)
@@ -25,6 +18,14 @@ function game_load()
 	objects.r_botton = {}
 	objects.branch = {}
 	objects.item = {}
+	
+	--mapNum = 2
+	doorNum = 14
+	branchNum = 29
+	itemNum = #itemId
+	r_bottonNum = 39
+	
+	
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
 	end
@@ -197,5 +198,15 @@ function clickItem(id)
 	end
 	if d ~=0 then
 		objects.item[d]:chang(d)
+		if objects.item[d]:needChangBranch() then
+			for i=1,branchNum do
+				local tmp = objects.branch[i]:go()
+				if tmp[1] == objects.item[d].map1 and tmp[2] == objects.item[d].map2 and tmp[3] == 0 then
+					tmp[3] = objects.item[d].status
+					--clickMessage = "needChangBranch:"
+					moveMap(tmp[1], tmp[2], tmp[3])
+				end
+			end
+		end
 	end
 end

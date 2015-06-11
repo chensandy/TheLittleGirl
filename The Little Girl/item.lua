@@ -1,30 +1,35 @@
 item = class:new()
 
-function item_load()	--4
-	itemMap1 = {2, 2,	--2
-			    4,	--1
+function item_load()	--6
+	itemMap1 = {2, 2, 2,	--3
+			    4, 4,	--2
 			    9}	--1
-	itemMap2 = {1,2,
-			    1,
+	itemMap2 = {1, 2, 2,
+			    1, 2,
 			    1}
-	itemMap3 = {0,0,
-			    1,
+	itemMap3 = {0, 0, 1,
+			    1, 0,
 			    1}
-	itemStatus = {-1,-1,
-				  -1,
+	itemStatus = {-1, -1, -1,
+				  -1, -1,
 				  -1}
-	itemId = {1,2,
-			  2,
+	itemId = {1, 2, 3,
+			  2, 1,
 			  1}
-	itemX = {441, 230,
-			 300,
+	itemX = {441, 230, 230,
+			 300, 246,
 			 677}
-	itemY = {174, 255,
-			 410,
+	itemY = {174, 225, 225,
+			 380, 234,
 			 389}
-	itemLast = {0,-3,
-			    0,
+	itemLast = {0, 1, -2,
+			    0, 0,
 			    0}
+	--[[
+	itemLast=0 : 可拿取的 item(會消失)
+	itemLast>0 : 改變連結到此的 branch (itemMap1-itemMap2-0 改成 itemMap1-itemMap2-itemLast)
+	itemLast<0 : 改變顯示的 item ( itemMap1-itemMap2-itemMap3-itemStatus 改成 itemMap1-itemMap2-itemMap3-(itemStatus-1) )
+	--]]	
 end
 
 function item:init(m1, m2, m3, id, status, x, y, last)
@@ -61,16 +66,29 @@ function item:chang(d)
 	if self.status ~= self.last then
 		if self.last == 0 or self.status == self.last + 1 then
 			if self.map3 ~= 0 then
+				--clickMessage = "items_add "..self.status.." "..self.last
 				items_add("Items/" .. self.map1 .. "-" .. self.map2 .. "-" .. self.map3 .. self.status ..".png")
 			elseif self.map2 ~=0 then
+				--clickMessage = "items_add "..self.status.." "..self.last
 				items_add("Items/" .. self.map1 .. "-" .. self.map2 .. self.status ..".png")
 			else
+				--clickMessage = "items_add "..self.status.." "..self.last
 				items_add("Items/" .. self.map1 .. self.status ..".png")
 			end
+			self.status = self.last
+		elseif self.last == 1 then
 			self.status = self.last
 		else
 			self.status = self.status - 1
 		end
 		itemStatus[d] = self.status
+	end
+end
+
+function item:needChangBranch()
+	if self.status > 0 then
+		return true
+	else
+		return false
 	end
 end

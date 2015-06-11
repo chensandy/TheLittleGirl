@@ -39,3 +39,7 @@ end
 function branch:go()
 	return self.goto
 end
+
+function branch_changBranch(m1, m2, m3, to1, to2 ,to3)
+	
+end
