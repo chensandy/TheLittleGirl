@@ -21,16 +21,16 @@ function game_load()
 	
 	--mapNum = 2
 	doorNum = 14
-	branchNum = 29
+	branchNum = 35
 	itemNum = #itemId
-	r_bottonNum = 39
+	r_bottonNum = 47
 	
 	
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
 	end
 	for i=1,r_bottonNum do
-		objects.r_botton[i] = r_botton:new(rMap[i], rId[i], rGo[i], rGoBranch[i], rGoBranch2[i])
+		objects.r_botton[i] = r_botton:new(rMap[i], rId[i], rGo[i], rGoBranch[i])
 	end
 	for i=1,branchNum do
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
