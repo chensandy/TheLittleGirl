@@ -8,6 +8,7 @@ function love.load()
 	require "r_botton"
 	require "talk"
 	require "item"
+	require "event"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	

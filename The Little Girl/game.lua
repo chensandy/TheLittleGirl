@@ -14,6 +14,7 @@ function game_load()
 	branch_load()
 	r_botton_load()
 	item_load()
+	event_load()
 	objects.door = {}
 	objects.r_botton = {}
 	objects.branch = {}
@@ -24,7 +25,9 @@ function game_load()
 	branchNum = #branchId
 	itemNum = #itemId
 	r_bottonNum = #rId
-	
+	Fmap7 = true
+	eventIng = false
+	event1Ing = false
 	
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
@@ -49,7 +52,7 @@ function game_update(dt)
 	if screendarkness > 0 then
 		screendarkness = math.max(0, screendarkness - dt)
 	end
-	
+	event_update(dt)
 end
 
 function game_draw()
@@ -88,8 +91,12 @@ function game_mousepressed(x, y, button)
 				clickMessage = "branch:".. b/25 .. " " .. x .. " ".. y
 				clickBranch(b/25)
 			elseif r==128 and g==128 then 
-				clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
-				clickRbotton(b/25)
+				if event1Ing then
+					setGirlSay("快。點。念。故。事。　　　　　　不可以出去啦！")
+				else
+					clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
+					clickRbotton(b/25)
+				end
 			elseif r==0 and g==255 then 
 				clickMessage = "item:".. b/25 .. " " .. x .. " ".. y
 				clickItem(b/25)
@@ -139,6 +146,11 @@ function moveMap(id1, id2, id3)
 		mask = love.image.newImageData("maps/map" .. mainMap[1] .. "_mask.png");
 	end
 	screendarkness = 0.5
+	if(Fmap7 and id1==7 and id2==0 and id3==0) then
+		Fmap7 = false
+		doEvent1()
+	end
+	
 end
 
 function clickDoor(id)
