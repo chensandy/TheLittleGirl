@@ -20,10 +20,10 @@ function game_load()
 	objects.item = {}
 	
 	--mapNum = 2
-	doorNum = 14
-	branchNum = 35
+	doorNum = #doorId
+	branchNum = #branchId
 	itemNum = #itemId
-	r_bottonNum = 47
+	r_bottonNum = #rId
 	
 	
 	for i=1,doorNum do

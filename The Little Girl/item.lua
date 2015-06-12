@@ -1,38 +1,47 @@
 item = class:new()
 
-function item_load()	--6
+function item_load()	--7
 	itemMap1 = {2, 2, 2,	--3
 			    4, 4,	--2
-			    9}	--1
+			    9,	--1
+				11, 11}	--1
 	itemMap2 = {1, 2, 2,
 			    1, 2,
-			    1}
+			    1,
+				2, 1}
 	itemMap3 = {0, 0, 1,
 			    1, 0,
-			    1}
+			    1,
+				0, 0}
 	itemStatus = {-1, -1, -1,
 				  -1, -1,
-				  -1}
+				  -1,
+				  -1, -1}
 	itemId = {1, 2, 3,
 			  2, 1,
-			  1}
+			  1,
+			  2, 1}
 	itemX = {441, 230, 230,
 			 300, 246,
-			 677}
+			 677,
+			 365, 680}
 	itemY = {174, 225, 225,
 			 380, 234,
-			 389}
-	itemLast = {0, 1, -2,
-			    0, 0,
-			    0}
+			 389,
+			 216, 219}
 	--[[
 	itemLast=0 : 可拿取的 item(會消失)
 	itemLast>0 : 改變連結到此的 branch (itemMap1-itemMap2-0 改成 itemMap1-itemMap2-itemLast)
 	itemLast<0 : 改變顯示的 item ( itemMap1-itemMap2-itemMap3-itemStatus 改成 itemMap1-itemMap2-itemMap3-(itemStatus-1) )
 	--]]	
+	itemLast = {0, 1, -2,
+			    0, 0,
+			    0,
+				0, 0}
 	itemUsed = {"Items/2-2-1-1.png", 0, 0,
 			    0, 0,
-			    0}
+			    0,
+				0, 0}
 end
 
 function item:init(m1, m2, m3, id, status, x, y, last, used)
