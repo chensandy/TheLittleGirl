@@ -132,3 +132,11 @@ function items_combination(oldItem, newItem)
 	end
 	return false
 end
+
+function getSelectItems()
+	if m_selectItems ~=0 then
+		return m_items[m_selectItems]
+	else
+		return -9999
+	end
+end

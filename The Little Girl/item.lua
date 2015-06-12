@@ -30,9 +30,12 @@ function item_load()	--6
 	itemLast>0 : 改變連結到此的 branch (itemMap1-itemMap2-0 改成 itemMap1-itemMap2-itemLast)
 	itemLast<0 : 改變顯示的 item ( itemMap1-itemMap2-itemMap3-itemStatus 改成 itemMap1-itemMap2-itemMap3-(itemStatus-1) )
 	--]]	
+	itemUsed = {"Items/2-2-1-1.png", 0, 0,
+			    0, 0,
+			    0}
 end
 
-function item:init(m1, m2, m3, id, status, x, y, last)
+function item:init(m1, m2, m3, id, status, x, y, last, used)
 	self.map1 = m1
 	self.map2 = m2
 	self.map3 = m3
@@ -41,6 +44,7 @@ function item:init(m1, m2, m3, id, status, x, y, last)
 	self.x = x
 	self.y = y
 	self.last = last
+	self.used = used
 end
 
 function item_draw(map1, map2, map3)
@@ -64,24 +68,30 @@ end
 function item:chang(d)
 	--clickMessage = "*** "..self.status.." "..self.last
 	if self.status ~= self.last then
-		if self.last == 0 or self.status == self.last + 1 then
-			if self.map3 ~= 0 then
-				--clickMessage = "items_add "..self.status.." "..self.last
-				items_add("Items/" .. self.map1 .. "-" .. self.map2 .. "-" .. self.map3 .. self.status ..".png")
-			elseif self.map2 ~=0 then
-				--clickMessage = "items_add "..self.status.." "..self.last
-				items_add("Items/" .. self.map1 .. "-" .. self.map2 .. self.status ..".png")
+		clickMessage = "*** "..getSelectItems().." "..self.used
+		if getSelectItems() == self.used or self.used == 0 then
+			if self.last == 0 or self.status == self.last + 1 then
+				if self.map3 ~= 0 then
+					--clickMessage = "items_add "..self.status.." "..self.last
+					items_add("Items/" .. self.map1 .. "-" .. self.map2 .. "-" .. self.map3 .. self.status ..".png")
+				elseif self.map2 ~=0 then
+					--clickMessage = "items_add "..self.status.." "..self.last
+					items_add("Items/" .. self.map1 .. "-" .. self.map2 .. self.status ..".png")
+				else
+					--clickMessage = "items_add "..self.status.." "..self.last
+					items_add("Items/" .. self.map1 .. self.status ..".png")
+				end
+				self.status = self.last
+			elseif self.last == 1 then
+				self.status = self.last
 			else
-				--clickMessage = "items_add "..self.status.." "..self.last
-				items_add("Items/" .. self.map1 .. self.status ..".png")
+				self.status = self.status - 1
 			end
-			self.status = self.last
-		elseif self.last == 1 then
-			self.status = self.last
-		else
-			self.status = self.status - 1
+			itemStatus[d] = self.status
+			if getSelectItems() == self.used then
+				items_delete(getSelectItems())
+			end
 		end
-		itemStatus[d] = self.status
 	end
 end
 

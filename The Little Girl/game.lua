@@ -36,7 +36,7 @@ function game_load()
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
 	end
 	for i=1,itemNum do
-		objects.item[i] = item:new(itemMap1[i], itemMap2[i],itemMap3[i],itemId[i], itemStatus[i], itemX[i], itemY[i], itemLast[i])
+		objects.item[i] = item:new(itemMap1[i], itemMap2[i],itemMap3[i],itemId[i], itemStatus[i], itemX[i], itemY[i], itemLast[i], itemUsed[i])
 	end
 	--music:stop()
 	--musicrev:play()
@@ -146,6 +146,11 @@ function clickDoor(id)
 	for i=1,doorNum do
 		if objects.door[i].map == mainMap[1] and objects.door[i].index == id then
 			d = i
+			if objects.door[i].lock == 1 and getSelectItems() == objects.door[i].key then
+				objects.door[i].lock = 0
+				items_delete(getSelectItems())
+			end
+			break
 		end
 	end
 	if d ~=0 then
@@ -165,6 +170,7 @@ function clickBranch(id)
 	for i=1,branchNum do
 		if objects.branch[i].map == mainMap[1] and objects.branch[i].index == id then
 			d = i
+			break
 		end
 	end
 	if d ~=0 then
@@ -179,6 +185,7 @@ function clickRbotton(id)
 	for i=1,r_bottonNum do
 		if objects.r_botton[i].map == mainMap[1] and objects.r_botton[i].index == id then
 			d = i
+			break
 		end
 	end
 	if d ~=0 then
@@ -194,6 +201,7 @@ function clickItem(id)
 		if objects.item[i].map1 == mainMap[1] and objects.item[i].map2 == -mainMap[2] 
 				and objects.item[i].map3 == -mainMap[3] and objects.item[i].index == id then
 			d = i
+			break
 		end
 	end
 	if d ~=0 then
@@ -203,7 +211,7 @@ function clickItem(id)
 				local tmp = objects.branch[i]:go()
 				if tmp[1] == objects.item[d].map1 and tmp[2] == objects.item[d].map2 and tmp[3] == 0 then
 					tmp[3] = objects.item[d].status
-					--clickMessage = "needChangBranch:"
+					clickMessage = "*** needChangBranch:"
 					moveMap(tmp[1], tmp[2], tmp[3])
 				end
 			end
