@@ -28,6 +28,7 @@ function game_load()
 	Fmap7 = true
 	eventIng = false
 	event1Ing = false
+	gameover = false
 	
 	for i=1,doorNum do
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
@@ -53,6 +54,9 @@ function game_update(dt)
 		screendarkness = math.max(0, screendarkness - dt)
 	end
 	event_update(dt)
+	if gameover then
+		changegamestate("menu")
+	end
 end
 
 function game_draw()
@@ -90,13 +94,14 @@ function game_mousepressed(x, y, button)
 			elseif r==255 and g==0 then 
 				clickMessage = "branch:".. b/25 .. " " .. x .. " ".. y
 				clickBranch(b/25)
+			--return botton 128 128
 			elseif r==128 and g==128 then 
-				if event1Ing then
-					setGirlSay("快。點。念。故。事。　　　　　　不可以出去啦！")
-				else
-					clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
-					clickRbotton(b/25)
-				end
+				clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
+				clickRbotton(b/25)
+			--event item 128 0
+			elseif r==128 and g==0 then 
+				clickMessage = "event item:".. b/10 .. " " .. x .. " ".. y
+				clickEventI(b/10)
 			elseif r==0 and g==255 then 
 				clickMessage = "item:".. b/25 .. " " .. x .. " ".. y
 				clickItem(b/25)
@@ -201,9 +206,13 @@ function clickRbotton(id)
 		end
 	end
 	if d ~=0 then
-		local tmp = objects.r_botton[d]:go()
-		-- playsound
-		moveMap(tmp[1], tmp[2], tmp[3])
+		if event1Ing and d==27 then
+			setGirlSay("快。點。念。故。事。　　　　　　不可以出去啦！")
+		else
+			local tmp = objects.r_botton[d]:go()
+			-- playsound
+			moveMap(tmp[1], tmp[2], tmp[3])
+		end
 	end
 end
 

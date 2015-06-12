@@ -1,13 +1,16 @@
 function event_load()
 	nowEvent = 0
+	nextEvent = 0
 	count = 0
 	clear = true
+	clickEvent1Item = false
+	EventItemID = 0
 	event1 = {}
 	event1[1] = {1,1,1,2,1,2,1,2}
-	event1[2] = {1,1,1,1,1,1,1,2,2,2,2,1}
+	event1[2] = {1,1,1,1,1,1,1,2,2,2,2,2,1}
 	event1[3] = {1,1,2,1}
 	event1[4] = {1,1,1}
-	event1[5] = {1,1,2,1,1}
+	event1[5] = {1,1,2,1,1,1}
 	event1talk = {}
 	event1talk[1] = {"......",
 				  "也探索不少地方了，帶來的糧食也吃光又過了一天了，唉。",
@@ -24,44 +27,79 @@ function event_load()
 				  "「凱莉不知道自己幫替代小兔找了藉口。」",
 				  "「從此，替代小兔就取代了凱莉心理一直鍾愛的小兔的位子。~END~」",
 				  "這什麼怪故事=__=",
-				  "我每次聽的時候都會想很多事，例如，所以替代小兔成為小兔，那原本的小兔是什麼呢？",
+				  "我覺得這個故事很有趣啊！",
+				  "我每次聽的時候都會想很多事，　　例如，所以替代小兔成為小兔，那原本的小兔是什麼呢？",
 				  "明明是替代小兔，但是卻被當成小兔，那替代小兔會覺得自己還是自己嗎？",
 				  "如果最後小女孩發現替代小兔不是小兔，那會發生什麼事呢？就像麥...不，沒什麼。",
-				  "欺瞞、盲目、安於現狀...好多的人性在這故事裡面呢。",
-				  "......想的真多啊你不還是個小女孩嗎？ 然後那個麥是什麼意思？ 唉，問了他也不會回答我吧。"}
+				  "欺瞞、盲目、安於現狀～～～～　　好多的人性在這故事裡面呢。",
+				  "......想的真多啊你不還是個小女孩嗎？然後那個麥是什麼意思？　　　　唉，問了他也不會回答我吧。"}
 	event1talk[3] = {"「我要念囉，書名：愛麗絲夢遊仙境」",
 				  "「從前從前......」",
-				  "唔....雖然不是正解，但是算你過關好了=3=",
+				  "唔...雖然不是正解，但是算你過關好了＝３＝",
 				  "小女孩埋怨了一下，不過還是讓我過關了。"}
 	event1talk[4] = {"看到管家機器人送來的餐點，天啊我都快哭了......",
-				  "(接下來每到三餐時間，小女孩都會吩咐機器人送東西給我吃，看來只要小女孩心情是好的，我再來是沒有餓死的疑慮的)",
-				  "唔，不知道這個雕刻物不知道是用來做什麼的，先收起來好了"}
+				  "接下來每到三餐時間，小女孩都會吩咐機器人送東西給我吃，看來只要小女孩心情是好的，我再來是沒有餓死的疑慮的",
+				  "唔，這個雕刻物不知道是用來做什麼的，先收起來好了"}
 				  
 	event1talk[5] ={"「我要念囉」",
 				  "「從前從前......」",
 				  "噗噗～答錯了～請你餓死在這邊吧！",
 				  "嗚！肚子好餓...",
-				  "啊啊，突然眼前一片黑...(我使掉惹)"} 
-				  
+				  "啊啊，突然眼前一片黑...(我使掉惹)",
+				  "ＧＡＭＥ　ＯＶＥＲ"} 		  
 end
 
 function event_update(dt)
-
-	if event1Ing and nowEvent>0 then
-		if #m_userSay ==0 and #m_girlSay ==0 then
-			clear = true
+	if event1Ing then
+		if nowEvent>0 then
+			if nowEvent == 4 then
+				nextEvent = 10
+			end
+			if #m_userSay ==0 and #m_girlSay ==0 then
+				clear = true
+			end
+			if clear then
+				if event1[nowEvent][count] == 1 then
+					setUserSay(event1talk[nowEvent][count])
+				else
+					setGirlSay(event1talk[nowEvent][count])
+				end
+				count = count+1
+				clear = false
+				if count > #event1[nowEvent] then
+					nowEvent = nextEvent
+					nextEvent = 0
+					count = 1
+				end
+			end
 		end
-		if clear then
-			if event1[nowEvent][count] == 1 then
-				setUserSay(event1talk[nowEvent][count])
-			else
-				setGirlSay(event1talk[nowEvent][count])
+		if nowEvent == -1 then
+			gameover = true
+		elseif nowEvent == 10 then
+			event1Ing = false
+			nowEvent = 0
+			nextEvent = 0
+			count = 0
+		end
+		
+		if clickEvent1Item then
+			if #m_question ==0 and m_selectmQuestion == 1 then
+				if EventItemID == 1 then
+					nowEvent = 2
+					nextEvent = 4
+				elseif EventItemID == 2 then
+					nowEvent = 3
+					nextEvent = 4
+				elseif EventItemID == 3 then
+					nowEvent = 5
+					nextEvent = -1
+				end
+				clickEvent1Item = false
+				EventItemID = 0
+			elseif #m_question ==0 and m_selectmQuestion == 2 then
+				--setGirlSay("咦～～～～～～不念嗎不念嗎不念嗎不念嗎不念嗎不念嗎")
 			end
-			count = count+1
-			clear = false
-			if count > #event1[nowEvent] then
-				nowEvent = 0
-			end
+			
 		end
 	end
 end
@@ -70,4 +108,14 @@ function doEvent1()
 	event1Ing = true
 	nowEvent = 1
 	count = 1
+end
+
+function clickEventI(id)
+	if event1Ing and id<=3 then
+		clickEvent1Item = true
+		EventItemID = id
+		setQuestion({"就決定念這本書了", "還是算了"})
+	else
+		setUserSay("好像沒什麼特別的。")
+	end
 end
