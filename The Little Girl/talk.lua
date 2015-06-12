@@ -1,6 +1,6 @@
 function talk_load()
 	screendarkness = 1
-	m_stringLong = 48*3
+	m_stringLong = 60*3
 	--m_userSay = "141324123412341234123412341234123412341234123412341234"
 	--m_girlSay = "我是小女孩，ㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ。"
 	--m_userSay = "我是玩家，ㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ。"
@@ -57,7 +57,7 @@ function talk_mousepressed(x, y, button)
 	if #m_question > 0 then 
 		for i = 1, #m_question do
 			if x > m_userDialogPoint.x and x < m_userDialogPoint.x + 700 
-				and y > m_userDialogPoint.y - 45*#m_question + (i-1)*45 and y < m_userDialogPoint.y - 45*#m_question + (i-1)*45 + 40 then
+				and y > m_userDialogPoint.y - 50*#m_question + (i-1)*50 and y < m_userDialogPoint.y - 50*#m_question + (i-1)*50 + 45 then
 				m_selectmQuestion = i
 				m_question = {}
 			end
@@ -84,32 +84,36 @@ function girl_printf(say)
 	
 	local r, g, b, a = love.graphics.getColor( )
 	love.graphics.setColor( 0, 0, 0)
-	love.graphics.printf(string.sub(say, 1, m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y, 700, "left")
-	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y + 40, 700, "left")
-	love.graphics.printf(string.sub(say, 2*m_stringLong/3 + 1, m_stringLong), m_girlPrintPoint.x, m_girlPrintPoint.y + 80, 700, "left")
+	love.graphics.scale( 0.8, 0.8 )
+	love.graphics.printf(string.sub(say, 1, m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y + 40, 700, "left")
+	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y + 50 + 40, 700, "left")
+	love.graphics.printf(string.sub(say, 2*m_stringLong/3 + 1, m_stringLong), m_girlPrintPoint.x, m_girlPrintPoint.y + 100 + 40, 700, "left")
 	love.graphics.setColor(r, g, b, a)
 	
 end
 
 function user_printf(say)
-	local itemGraphics = love.graphics.newImage("graphics/dialog.png")		
+	local itemGraphics = love.graphics.newImage("graphics/dialog_player.png")		
 	love.graphics.draw(itemGraphics, m_userDialogPoint.x, m_userDialogPoint.y, 0)
 
 	local r, g, b, a = love.graphics.getColor( )
-	love.graphics.setColor( 0, 0, 0)
-	love.graphics.printf(string.sub(say, 1, m_stringLong/3), m_userPrintPoint.x, m_userPrintPoint.y, 700, "left")
-	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_userPrintPoint.x, m_userPrintPoint.y + 40, 700, "left")
-	love.graphics.printf(string.sub(say, 2*m_stringLong/3 + 1, m_stringLong), m_userPrintPoint.x, m_userPrintPoint.y + 80, 700, "left")
+	love.graphics.setColor( 0, 200, 200 )
+	love.graphics.scale( 0.8, 0.8 )
+	love.graphics.printf(string.sub(say, 1, m_stringLong/3), m_userPrintPoint.x, m_userPrintPoint.y + 95, 700, "left")
+	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_userPrintPoint.x, m_userPrintPoint.y + 60 + 95, 700, "left")
+	love.graphics.printf(string.sub(say, 2*m_stringLong/3 + 1, m_stringLong), m_userPrintPoint.x, m_userPrintPoint.y + 120 + 95, 700, "left")
 	love.graphics.setColor(r, g, b, a)
 end
 
 function question_printf()
+	--love.graphics.scale( 0.8, 0.8 )
+	
 	for i = 1, #m_question do
 		local r, g, b, a = love.graphics.getColor( )
 		love.graphics.setColor( 0, 0, 200)
-		love.graphics.rectangle( "fill", m_userDialogPoint.x, m_userDialogPoint.y - 45*#m_question + (i-1)*45, 700, 40 )
+		love.graphics.rectangle( "fill", m_userDialogPoint.x, m_userDialogPoint.y - 50*#m_question + (i-1)*50, 900, 45 )
 		love.graphics.setColor( 0, 200, 0)
-		love.graphics.printf(m_question[i], m_userDialogPoint.x + 5, m_userDialogPoint.y - 45*#m_question + (i-1)*45, 700, "left")
+		love.graphics.printf(m_question[i], m_userDialogPoint.x + 5, m_userDialogPoint.y - 50*#m_question + (i-1)*50 + 5, 700, "left")
 		--[[ for debug 
 		if m_selectmQuestion == i then
 			love.graphics.setColor( 255, 0, 0)
@@ -131,11 +135,11 @@ end
 
 function talk_keypressed(key)
 	if key == '8' then
-		setGirlSay("我是小女孩，ㄏㄏㄏㄏㄝㄝㄝㄝㄝ。")
+		setGirlSay("我是小女孩，ㄏㄏㄏㄏㄝㄝㄝㄝㄝㄏㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ哈哈ㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ哈哈ㄎㄎ哈哈哈呵呵呵耶耶耶耶耶耶耶ㄝㄝㄝ。")
 	elseif key == '9' then
-		setUserSay("我是玩家，ㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ哈哈哈呵呵呵耶耶耶耶耶耶耶ㄝㄝㄝㄝㄎ。")
+		setUserSay("我是玩家，ㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ哈哈ㄏㄏㄏㄏㄏ，ㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎㄎ哈哈哈呵呵呵耶耶耶耶耶耶耶ㄝㄝㄝㄝㄎ。")
 	elseif key == '0' then
-		setQuestion({"Yes", "No"})
+		setQuestion({"就決定念這本書了", "不要咧~", "不要咧~", "不要咧~"})
 	end
 end
 

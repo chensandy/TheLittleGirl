@@ -1,7 +1,7 @@
 function items_load()
 	screendarkness = 1
-	m_items = {"Items/5-1.png"}
-	--m_items = {}
+	--m_items = {"Items/5-1.png"}
+	m_items = {}
 	m_selectItems = 0;
 	m_oldSelectItems = 0;
 	m_itemBags = love.graphics.newImage("graphics/bags.png")

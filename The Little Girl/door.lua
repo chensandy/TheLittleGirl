@@ -13,8 +13,8 @@ function door_load() --14
 				0, 0, 0, 0, 0,
 				0, 0, 0,
 				0, 0}
-	doorKey = {"Items/2-1-1.png", 0, "Items/5-1.png", -1,
-			   0, 0, 0, 0, 0,
+	doorKey = {"Items/2-1-1.png", 0, "Items/5-1-1-1.png", -1,
+			   0, "Items/4-2-1.png", 0, 0, 0,
 			   0, 0, 0,
 			   0, 0}
 	doorGo = {3, 2, 8, 0,
