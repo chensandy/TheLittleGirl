@@ -13,10 +13,12 @@ function game_load()
 	door_load()
 	branch_load()
 	r_botton_load()
+	t_botton_load()
 	item_load()
 	event_load()
 	objects.door = {}
 	objects.r_botton = {}
+	objects.t_botton = {}
 	objects.branch = {}
 	objects.item = {}
 	
@@ -25,6 +27,7 @@ function game_load()
 	branchNum = #branchId
 	itemNum = #itemId
 	r_bottonNum = #rId
+	t_bottonNum = #tId
 	Fmap7 = true
 	eventIng = false
 	event1Ing = false
@@ -35,6 +38,9 @@ function game_load()
 	end
 	for i=1,r_bottonNum do
 		objects.r_botton[i] = r_botton:new(rMap[i], rId[i], rGo[i], rGoBranch[i])
+	end
+	for i=1,t_bottonNum do
+		objects.t_botton[i] = t_botton:new(tMap[i], tId[i], tGoBranch[i], tGoBranch2[i])
 	end
 	for i=1,branchNum do
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
@@ -79,6 +85,7 @@ function game_draw()
 	talk_draw()
 	if not have_talk_or_question() then
 		r_botton_draw()
+		t_botton_draw()
 	end
 end
 
@@ -101,6 +108,10 @@ function game_mousepressed(x, y, button)
 			elseif r==128 and g==128 then 
 				clickMessage = "return:".. b/25 .. " " .. x .. " ".. y
 				clickRbotton(b/25)
+			--turn botton 0 128
+			elseif r==0 and g==128 then 
+				clickMessage = "turn:".. b/10 .. " " .. x .. " ".. y
+				clickTbotton(b/10)
 			--event item 128 0
 			elseif r==128 and g==0 then 
 				clickMessage = "event item:".. b/10 .. " " .. x .. " ".. y
@@ -219,6 +230,22 @@ function clickRbotton(id)
 		end
 	end
 end
+
+function clickTbotton(id)
+	d = 0
+	for i=1,t_bottonNum do
+		if objects.t_botton[i].map == mainMap[1] and objects.t_botton[i].index == id then
+			d = i
+			break
+		end
+	end
+	if d ~=0 then
+		local tmp = objects.t_botton[d]:go()
+		-- playsound
+		moveMap(tmp[1], tmp[2], tmp[3])
+	end
+end
+
 
 function clickItem(id)
 	d = 0

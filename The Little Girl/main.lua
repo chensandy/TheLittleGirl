@@ -6,6 +6,7 @@ function love.load()
 	require "door"
 	require "branch"
 	require "r_botton"
+	require "t_botton"
 	require "talk"
 	require "item"
 	require "event"
