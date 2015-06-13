@@ -4,6 +4,7 @@ function game_load()
 	love.graphics.setBackgroundColor(192, 192, 255)
 	
 	map = love.graphics.newImage("maps/map1.png");
+	horn = love.graphics.newImage("graphics/horn.png");
 	mask = love.image.newImageData("maps/map1_mask.png");
 	mainMap = {1, 0, 0};
 	
@@ -80,6 +81,8 @@ function game_draw()
 	love.graphics.setColor(0, 0, 0, 255*screendarkness)
 	love.graphics.rectangle("fill", 0, 0, 800, 600)
 	love.graphics.setColor(255, 255, 255)
+	
+	love.graphics.draw(horn, 735, 20, 0, 1.3, 1.3)
 	
 	items_draw()
 	talk_draw()

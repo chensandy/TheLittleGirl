@@ -84,7 +84,7 @@ function girl_printf(say)
 	love.graphics.draw(girGraphics, m_girlDialogPoint.x, m_girlDialogPoint.y, 0)
 	
 	local r, g, b, a = love.graphics.getColor( )
-	love.graphics.setColor( 0, 0, 0)
+	love.graphics.setColor( 136, 0, 21)
 	love.graphics.scale( 0.8, 0.8 )
 	love.graphics.printf(string.sub(say, 1, m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y + 40, 700, "left")
 	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y + 50 + 40, 700, "left")
@@ -97,7 +97,7 @@ function user_printf(say)
 	love.graphics.draw(userGraphics, m_userDialogPoint.x, m_userDialogPoint.y, 0, 1, 1.33)
 
 	local r, g, b, a = love.graphics.getColor( )
-	love.graphics.setColor( 0, 200, 200 )
+	love.graphics.setColor( 255, 249, 117 )
 	love.graphics.scale( 0.8, 0.8 )
 	love.graphics.printf(string.sub(say, 1, m_stringLong/3), m_userPrintPoint.x, m_userPrintPoint.y + 95, 700, "left")
 	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_userPrintPoint.x, m_userPrintPoint.y + 60 + 95, 700, "left")
@@ -108,9 +108,9 @@ end
 function question_printf()
 	for i = 1, #m_question do
 		local r, g, b, a = love.graphics.getColor( )
-		love.graphics.setColor( 0, 0, 200)
+		love.graphics.setColor( 200, 191, 231)
 		love.graphics.rectangle( "fill", m_userDialogPoint.x, m_userDialogPoint.y - 50*#m_question + (i-1)*50, 900, 45 )
-		love.graphics.setColor( 0, 200, 0)
+		love.graphics.setColor( 63, 72, 204)
 		love.graphics.printf(m_question[i], m_userDialogPoint.x + 5, m_userDialogPoint.y - 50*#m_question + (i-1)*50 + 5, 700, "left")
 		--[[ for debug 
 		if m_selectmQuestion == i then
