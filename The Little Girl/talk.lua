@@ -10,9 +10,9 @@ function talk_load()
 	m_question = ""
 	
 	m_girlPrintPoint = {x = 50, y = 120}
-	m_userPrintPoint = {x = 50, y = 450}
+	m_userPrintPoint = {x = 97, y = 450}
 	m_girlDialogPoint = {x = m_girlPrintPoint.x - 30, y = m_girlPrintPoint.y - 30}
-	m_userDialogPoint = {x = m_userPrintPoint.x - 30, y = m_userPrintPoint.y - 30}
+	m_userDialogPoint = {x = m_userPrintPoint.x - 97, y = m_userPrintPoint.y - 50}
 
 	m_selectmQuestion = 0
 	girGraphics = love.graphics.newImage("graphics/dialog.png")
@@ -94,7 +94,7 @@ function girl_printf(say)
 end
 
 function user_printf(say)		
-	love.graphics.draw(userGraphics, m_userDialogPoint.x, m_userDialogPoint.y, 0)
+	love.graphics.draw(userGraphics, m_userDialogPoint.x, m_userDialogPoint.y, 0, 1, 1.33)
 
 	local r, g, b, a = love.graphics.getColor( )
 	love.graphics.setColor( 0, 200, 200 )
