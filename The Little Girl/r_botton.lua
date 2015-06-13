@@ -45,7 +45,7 @@ function r_botton_load() --50
 				 2, 0, 0, 1, 2,
 				 2, 1, 1, 1, 2,
 				 1, 0, 0}
-	
+	on_r_botton = love.graphics.newImage("maps/hover.png");
 end
 function r_botton:init(m, id, go, b)
 	self.map = m
@@ -55,4 +55,13 @@ end
 
 function r_botton:go()
 	return self.goto
+end
+
+function r_botton_draw()
+	local x = love.mouse.getX()
+	local y = love.mouse.getY()
+	local r, g, b, a = mask:getPixel(x, y)
+	if r==128 and g==128 then 
+		love.graphics.draw(on_r_botton, 375, 508)
+	end
 end

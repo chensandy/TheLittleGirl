@@ -77,6 +77,9 @@ function game_draw()
 	
 	items_draw()
 	talk_draw()
+	if not have_talk_or_question() then
+		r_botton_draw()
+	end
 end
 
 function game_mousepressed(x, y, button)
@@ -208,7 +211,7 @@ function clickRbotton(id)
 	end
 	if d ~=0 then
 		if event1Ing and d==27 then
-			setGirlSay("快。點。念。故。事。　　　　　　不可以出去啦！")
+			setGirlSay("快。點。念。故。事。　　　　　　　　　　不可以出去啦！")
 		else
 			local tmp = objects.r_botton[d]:go()
 			-- playsound
