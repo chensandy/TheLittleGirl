@@ -8,9 +8,9 @@ function items_load()
 	m_itemGrid = love.graphics.newImage("graphics/grid.png")
 	m_combination = {}
 	initialCombination()
-	local imageData = love.image.newImageData( "Items/mouse.png" )
-	local cursor = love.mouse.newCursor( imageData, 0, 0 )
-	love.mouse.setCursor( cursor )
+	mouseImage = love.image.newImageData( "Items/mouse.png" )
+	mouseCursor = love.mouse.newCursor( mouseImage, 0, 0 )
+	love.mouse.setCursor( mouseCursor )
 end
 
 function items_update(dt)
@@ -42,10 +42,8 @@ function items_draw()
 	end
 	
 	if m_oldSelectItems ~= m_selectItems then
-		local mouseImage = love.image.newImageData( "Items/mouse.png" )
 		if m_selectItems == 0 then
-			local cursor = love.mouse.newCursor( mouseImage, 0, 0 )
-			love.mouse.setCursor( cursor )
+			love.mouse.setCursor( mouseCursor )
 		else
 			local imageData = love.image.newImageData( m_items[m_selectItems] )
 			imageData:paste(mouseImage, 0, 0, 0, 0)

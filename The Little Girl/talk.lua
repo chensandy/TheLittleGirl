@@ -15,6 +15,8 @@ function talk_load()
 	m_userDialogPoint = {x = m_userPrintPoint.x - 30, y = m_userPrintPoint.y - 30}
 
 	m_selectmQuestion = 0
+	girGraphics = love.graphics.newImage("graphics/dialog.png")
+	userGraphics = love.graphics.newImage("graphics/dialog_player.png")
 end
 
 function talk_update(dt)
@@ -78,9 +80,8 @@ function setQuestion(que)
 	m_question = que
 end
 
-function girl_printf(say)
-	local itemGraphics = love.graphics.newImage("graphics/dialog.png")		
-	love.graphics.draw(itemGraphics, m_girlDialogPoint.x, m_girlDialogPoint.y, 0)
+function girl_printf(say)		
+	love.graphics.draw(girGraphics, m_girlDialogPoint.x, m_girlDialogPoint.y, 0)
 	
 	local r, g, b, a = love.graphics.getColor( )
 	love.graphics.setColor( 0, 0, 0)
@@ -92,9 +93,8 @@ function girl_printf(say)
 	
 end
 
-function user_printf(say)
-	local itemGraphics = love.graphics.newImage("graphics/dialog_player.png")		
-	love.graphics.draw(itemGraphics, m_userDialogPoint.x, m_userDialogPoint.y, 0)
+function user_printf(say)		
+	love.graphics.draw(userGraphics, m_userDialogPoint.x, m_userDialogPoint.y, 0)
 
 	local r, g, b, a = love.graphics.getColor( )
 	love.graphics.setColor( 0, 200, 200 )
@@ -106,8 +106,6 @@ function user_printf(say)
 end
 
 function question_printf()
-	--love.graphics.scale( 0.8, 0.8 )
-	
 	for i = 1, #m_question do
 		local r, g, b, a = love.graphics.getColor( )
 		love.graphics.setColor( 0, 0, 200)
