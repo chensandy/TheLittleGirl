@@ -25,6 +25,10 @@ function door_load() --14
 					0, 0, 0, 0, 0,
 					0, 0, 2,
 					2, 0}
+	doorTalk = {"開啟通往走廊的門", 0, "使用磁卡，開啟通往實驗室的門", 0,
+					0, "開啟馬克教授的門", 0, 0, 0,
+					0, 0, 0,
+					0, 0}
 end
 function door:init(m, id, l, k, go, b)
 	self.lock = l

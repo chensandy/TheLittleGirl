@@ -166,6 +166,7 @@ function clickDoor(id)
 			if objects.door[i].lock == 1 and getSelectItems() == objects.door[i].key then
 				objects.door[i].lock = 0
 				items_delete(getSelectItems())
+				setUserSay(doorTalk[d])
 			end
 			break
 		end

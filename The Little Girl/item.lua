@@ -60,6 +60,12 @@ function item_load()	--7
 			    0, 0,
 				"Items/11-2-1.png", "Items/11-2-1.png", "Items/11-2-1.png",
 				0, 0, 0}
+	itemTalk = {"使用鑷子，得到鑰匙", "打開糖罐", "得到鑷子",
+			    "得到隨身碟", "得到鑰匙",
+				"得到磁卡",
+			    "得到項鍊", "得到剪刀",
+				"使用珠子", "使用蝴蝶結", "剪開布娃娃",
+				"得到蝴蝶結", "拉短線頭", "得到線圈"}
 end
 
 function item:init(m1, m2, m3, id, status, x, y, last, used)
@@ -117,6 +123,7 @@ function item:chang(d)
 			else
 				self.status = self.status - 1
 			end
+			setUserSay(itemTalk[d])
 			itemStatus[d] = self.status
 			if getSelectItems() == self.used then
 				items_delete(getSelectItems())
