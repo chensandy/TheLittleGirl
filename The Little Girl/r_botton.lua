@@ -1,6 +1,6 @@
 r_botton = class:new()
 
-function r_botton_load() --46
+function r_botton_load() --48
 	rMap = {1, 1, 1, 1, 1,   --5
 			2, 2, 2,  --3
 			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, --10
@@ -9,7 +9,7 @@ function r_botton_load() --46
 			6, --1
 			7, 7, 7, 7, 7,--5
 			8, 8, 8, --3
-			9, 9, 9, 9, 9, --5
+			9, 9, 9, 9, 9, 9, 9,--7
 			10, 10, 10, --3
 			11, 11, 11} --3
 	rId = {1, 2, 3, 4, 5,
@@ -20,7 +20,7 @@ function r_botton_load() --46
 		   1,
 		   1, 2, 3, 4, 5,
 		   3, 4, 5,
-		   1, 2, 3, 4, 5, 
+		   1, 2, 3, 4, 5, 6, 7,
 		   3, 4, 5,
 		   1, 2, 3}
 	rGo = {1, 1, 1, 1, 1,
@@ -31,7 +31,7 @@ function r_botton_load() --46
 		   3,
 		   3, 7, 7, 7, 7,
 		   8, 8, 8,
-		   8, 9, 9, 9, 9,
+		   8, 9, 9, 9, 9, 9, 9,
 		   10, 10, 10,
 		   10, 11, 11}
 	rGoBranch = {1, 0, 0, 0, 0,
@@ -42,15 +42,26 @@ function r_botton_load() --46
 				 1,
 				 2, 0, 0, 2, 2,
 				 1, 2, 2,
-				 2, 0, 0, 1, 2,
+				 2, 0, 0, 1, 2, 2, 2,
 				 1, 1, 2,
 				 1, 0, 0}
+	rGoBranch2 = {0, 0, 0, 0, 0,
+			     0, 0, 0,
+				 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				 0, 0, 0, 0,
+				 0, 0, 0,
+				 0,
+				 0, 0, 0, 0, 0,
+				 0, 0, 0,
+				 0, 0, 0, 0, 0, 0, 2,
+				 0, 0, 0,
+				 0, 0, 0}
 	on_r_botton = love.graphics.newImage("maps/hover.png");
 end
-function r_botton:init(m, id, go, b)
+function r_botton:init(m, id, go, b, b2)
 	self.map = m
 	self.index = id
-	self.goto = {go, b, 0}
+	self.goto = {go, b, b2}
 end
 
 function r_botton:go()

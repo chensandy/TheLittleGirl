@@ -37,7 +37,7 @@ function game_load()
 		objects.door[i] = door:new(doorMap[i], doorId[i], doorLock[i], doorKey[i], doorGo[i], doorGoBranch[i])
 	end
 	for i=1,r_bottonNum do
-		objects.r_botton[i] = r_botton:new(rMap[i], rId[i], rGo[i], rGoBranch[i])
+		objects.r_botton[i] = r_botton:new(rMap[i], rId[i], rGo[i], rGoBranch[i], rGoBranch2[i])
 	end
 	for i=1,t_bottonNum do
 		objects.t_botton[i] = t_botton:new(tMap[i], tId[i], tGoBranch[i], tGoBranch2[i])
