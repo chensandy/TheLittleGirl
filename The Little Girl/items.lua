@@ -93,7 +93,7 @@ function items_delete(someItem)
 			elseif m_selectItems > i then
 				m_selectItems = m_selectItems - 1
 			end
-			m_items[#m_items] = NULL
+			m_items[#m_items] = nil
 			break
 		end
 	end	
