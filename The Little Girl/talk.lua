@@ -58,7 +58,7 @@ function talk_mousepressed(x, y, button)
 	
 	if #m_question > 0 then 
 		for i = 1, #m_question do
-			if x > m_userDialogPoint.x and x < m_userDialogPoint.x + 700 
+			if x > m_userDialogPoint.x and x < m_userDialogPoint.x + 900 
 				and y > m_userDialogPoint.y - 50*#m_question + (i-1)*50 and y < m_userDialogPoint.y - 50*#m_question + (i-1)*50 + 45 then
 				m_selectmQuestion = i
 				m_question = {}
@@ -107,7 +107,14 @@ end
 function question_printf()
 	for i = 1, #m_question do
 		local r, g, b, a = love.graphics.getColor( )
-		love.graphics.setColor( 200, 191, 231)
+		local x = love.mouse.getX( )
+		local y = love.mouse.getY( )
+		if x > m_userDialogPoint.x and x < m_userDialogPoint.x + 900 
+			and y > m_userDialogPoint.y - 50*#m_question + (i-1)*50 and y < m_userDialogPoint.y - 50*#m_question + (i-1)*50 + 45 then
+			love.graphics.setColor( 200, 191, 231 - 100)
+		else
+			love.graphics.setColor( 200, 191, 231)
+		end
 		love.graphics.rectangle( "fill", m_userDialogPoint.x, m_userDialogPoint.y - 50*#m_question + (i-1)*50, 900, 45 )
 		love.graphics.setColor( 63, 72, 204)
 		love.graphics.printf(m_question[i], m_userDialogPoint.x + 5, m_userDialogPoint.y - 50*#m_question + (i-1)*50 + 5, 700, "left")
