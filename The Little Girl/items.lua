@@ -46,12 +46,12 @@ function items_draw()
 		if m_selectItems == 0 then
 			love.mouse.setCursor( mouseCursor )
 		else
-			local imageData = love.image.newImageData( m_items[m_selectItems] )
-			imageData:paste(mouseImage, 0, 0, 0, 0)
-			local cursor = love.mouse.newCursor( imageData, 0, 0 )
-			love.mouse.setCursor( cursor )
-			imageData = nil
-			cursor = nil
+			local itemImageData = love.image.newImageData( m_items[m_selectItems] )
+			itemImageData:paste(mouseImage, 0, 0, 0, 0)
+			local itemCursor = love.mouse.newCursor( itemImageData, 0, 0 )
+			love.mouse.setCursor( itemCursor )
+			itemImageData = nil
+			itemCursor = nil
 		end
 		m_oldSelectItems = m_selectItems
 	end
