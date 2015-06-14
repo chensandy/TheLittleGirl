@@ -39,6 +39,7 @@ function items_draw()
 
 			love.graphics.setColor(r, g, b, a)
 		end
+		itemGraphics = nil
 	end
 	
 	if m_oldSelectItems ~= m_selectItems then
@@ -49,6 +50,8 @@ function items_draw()
 			imageData:paste(mouseImage, 0, 0, 0, 0)
 			local cursor = love.mouse.newCursor( imageData, 0, 0 )
 			love.mouse.setCursor( cursor )
+			imageData = nil
+			cursor = nil
 		end
 		m_oldSelectItems = m_selectItems
 	end
@@ -108,6 +111,7 @@ function items_keypressed(key)
 	if deleteItem == false then
 		items_add("Items/" .. key  .. ".gif")
 	end
+	deleteItem = nil
 end
 
 function initialCombination()

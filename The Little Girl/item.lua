@@ -60,12 +60,18 @@ function item_load()	--7
 			    0, 0,
 				"Items/11-2-1.png", "Items/11-2-1.png", "Items/11-2-1.png",
 				0, 0, 0}
-	itemTalk = {"使用鑷子，得到鑰匙", "打開糖罐", "得到鑷子",
+	itemTalk = {"使用方糖夾，得到鑰匙", "打開糖罐", "得到方糖夾",
 			    "得到隨身碟", "得到鑰匙",
 				"得到磁卡",
 			    "得到項鍊", "得到剪刀",
 				"使用珠子", "使用蝴蝶結", "剪開布娃娃",
 				"得到蝴蝶結", "拉短線頭", "得到線圈"}
+	itemDescription = {"沙發下好像有什麼東西，但是手搆不到", "有一個糖罐", "一個方糖夾，可以用來做什麼嗎",
+					   "好像有用歐", "好像可以拿來開門",
+					   "好像可以拿來開門",
+					   "好漂亮", "好像能拿來剪開東西",
+					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開",
+					   "好漂亮的蝴蝶結", "有線頭", "有長線頭"}
 end
 
 function item:init(m1, m2, m3, id, status, x, y, last, used)
@@ -93,49 +99,54 @@ function item_draw(map1, map2, map3)
 					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. itemStatus[i] ..".png")
 				end
 				love.graphics.draw(itemGraphics, itemX[i], itemY[i])
+				itemGraphics = nil
 			end
 		end
 	end
 end
 
-function item:chang(d)
+function item_chang(d)
 	--clickMessage = "*** "..self.status.." "..self.last
-	if self.status ~= self.last then
-		clickMessage = "*** "..getSelectItems().." "..self.used
-		if getSelectItems() == self.used or self.used == 0 then
-			if self.last == 0 or self.status == self.last + 1 or self.last == 998 then
-				if self.map3 ~= 0 then
-					--clickMessage = "items_add "..self.status.." "..self.last
-					items_add("Items/" .. self.map1 .. "-" .. self.map2 .. "-" .. self.map3 .. self.status ..".png")
-				elseif self.map2 ~=0 then
-					--clickMessage = "items_add "..self.status.." "..self.last
-					items_add("Items/" .. self.map1 .. "-" .. self.map2 .. self.status ..".png")
+	if itemStatus[d] ~= itemLast[d] then
+		clickMessage = "*** "..getSelectItems().." "..itemUsed[d]
+		if getSelectItems() == itemUsed[d] or itemUsed[d] == 0 then
+			if itemLast[d] == 0 or itemStatus[d] == itemLast[d] + 1 or itemLast[d] == 998 then
+				if itemMap3[d] ~= 0 then
+					clickMessage = "items_add "..itemStatus[d].." "..itemLast[d]
+					items_add("Items/" .. itemMap1[d] .. "-" .. itemMap2[d] .. "-" .. itemMap3[d] .. itemStatus[d] ..".png")
+				elseif itemMap2[d] ~=0 then
+					clickMessage = "items_add "..itemStatus[d].." "..itemLast[d]
+					items_add("Items/" .. itemMap1[d] .. "-" .. itemMap2[d] .. itemStatus[d] ..".png")
 				else
-					--clickMessage = "items_add "..self.status.." "..self.last
-					items_add("Items/" .. self.map1 .. self.status ..".png")
+					clickMessage = "items_add "..itemStatus[d].." "..itemLast[d]
+					items_add("Items/" .. itemMap1[d] .. itemStatus[d] ..".png")
 				end
-				self.status = self.last
-			elseif self.last == 1 then
-				self.status = self.last
-			elseif self.last == 999 then
-				self.last = 998
+				itemStatus[d] = itemLast[d]
+			elseif itemLast[d] == 1 then
+				itemStatus[d] = itemLast[d]
+			elseif itemLast[d] == 999 then
 				itemLast[d] = 998
 			else
-				self.status = self.status - 1
+				itemStatus[d] = itemStatus[d] - 1
 			end
 			setUserSay(itemTalk[d])
-			itemStatus[d] = self.status
-			if getSelectItems() == self.used then
+			if getSelectItems() == itemUsed[d] then
 				items_delete(getSelectItems())
 			end
 		end
 	end
 end
 
-function item:needChangBranch()
-	if self.status > 0 then
+function item_needChangBranch(d)
+	if itemStatus[d] > 0 then
 		return true
 	else
 		return false
+	end
+end
+
+function item_showDescription(d)
+	if itemStatus[d] ~= itemLast[d] and itemLast[d] ~= 998 then
+		setUserSay(itemDescription[d])
 	end
 end

@@ -47,7 +47,7 @@ function game_load()
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
 	end
 	for i=1,itemNum do
-		objects.item[i] = item:new(itemMap1[i], itemMap2[i],itemMap3[i],itemId[i], itemStatus[i], itemX[i], itemY[i], itemLast[i], itemUsed[i])
+		--objects.item[i] = item:new(itemMap1[i], itemMap2[i],itemMap3[i],itemId[i], itemStatus[i], itemX[i], itemY[i], itemLast[i], itemUsed[i])
 	end
 	--music:stop()
 	--musicrev:play()
@@ -123,6 +123,14 @@ function game_mousepressed(x, y, button)
 				clickMessage = "item:".. b/25 .. " " .. x .. " ".. y
 				clickItem(b/25)
 			end
+		elseif button=='r' then
+			local r, g, b, a = mask:getPixel(x, y)
+			--door 0 0
+			if r==0 and g==255 then 
+				clickMessage = "button=r, item:".. b/25 .. " " .. x .. " ".. y
+				clickItemR(b/25)
+			end
+			clickMessage=""
 		else
 			clickMessage=""
 		end
@@ -143,7 +151,7 @@ function game_keypressed(key)
 		elseif key == 'd' then
 			if objects.door[-1*mainMap[2]]:islock() then
 			else
-				tmp = objects.door[-1*mainMap[2]]:go()
+				local tmp = objects.door[-1*mainMap[2]]:go()
 				moveMap(tmp[1], tmp[2], tmp[3])
 			end
 		else
@@ -176,7 +184,7 @@ function moveMap(id1, id2, id3)
 end
 
 function clickDoor(id)
-	d = 0
+	local d = 0
 	for i=1,doorNum do
 		if objects.door[i].map == mainMap[1] and objects.door[i].index == id then
 			d = i
@@ -201,7 +209,7 @@ function clickDoor(id)
 end
 
 function clickBranch(id)
-	d = 0
+	local d = 0
 	for i=1,branchNum do
 		if objects.branch[i].map == mainMap[1] and objects.branch[i].index == id then
 			d = i
@@ -216,7 +224,7 @@ function clickBranch(id)
 end
 
 function clickRbotton(id)
-	d = 0
+	local d = 0
 	for i=1,r_bottonNum do
 		if objects.r_botton[i].map == mainMap[1] and objects.r_botton[i].index == id then
 			d = i
@@ -235,7 +243,7 @@ function clickRbotton(id)
 end
 
 function clickTbotton(id)
-	d = 0
+	local d = 0
 	for i=1,t_bottonNum do
 		if objects.t_botton[i].map == mainMap[1] and objects.t_botton[i].index == id then
 			d = i
@@ -251,25 +259,34 @@ end
 
 
 function clickItem(id)
-	d = 0
+	local d = 0
 	for i=1,itemNum do
-		if objects.item[i].map1 == mainMap[1] and objects.item[i].map2 == -mainMap[2] 
-				and objects.item[i].map3 == -mainMap[3] and objects.item[i].index == id then
+		if itemMap1[i] == mainMap[1] and itemMap2[i] == -mainMap[2] and itemMap3[i] == -mainMap[3] and itemId[i] == id then
 			d = i
 			break
 		end
 	end
 	if d ~=0 then
-		objects.item[d]:chang(d)
-		if objects.item[d]:needChangBranch() then
+		item_chang(d)
+		if item_needChangBranch(d) then
 			for i=1,branchNum do
 				local tmp = objects.branch[i]:go()
-				if tmp[1] == objects.item[d].map1 and tmp[2] == objects.item[d].map2 and tmp[3] == 0 then
-					tmp[3] = objects.item[d].status
+				if tmp[1] == itemMap1[d] and tmp[2] == itemMap2[d] and tmp[3] == 0 then
+					tmp[3] = itemStatus[d]
 					clickMessage = "*** needChangBranch:"
 					moveMap(tmp[1], tmp[2], tmp[3])
 				end
 			end
 		end
 	end
+end
+
+function clickItemR(id)
+	for i=1,itemNum do
+		if itemMap1[i] == mainMap[1] and itemMap2[i] == -mainMap[2] and itemMap3[i] == -mainMap[3] and itemId[i] == id then
+			item_showDescription(i)
+			break
+		end
+	end
+	
 end

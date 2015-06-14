@@ -90,7 +90,6 @@ function girl_printf(say)
 	love.graphics.printf(string.sub(say, m_stringLong/3 + 1, 2*m_stringLong/3), m_girlPrintPoint.x, m_girlPrintPoint.y + 50 + 40, 700, "left")
 	love.graphics.printf(string.sub(say, 2*m_stringLong/3 + 1, m_stringLong), m_girlPrintPoint.x, m_girlPrintPoint.y + 100 + 40, 700, "left")
 	love.graphics.setColor(r, g, b, a)
-	
 end
 
 function user_printf(say)		
