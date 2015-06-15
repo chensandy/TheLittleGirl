@@ -163,25 +163,26 @@ function game_keypressed(key)
 end
 
 function moveMap(id1, id2, id3)
-	mainMap[1] = id1
-	mainMap[2] = -1*id2
-	mainMap[3] = -1*id3
-	if id3 ~= 0 then
-		map = love.graphics.newImage("maps/map" .. mainMap[1] .. mainMap[2] .. mainMap[3] ..".png");
-		mask = love.image.newImageData("maps/map" .. mainMap[1] .. mainMap[2] .. mainMap[3] .."_mask.png");
-	elseif id2~=0 then
-		map = love.graphics.newImage("maps/map" .. mainMap[1] .. mainMap[2] .. ".png");
-		mask = love.image.newImageData("maps/map" .. mainMap[1] .. mainMap[2] .. "_mask.png");
-	else
-		map = love.graphics.newImage("maps/map" .. mainMap[1] .. ".png");
-		mask = love.image.newImageData("maps/map" .. mainMap[1] .. "_mask.png");
+	if have_talk_or_question() == false then
+		mainMap[1] = id1
+		mainMap[2] = -1*id2
+		mainMap[3] = -1*id3
+		if id3 ~= 0 then
+			map = love.graphics.newImage("maps/map" .. mainMap[1] .. mainMap[2] .. mainMap[3] ..".png");
+			mask = love.image.newImageData("maps/map" .. mainMap[1] .. mainMap[2] .. mainMap[3] .."_mask.png");
+		elseif id2~=0 then
+			map = love.graphics.newImage("maps/map" .. mainMap[1] .. mainMap[2] .. ".png");
+			mask = love.image.newImageData("maps/map" .. mainMap[1] .. mainMap[2] .. "_mask.png");
+		else
+			map = love.graphics.newImage("maps/map" .. mainMap[1] .. ".png");
+			mask = love.image.newImageData("maps/map" .. mainMap[1] .. "_mask.png");
+		end
+		screendarkness = 0.5
+		if(Fmap7 and id1==7 and id2==0 and id3==0) then
+			Fmap7 = false
+			doEvent1()
+		end
 	end
-	screendarkness = 0.5
-	if(Fmap7 and id1==7 and id2==0 and id3==0) then
-		Fmap7 = false
-		doEvent1()
-	end
-	
 end
 
 function clickDoor(id)
@@ -192,15 +193,14 @@ function clickDoor(id)
 			if objects.door[i].lock == 1 and getSelectItems() == objects.door[i].key then
 				objects.door[i].lock = 0
 				items_delete(getSelectItems())
-				setUserSay(doorTalk[d])
+				setUserSay(doorOpenTalk[d])
 			end
 			break
 		end
 	end
 	if d ~=0 then
 		if objects.door[d]:islock() then
-			-- print lock message
-			-- playsound
+			setUserSay(doorTalk[d])
 		else
 			local tmp = objects.door[d]:go()
 			-- playsound
