@@ -20,6 +20,7 @@ function map_update(dt)
 			if count > #mapSay[nowM] then
 				count = 1
 				MapTalk = false
+				mapFirst[nowM] = false
 			end
 		end
 	end
