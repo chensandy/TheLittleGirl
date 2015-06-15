@@ -53,6 +53,7 @@ function event_update(dt)
 	if event1Ing then
 		if nowEvent>0 then
 			if nowEvent == 4 then
+				moveMap(7,1,2)
 				nextEvent = 10
 			end
 			if #m_userSay ==0 and #m_girlSay ==0 then
@@ -117,5 +118,12 @@ function clickEventI(id)
 		setQuestion({"就決定念這本書了", "還是算了"})
 	else
 		setUserSay("好像沒什麼特別的。")
+	end
+end
+
+function event_draw()
+	if event1Ing and nowEvent == 4 and count < 4 then
+		event = love.graphics.newImage("maps/map7-1-1.png");
+		love.graphics.draw(event, 0, 0)
 	end
 end

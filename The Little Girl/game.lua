@@ -85,6 +85,7 @@ function game_draw()
 	love.graphics.draw(horn, 735, 20, 0, 1.3, 1.3)
 	
 	items_draw()
+	event_draw()	
 	talk_draw()
 	if not have_talk_or_question() then
 		r_botton_draw()
