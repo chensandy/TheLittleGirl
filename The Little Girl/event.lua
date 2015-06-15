@@ -2,7 +2,6 @@ function event_load()
 	nowEvent = 0
 	nextEvent = 0
 	count = 0
-	clear = true
 	clickEvent1Item = false
 	EventItemID = 0
 	event1 = {}
@@ -56,17 +55,13 @@ function event_update(dt)
 				moveMap(7,1,2)
 				nextEvent = 10
 			end
-			if #m_userSay ==0 and #m_girlSay ==0 then
-				clear = true
-			end
-			if clear then
+			if have_talk_or_question() == false then
 				if event1[nowEvent][count] == 1 then
 					setUserSay(event1talk[nowEvent][count])
 				else
 					setGirlSay(event1talk[nowEvent][count])
 				end
 				count = count+1
-				clear = false
 				if count > #event1[nowEvent] then
 					nowEvent = nextEvent
 					nextEvent = 0

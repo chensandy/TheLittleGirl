@@ -10,6 +10,7 @@ function love.load()
 	require "talk"
 	require "item"
 	require "event"
+	require "map"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	

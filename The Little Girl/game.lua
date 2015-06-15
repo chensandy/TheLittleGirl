@@ -17,6 +17,7 @@ function game_load()
 	t_botton_load()
 	item_load()
 	event_load()
+	map_load()
 	objects.door = {}
 	objects.r_botton = {}
 	objects.t_botton = {}
@@ -61,6 +62,7 @@ function game_update(dt)
 		screendarkness = math.max(0, screendarkness - dt)
 	end
 	event_update(dt)
+	map_update(dt)
 	if gameover then
 		changegamestate("menu")
 	end
@@ -181,6 +183,13 @@ function moveMap(id1, id2, id3)
 		if(Fmap7 and id1==7 and id2==0 and id3==0) then
 			Fmap7 = false
 			doEvent1()
+		end
+		for i=1, #mapId do
+			if mapId[i][1] == id1 and mapId[i][2] == id2 and mapId[i][3] == id3 and mapFirst[i] then
+				MapTalk = true
+				nowM = i
+				break
+			end
 		end
 	end
 end
