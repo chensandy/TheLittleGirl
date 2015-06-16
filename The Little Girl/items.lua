@@ -115,10 +115,7 @@ function items_keypressed(key)
 end
 
 function initialCombination()
-	m_combination[1] = {item1="Items/1.gif", item2="Items/2.gif", itemResult="Items/3.gif"}
-	m_combination[2] = {item1="Items/1.gif", item2="Items/3.gif", itemResult="Items/4.gif"}
-	m_combination[3] = {item1="Items/1.gif", item2="Items/4.gif", itemResult="Items/5.gif"}
-	m_combination[4] = {item1="Items/1.gif", item2="Items/5.gif", itemResult="Items/6.gif"}
+	m_combination[1] = {item1="Items/7-2-3-1.png", item2="Items/11-1-1-1.png", itemResult="Items/7-2-3-1-1.png"}
 end
 
 function items_combination(oldItem, newItem)

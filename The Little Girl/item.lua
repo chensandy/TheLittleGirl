@@ -113,6 +113,7 @@ end
 function item_draw(map1, map2, map3)
 	for i=1,#itemMap1 do
 		if itemMap1[i] == map1 and itemMap2[i] == -map2 and itemMap3[i] == -map3 then
+			--判斷 item 拿走不會再出現 or 還未出現
 			if itemStatus[i] ~= 0 and itemLast[i] ~= 999 then
 				local itemGraphics
 				if -map3 ~= 0 then
@@ -129,11 +130,14 @@ function item_draw(map1, map2, map3)
 	end
 end
 
-function item_chang(d)
+function item_chang(d, objects)
 	--clickMessage = "*** "..self.status.." "..self.last
+	--不是最終狀態
 	if itemStatus[d] ~= itemLast[d] then
 		clickMessage = "*** "..getSelectItems().." "..itemUsed[d]
+		--選對拿取的 item or 直接可拿
 		if getSelectItems() == itemUsed[d] or itemUsed[d] == 0 then
+			
 			if itemLast[d] == 0 or itemStatus[d] == itemLast[d] + 1 or itemLast[d] == 998 then
 				if itemMap3[d] ~= 0 then
 					clickMessage = "items_add "..itemStatus[d].." "..itemLast[d]
@@ -146,8 +150,16 @@ function item_chang(d)
 					items_add("Items/" .. itemMap1[d] .. itemStatus[d] ..".png")
 				end
 				itemStatus[d] = itemLast[d]
-			elseif itemLast[d] == 1 then
-				itemStatus[d] = itemLast[d]
+			elseif item_needChangBranch(d) then
+				itemStatus[d] = -itemLast[d]
+				for i=1,branchNum do
+					local tmp = objects.branch[i]:go()
+					if tmp[1] == itemMap1[d] and tmp[2] == itemMap2[d] and tmp[3] == 0 then
+						tmp[3] = itemLast[d]
+						clickMessage = "*** needChangBranch to: " .. tmp[1] .. "," .. tmp[2] .. "," .. tmp[3]
+						moveMap(tmp[1], tmp[2], tmp[3])
+					end
+				end
 			elseif itemLast[d] == 999 then
 				itemLast[d] = 998
 			else
@@ -162,7 +174,7 @@ function item_chang(d)
 end
 
 function item_needChangBranch(d)
-	if itemStatus[d] > 0 then
+	if itemLast[d] > 0 and itemLast[d] < 998 then
 		return true
 	else
 		return false

@@ -277,17 +277,20 @@ function clickItem(id)
 		end
 	end
 	if d ~=0 then
-		item_chang(d)
+		item_chang(d, objects)
+		--[[
 		if item_needChangBranch(d) then
 			for i=1,branchNum do
 				local tmp = objects.branch[i]:go()
 				if tmp[1] == itemMap1[d] and tmp[2] == itemMap2[d] and tmp[3] == 0 then
-					tmp[3] = itemStatus[d]
-					clickMessage = "*** needChangBranch:"
+					tmp[3] = itemLast[d]
+					clickMessage = "*** needChangBranch to: " .. tmp[1] .. "," .. tmp[2] .. "," .. tmp[3]
 					moveMap(tmp[1], tmp[2], tmp[3])
+					game_draw()
 				end
 			end
 		end
+		--]]
 	end
 end
 
