@@ -2,6 +2,8 @@ function items_load()
 	screendarkness = 1
 	--m_items = {"Items/5-1.png"}
 	m_items = {}
+	m_itemsGraphics = {}
+	m_itemsCursor = {}
 	m_selectItems = 0;
 	m_oldSelectItems = 0;
 	m_itemBags = love.graphics.newImage("graphics/bags.png")
@@ -25,9 +27,8 @@ function items_draw()
 		love.graphics.draw(m_itemGrid, 20 + (i-1)*(80), 20)
 	end
 	
-	for i = 1, #m_items do
-		local itemGraphics = love.graphics.newImage(m_items[i])		
-		love.graphics.draw(itemGraphics, 20 + (i-1)*(80), 20)
+	for i = 1, #m_items do		
+		love.graphics.draw(m_itemsGraphics[i], 20 + (i-1)*(80), 20)
 		if i == m_selectItems then
 			local r, g, b, a = love.graphics.getColor( )
 			love.graphics.setColor( 255, 0, 0)
@@ -46,12 +47,7 @@ function items_draw()
 		if m_selectItems == 0 then
 			love.mouse.setCursor( mouseCursor )
 		else
-			local itemImageData = love.image.newImageData( m_items[m_selectItems] )
-			itemImageData:paste(mouseImage, 0, 0, 0, 0)
-			local itemCursor = love.mouse.newCursor( itemImageData, 0, 0 )
-			love.mouse.setCursor( itemCursor )
-			itemImageData = nil
-			itemCursor = nil
+			love.mouse.setCursor( m_itemsCursor[m_selectItems] )
 		end
 		m_oldSelectItems = m_selectItems
 	end
@@ -79,6 +75,14 @@ end
 function items_add(someItem)
 	if love.filesystem.exists( someItem ) and #m_items < 9 then
 		m_items[#m_items + 1] = someItem
+		
+		local itemGraphics = love.graphics.newImage( someItem )		
+		m_itemsGraphics[#m_itemsGraphics + 1] = itemGraphics
+		
+		local itemImageData = love.image.newImageData( someItem )
+		itemImageData:paste(mouseImage, 0, 0, 0, 0)
+		local itemCursor = love.mouse.newCursor( itemImageData, 0, 0 )
+		m_itemsCursor[#m_itemsCursor + 1] = itemCursor
 	end
 end
 
@@ -87,6 +91,8 @@ function items_delete(someItem)
 		if m_items[i] == someItem then
 			for j = i + 1, #m_items do
 				m_items[j - 1] = m_items[j]
+				m_itemsGraphics[j - 1] = m_itemsGraphics[j]
+				m_itemsCursor[j - 1] = m_itemsCursor[j]
 			end
 			if m_selectItems == i then
 				m_selectItems = 0
@@ -94,6 +100,8 @@ function items_delete(someItem)
 				m_selectItems = m_selectItems - 1
 			end
 			m_items[#m_items] = nil
+			m_itemsGraphics[#m_itemsGraphics] = nil
+			m_itemsCursor[#m_itemsCursor] = nil
 			break
 		end
 	end	
@@ -138,4 +146,13 @@ function getSelectItems()
 	else
 		return -9999
 	end
+end
+
+function findItems(findItem)
+	for i = 1, #m_items do
+		if m_items[i] == findItem then
+			return true
+		end
+	end
+	return false
 end

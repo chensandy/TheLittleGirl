@@ -184,6 +184,11 @@ function moveMap(id1, id2, id3)
 			Fmap7 = false
 			doEvent1()
 		end
+		if(id1==7 and id2==1 and id3==2) then
+			if findItems("Items/7-1-2-1.png") == false then
+				items_add("Items/7-1-2-1.png")
+			end
+		end
 		for i=1, #mapId do
 			if mapId[i][1] == id1 and mapId[i][2] == id2 and mapId[i][3] == id3 and mapFirst[i] then
 				MapTalk = true
@@ -278,19 +283,6 @@ function clickItem(id)
 	end
 	if d ~=0 then
 		item_chang(d, objects)
-		--[[
-		if item_needChangBranch(d) then
-			for i=1,branchNum do
-				local tmp = objects.branch[i]:go()
-				if tmp[1] == itemMap1[d] and tmp[2] == itemMap2[d] and tmp[3] == 0 then
-					tmp[3] = itemLast[d]
-					clickMessage = "*** needChangBranch to: " .. tmp[1] .. "," .. tmp[2] .. "," .. tmp[3]
-					moveMap(tmp[1], tmp[2], tmp[3])
-					game_draw()
-				end
-			end
-		end
-		--]]
 	end
 end
 
