@@ -6,7 +6,7 @@ function item_load()
 				5,
 				7, 7,
 				8,
-			    9, 9,
+			    9, 9, 9,
 				10, 10, 10,
 				11, 11, 11,
 				13}	
@@ -15,7 +15,7 @@ function item_load()
 				1,
 				2, 3,
 				1,
-			    1, 2,
+			    1, 2, 2,
 				2, 2, 2,
 				2, 1, 1,
 				0}
@@ -24,16 +24,16 @@ function item_load()
 				1,
 				3, 0,
 				2,
-			    1, 3,
+			    1, 3, 1,
 				1, 1, 1,
 				0, 0, 1,
-				0}
+				0}	
 	itemStatus = {-1, -1, -1,
 				  -1, -1,
 				  -1,
 				  -1, -1,
 				  -1,
-				  -1, -1,
+				  -1, -1, -1,
 				  -1, -2, -3,
 				  -1, -1, -1,
 				  -1}
@@ -42,7 +42,7 @@ function item_load()
 			  1,
 			  1, 2,
 			  1,
-			  1, 2,
+			  1, 2, 3,
 			  1, 2, 3,
 			  2, 1, 3,
 			  1}
@@ -51,7 +51,7 @@ function item_load()
 			 250,
 			 396, 107,
 			 549,
-			 677, 390,
+			 677, 390, 244,
 			 404, 307, 277,
 			 365, 680, 672,
 			 525}
@@ -60,7 +60,7 @@ function item_load()
 			 117,
 			 307, 319,
 			 378,
-			 389, 467,
+			 389, 467, 87,
 			 179, 280, 329,
 			 216, 219, 218,
 			 254}
@@ -68,15 +68,15 @@ function item_load()
 	itemLast=0 : 可拿取的 item(會消失)
 	itemLast>0 : 改變連結到此的 branch (itemMap1-itemMap2-0 改成 itemMap1-itemMap2-itemLast)
 	itemLast<0 : 改變顯示的 item ( itemMap1-itemMap2-itemMap3-itemStatus 改成 itemMap1-itemMap2-itemMap3-(itemStatus-1) )
-	itemLast=999 ：一開始不在
+	itemLast=999 ：一開始不在，拿了之後 itemLast 變成 998
 	itemLast=998 ：已使用 item，要顯示出來，不可再拿取
-	--]]	
+	--]]
 	itemLast = {0, 1, -2,
 			    0, 0,
 				0,
 				0, 0,
 				0,
-			    0, 0,
+			    0, 0, 0,
 				999, 999, 999,
 				0, 1, 0,
 				0}
@@ -85,16 +85,25 @@ function item_load()
 				0,
 				0, 0,
 				0,
-			    0, 0,
+			    0, 0, "Items/13-1.png",
 				"Items/7-2-3-1-1-1.png", "Items/11-2-1.png", "Items/9-2-3-1.png",
 				0, 0, "Items/9-2-3-1.png",
 				0}
+	itemChangBranchTo = {0, {to1=2, to2=2, to3=1}, 0,
+						 0, 0,
+						 0,
+						 0, 0,
+						 0,
+						 0, 0, 0,
+						 0, 0, 0,
+						 0, {to1=11, to2=1, to3=1}, 0,
+						 0}
 	itemTalk = {"使用方糖夾，獲得鑰匙", "打開糖罐", "獲得方糖夾",
 			    "獲得隨身碟", "獲得鑰匙",
 				"獲得磁卡",
 				"獲得針", "獲得磁卡",
 				"獲得珠子",
-			    "獲得項鍊", "獲得剪刀",
+			    "獲得項鍊", "獲得剪刀", "使用斧頭，砍掉藤蔓",
 				"縫上珠子", "使用蝴蝶結", "剪開布娃娃",
 				"獲得蝴蝶結", "拉短線頭", "使用剪刀，獲得線圈",
 				"獲得斧頭"}
@@ -103,7 +112,7 @@ function item_load()
 					   "好像可以拿來開門",
 					   "這一根尖尖的是什麼？", "好像有用歐",
 					   "小珠子",
-					   "好漂亮", "好像能拿來剪開東西",
+					   "好漂亮", "好像能拿來剪開東西", "被藤蔓擋住了",
 					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開",
 					   "好漂亮的蝴蝶結", "有線頭", "哎呀，線頭被拉長了，這條線好像蠻堅韌的",
 					   "好鋒利的斧頭"}
@@ -148,10 +157,12 @@ function item_chang(d, objects)
 		clickMessage = "*** "..getSelectItems().." "..itemUsed[d]
 		--選對拿取的 item or 直接可拿
 		if getSelectItems() == itemUsed[d] or itemUsed[d] == 0 then
+			--選對東西先刪除 items
 			if getSelectItems() == itemUsed[d] then
 				items_delete(getSelectItems())
 			end
-			if itemLast[d] == 0 or itemStatus[d] == itemLast[d] + 1 or itemLast[d] == 998 then
+			--拿取 items 
+			if itemLast[d] == 0 or itemStatus[d] == itemLast[d] + 1 then
 				if itemMap3[d] ~= 0 then
 					clickMessage = "items_add "..itemStatus[d].." "..itemLast[d]
 					items_add("Items/" .. itemMap1[d] .. "-" .. itemMap2[d] .. "-" .. itemMap3[d] .. itemStatus[d] ..".png")
@@ -165,26 +176,36 @@ function item_chang(d, objects)
 				itemStatus[d] = itemLast[d]
 			elseif item_needChangBranch(d) then
 				itemStatus[d] = -itemLast[d]
-				for i=1,branchNum do
-					local tmp = objects.branch[i]:go()
-					if tmp[1] == itemMap1[d] and tmp[2] == itemMap2[d] and tmp[3] == 0 then
-						tmp[3] = itemLast[d]
-						clickMessage = "*** needChangBranch to: " .. tmp[1] .. "," .. tmp[2] .. "," .. tmp[3]
-						moveMap(tmp[1], tmp[2], tmp[3])
-					end
-				end
+				branch_changBranch(itemMap1[d], itemMap2[d], itemMap3[d], itemChangBranchTo[d].to1, itemChangBranchTo[d].to2, itemChangBranchTo[d].to3)
 			elseif itemLast[d] == 999 then
 				itemLast[d] = 998
 			else
 				itemStatus[d] = itemStatus[d] - 1
 			end
+			
 			setUserSay(itemTalk[d])
+			
+			if itemMap1[d] == 10 and itemMap2[d] == 2 and itemMap3[d] == 1 and itemStatus[d] == -2 and itemLast[d] == 998 then
+				for i=1,#itemMap1 do
+					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -1 and itemLast[i] == 998 then
+						items_add("Items/10-2-2-1.png")
+						setUserSay(itemTalk[d] .. "，並得到雕刻物 \"EC\"")
+					end
+				end
+			elseif itemMap1[d] == 10 and itemMap2[d] == 2 and itemMap3[d] == 1 and itemStatus[d] == -1 and itemLast[d] == 998 then
+				for i=1,#itemMap1 do
+					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -2 and itemLast[i] == 998 then
+						items_add("Items/10-2-2-1.png")
+						setUserSay(itemTalk[d] .. "，並得到雕刻物 \"EC\"")
+					end
+				end
+			end
 		end
 	end
 end
 
 function item_needChangBranch(d)
-	if itemLast[d] > 0 and itemLast[d] < 998 then
+	if itemChangBranchTo[d] ~= 0 then
 		return true
 	else
 		return false

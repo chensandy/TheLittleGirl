@@ -47,9 +47,7 @@ function game_load()
 	for i=1,branchNum do
 		objects.branch[i] = branch:new(branchMap[i], branchId[i], branchGoBranch1[i], branchGoBranch2[i])
 	end
-	for i=1,itemNum do
-		--objects.item[i] = item:new(itemMap1[i], itemMap2[i],itemMap3[i],itemId[i], itemStatus[i], itemX[i], itemY[i], itemLast[i], itemUsed[i])
-	end
+	
 	--music:stop()
 	--musicrev:play()
 	
@@ -184,16 +182,18 @@ function moveMap(id1, id2, id3)
 			Fmap7 = false
 			doEvent1()
 		end
-		if(id1==7 and id2==1 and id3==2) then
-			if findItems("Items/7-1-2-1.png") == false then
-				items_add("Items/7-1-2-1.png")
-			end
-		end
+
 		for i=1, #mapId do
 			if mapId[i][1] == id1 and mapId[i][2] == id2 and mapId[i][3] == id3 and mapFirst[i] then
 				MapTalk = true
 				nowM = i
 				break
+			end
+		end
+		
+		if(id1==7 and id2==1 and id3==2) then
+			if findItems("Items/7-1-2-1.png") == false then
+				items_add("Items/7-1-2-1.png")
 			end
 		end
 	end

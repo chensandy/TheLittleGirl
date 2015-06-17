@@ -1,9 +1,9 @@
 function items_load()
 	screendarkness = 1
-	--m_items = {"Items/5-1.png"}
 	m_items = {}
 	m_itemsGraphics = {}
 	m_itemsCursor = {}
+
 	m_selectItems = 0;
 	m_oldSelectItems = 0;
 	m_itemBags = love.graphics.newImage("graphics/bags.png")
@@ -13,6 +13,11 @@ function items_load()
 	mouseImage = love.image.newImageData( "Items/mouse.png" )
 	mouseCursor = love.mouse.newCursor( mouseImage, 0, 0 )
 	love.mouse.setCursor( mouseCursor )
+	
+	--[[for test
+	items_add("Items/11-2-1.png")
+	items_add("Items/7-2-3-1-1-1.png")
+	--]]
 end
 
 function items_update(dt)

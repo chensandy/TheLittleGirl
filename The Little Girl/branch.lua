@@ -53,5 +53,14 @@ function branch:go()
 end
 
 function branch_changBranch(m1, m2, m3, to1, to2 ,to3)
-	
+	for i=1,branchNum do
+		local tmp = objects.branch[i]:go()
+		if tmp[1] == m1 and tmp[2] == m2 and tmp[3] == m3 then
+			tmp[1] = to1
+			tmp[2] = to2
+			tmp[3] = to3
+			clickMessage = "*** needChangBranch to: " .. tmp[1] .. "," .. tmp[2] .. "," .. tmp[3]
+			moveMap(tmp[1], tmp[2], tmp[3])
+		end
+	end
 end
