@@ -124,6 +124,7 @@ end
 
 function initialCombination()
 	m_combination[1] = {item1="Items/7-2-3-1.png", item2="Items/11-1-1-1.png", itemResult="Items/7-2-3-1-1.png"}
+	m_combination[2] = {item1="Items/7-2-3-1-1.png", item2="Items/8-1-2-1.png", itemResult="Items/7-2-3-1-1-1.png"}
 end
 
 function items_combination(oldItem, newItem)
