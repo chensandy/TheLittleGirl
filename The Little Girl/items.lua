@@ -1,9 +1,12 @@
 function items_load()
 	screendarkness = 1
+	m_itemsMaxNumber = 16
+	m_itemsPage = 1
+	
 	m_items = {}
 	m_itemsGraphics = {}
 	m_itemsCursor = {}
-
+	
 	m_selectItems = 0;
 	m_oldSelectItems = 0;
 	m_itemBags = love.graphics.newImage("graphics/bags.png")
@@ -27,25 +30,42 @@ function items_update(dt)
 end
 
 function items_draw()		
-	love.graphics.draw(m_itemBags, 10, 10)	
-	for i = 1, 9 do		
+	love.graphics.draw(m_itemBags, 10, 10)
+	for i = 1, m_itemsMaxNumber/2 do		
 		love.graphics.draw(m_itemGrid, 20 + (i-1)*(80), 20)
 	end
 	
-	for i = 1, #m_items do		
-		love.graphics.draw(m_itemsGraphics[i], 20 + (i-1)*(80), 20)
+	local j = 1
+	local tempEnd = 0
+	if m_itemsPage == 1 then
+		if #m_items >= 8 then
+			tempEnd = 8
+		else
+			tempEnd = #m_items
+		end
+		itemsPageMsg = "下頁"
+	else
+		tempEnd = #m_items
+		itemsPageMsg = "上頁"
+	end
+	love.graphics.print(itemsPageMsg, 655, 40)
+	itemsPageMsg = nil
+	
+	for i = (m_itemsPage-1)*8+1, tempEnd do		
+		love.graphics.draw(m_itemsGraphics[i], 20 + (j-1)*(80), 20)
 		if i == m_selectItems then
 			local r, g, b, a = love.graphics.getColor( )
 			love.graphics.setColor( 255, 0, 0)
 			
-			love.graphics.line(20 + (i-1)*(80), 20, 20 + (i-1)*(80) + 70, 20)
-			love.graphics.line(20 + (i-1)*(80) + 70, 20, 20 + (i-1)*(80) + 70, 20 + 70)
-			love.graphics.line(20 + (i-1)*(80) + 70, 20 + 70, 20 + (i-1)*(80), 20 + 70)
-			love.graphics.line(20 + (i-1)*(80), 20 + 70, 20 + (i-1)*(80), 20)
+			love.graphics.line(20 + (j-1)*(80), 20, 20 + (j-1)*(80) + 70, 20)
+			love.graphics.line(20 + (j-1)*(80) + 70, 20, 20 + (j-1)*(80) + 70, 20 + 70)
+			love.graphics.line(20 + (j-1)*(80) + 70, 20 + 70, 20 + (j-1)*(80), 20 + 70)
+			love.graphics.line(20 + (j-1)*(80), 20 + 70, 20 + (j-1)*(80), 20)
 
 			love.graphics.setColor(r, g, b, a)
 		end
 		itemGraphics = nil
+		j = j + 1
 	end
 	
 	if m_oldSelectItems ~= m_selectItems then
@@ -60,8 +80,21 @@ end
 
 function items_mousepressed(x, y, button)
 	if button=='l' then
-		for i = 1, #m_items do
-			if x > 20 + (i-1)*(80) and x < 20 + (i-1)*(80) + 70 and y > 20 and y < 20 + 70 then
+	
+		local j = 1
+		local tempEnd = 0
+		if m_itemsPage == 1 then
+			if #m_items >= 8 then
+				tempEnd = 8
+			else
+				tempEnd = #m_items
+			end
+		else
+			tempEnd = #m_items
+		end
+	
+		for i = (m_itemsPage-1)*8+1, tempEnd do
+			if x > 20 + (j-1)*(80) and x < 20 + (j-1)*(80) + 70 and y > 20 and y < 20 + 70 then
 				if m_selectItems == i then
 					m_selectItems = 0
 				elseif m_selectItems == 0 or items_combination(m_items[m_selectItems], m_items[i]) == false then
@@ -69,6 +102,16 @@ function items_mousepressed(x, y, button)
 				end
 				return true
 			end
+			j = j + 1
+		end
+		
+		if x > 20 + (9-1)*(80) and x < 20 + (9-1)*(80) + 70 and y > 20 and y < 20 + 70 then
+			if m_itemsPage == 1 then
+				m_itemsPage = 2
+			else
+				m_itemsPage = 1
+			end
+			return true
 		end
 	end
 	if x > 10 and x < m_itemBags:getWidth() and y > 10 and y < m_itemBags:getHeight() then
@@ -78,7 +121,7 @@ function items_mousepressed(x, y, button)
 end
 
 function items_add(someItem)
-	if love.filesystem.exists( someItem ) and #m_items < 9 then
+	if love.filesystem.exists( someItem ) and #m_items < m_itemsMaxNumber then
 		m_items[#m_items + 1] = someItem
 		
 		local itemGraphics = love.graphics.newImage( someItem )		
