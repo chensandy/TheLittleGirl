@@ -83,11 +83,14 @@ function items_add(someItem)
 		
 		local itemGraphics = love.graphics.newImage( someItem )		
 		m_itemsGraphics[#m_itemsGraphics + 1] = itemGraphics
+		itemGraphics = nil
 		
 		local itemImageData = love.image.newImageData( someItem )
 		itemImageData:paste(mouseImage, 0, 0, 0, 0)
 		local itemCursor = love.mouse.newCursor( itemImageData, 0, 0 )
 		m_itemsCursor[#m_itemsCursor + 1] = itemCursor
+		itemImageData = nil
+		itemCursor = nil
 	end
 end
 
