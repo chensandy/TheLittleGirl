@@ -193,7 +193,8 @@ function item_chang(d, objects)
 				for i=1,#itemMap1 do
 					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -1 and itemLast[i] == 998 then
 						items_add("Items/10-2-2-1.png")
-						setUserSay(itemTalk[d] .. "，並得到雕刻物 \"EC\"")
+						items_add("Items/10-2-2-2.png")
+						setUserSay(itemTalk[d] .. "，並得到鑰匙和雕刻物 \"EC\"")
 					end
 				end
 			elseif itemMap1[d] == 10 and itemMap2[d] == 2 and itemMap3[d] == 1 and itemStatus[d] == -1 and itemLast[d] == 998 then

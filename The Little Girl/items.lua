@@ -80,7 +80,6 @@ end
 
 function items_mousepressed(x, y, button)
 	if button=='l' then
-	
 		local j = 1
 		local tempEnd = 0
 		if m_itemsPage == 1 then
