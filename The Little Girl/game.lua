@@ -33,6 +33,7 @@ function game_load()
 	Fmap7 = true
 	eventIng = false
 	event1Ing = false
+	endId = 1  -- 1:true end 2:gun end 3:axe end 4:hunger end
 	gameover = false
 	
 	for i=1,doorNum do
@@ -194,6 +195,11 @@ function moveMap(id1, id2, id3)
 		if(id1==7 and id2==1 and id3==2) then
 			if findItems("Items/7-1-2-1.png") == false then
 				items_add("Items/7-1-2-1.png")
+			end
+		end
+		if(id1==5 and id2==2 and id3==1) then
+			if objects.door[11].lock == 0 then
+				moveMap(5, 3, 0)
 			end
 		end
 	end

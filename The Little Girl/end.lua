@@ -4,7 +4,8 @@ function end_load()
 	endFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 20);
 	love.graphics.setFont(endFont);
 	love.graphics.setBackgroundColor(0, 0, 0)
-	trueEndText = {"打開密門，映入眼簾的是裝著女孩的培養槽",
+	EndText = {}
+	EndText[1] = {"打開密門，映入眼簾的是裝著女孩的培養槽",
 				   "女孩閉著雙眼，頭髮隨著水流飄動",
 				   "維生液體透出淡淡的螢光，剎那間我以為看到了天使",
 				   false,
@@ -34,7 +35,8 @@ function end_load()
 				   "至於往後一起度過的生活，又是另一個故事了",
 				   true
 				  }
-	trueEndTextColor = {{255,255,255},{255,255,255},{255,255,255},{},{255,185,200},
+	EndTextColor = {}
+	EndTextColor[1] = {{255,255,255},{255,255,255},{255,255,255},{},{255,185,200},
 						{255,255,255},{255,245,80},{255,255,255},{255,255,255},{255,255,255},
 						{},{255,245,80},{255,245,80},{255,245,80},{255,245,80},
 						{255,245,80},{255,185,200},{255,255,255},{},{255,245,80},
@@ -47,8 +49,8 @@ function end_load()
 	textStart = 1
 	endCount = 1
 	letterCount = 0
-	printx = 50
-	printy = 160
+	printx = 80
+	printy = 150
 	dd = 0;
 	endToMenu = false
 	--music:stop()
@@ -73,22 +75,22 @@ function end_draw()
 	if endStart then
 		local c = letterCount
 		for i=textStart, endCount do
-			if trueEndText[i] == true then
+			if EndText[endId][i] == true then
 				love.graphics.print("～ＴＲＵＥ　ＥＮＤ～", 100, 250)
 				break
 			end
-			if trueEndText[i] == false then
+			if EndText[endId][i] == false then
 				textStart = i+1
 				letterCount = 0
 				endCount = i+1
 				break
 			end
-			love.graphics.setColor( trueEndTextColor[i][1], trueEndTextColor[i][2], trueEndTextColor[i][3])
-			if i==endCount and c<#trueEndText[i] then
-				local tmp = string.sub(trueEndText[i], 1, c)
-				love.graphics.print(tmp, 100, 150+55*(i-textStart))
+			love.graphics.setColor( EndTextColor[endId][i][1], EndTextColor[endId][i][2], EndTextColor[endId][i][3])
+			if i==endCount and c<#EndText[endId][i] then
+				local tmp = string.sub(EndText[endId][i], 1, c)
+				love.graphics.print(tmp, printx, printy+50*(i-textStart))
 			elseif c>0 then
-				love.graphics.print(trueEndText[i], 100, 150+55*(i-textStart))
+				love.graphics.print(EndText[endId][i], printx, printy+50*(i-textStart))
 			end
 			--love.graphics.print(menuitems[i], 180, 150+55*(i-textStart))
 		end
@@ -101,20 +103,20 @@ end
 
 function end_mousepressed(x, y, button)
 	if endStart and button=='l' then
-		if endCount == #trueEndText then
+		if endCount == #EndText[endId] then
 			changegamestate("menu")
-		elseif letterCount > #trueEndText[endCount] then
+		elseif letterCount > #EndText[endId][endCount] then
 			endCount = endCount+1
-			if endCount == #trueEndText then
-				textStart = #trueEndText
+			if endCount == #EndText[endId] then
+				textStart = #EndText[endId]
 				letterCount = 0
-				endCount = #trueEndText
+				endCount = #EndText[endId]
 			end
 			letterCount = 3
 		else
-			letterCount = #trueEndText[endCount]
+			letterCount = #EndText[endId][endCount]
 		end
-		if endCount == #trueEndText then
+		if endCount == #EndText[endId] then
 			endFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 60);
 			love.graphics.setFont(endFont);
 		end
