@@ -22,8 +22,8 @@ function love.load()
 	love.window.setMode(800, 600, {resizable=false, vsync=false})
 	
 	--deck[i] = love.graphics.newImage("graphics/" .. i .. ".gif");
-
-	--love.window.setIcon(love.graphics.newImage("graphics/icon.gif"))
+	
+	love.window.setIcon(love.image.newImageData("graphics/icon2.png"))
 	
 	changegamestate("menu")
 	gameover = false
