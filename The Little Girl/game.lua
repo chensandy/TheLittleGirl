@@ -147,8 +147,8 @@ function game_keypressed(key)
 			moveMap(1, 0, 0)
 		elseif key == 'z' then
 			moveMap(mainMap[1], 0, 0)
-		elseif key == 's' then
-			moveMap(mainMap[1], 2, 0)
+		elseif key == 'e' then
+			changegamestate("end")
 		elseif key == 'd' then
 			if objects.door[-1*mainMap[2]]:islock() then
 			else
