@@ -254,6 +254,8 @@ function item_chang(d)
 					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -1 and itemLast[i] == 998 then
 						items_add("Items/10-2-2-1.png")
 						items_add("Items/10-2-2-2.png")
+						event2Ing = true
+						event2Id = 1
 						setUserSay(itemTalk[d] .. "，並得到鑰匙和雕刻物 \"EC\"")
 					end
 				end
@@ -263,6 +265,8 @@ function item_chang(d)
 					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -2 and itemLast[i] == 998 then
 						items_add("Items/10-2-2-1.png")
 						items_add("Items/10-2-2-2.png")
+						event2Ing = true
+						event2Id = 1
 						setUserSay(itemTalk[d] .. "，並得到鑰匙和雕刻物 \"EC\"")
 					end
 				end
@@ -271,6 +275,8 @@ function item_chang(d)
 				for i=1,#itemMap1 do
 					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -4 and itemLast[i] == 997 then
 						itemLast[i] = 0;
+						event2Ing = true
+						event2Id = 1
 					end
 				end
 			end

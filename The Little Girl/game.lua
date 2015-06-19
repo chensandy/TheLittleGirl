@@ -30,9 +30,6 @@ function game_load()
 	itemNum = #itemId
 	r_bottonNum = #rId
 	t_bottonNum = #tId
-	Fmap7 = true
-	eventIng = false
-	event1Ing = false
 	endId = 1  -- 1:true end 2:gun end 3:axe end 4:hunger end
 	gameover = false
 	
