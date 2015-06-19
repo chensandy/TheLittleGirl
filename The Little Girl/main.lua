@@ -10,6 +10,7 @@ function love.load()
 	require "talk"
 	require "item"
 	require "event"
+	require "event2"
 	require "map"
 	require "end"
 	

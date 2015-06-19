@@ -5,10 +5,7 @@ function event_load()
 	clickEvent1Item = false
 	EventItemID = 0
 	Fmap7 = true
-	eventIng = false
 	event1Ing = false
-	event2Ing = false
-	event2Id = 0
 	event1 = {}
 	event1[1] = {1,1,1,2,1,2,1,2}
 	event1[2] = {1,1,1,1,1,1,1,2,2,2,2,2,1}
@@ -98,7 +95,8 @@ function event_update(dt)
 				clickEvent1Item = false
 				EventItemID = 0
 			elseif #m_question ==0 and m_selectmQuestion == 2 then
-				--setGirlSay("咦～～～～～～不念嗎不念嗎不念嗎不念嗎不念嗎不念嗎")
+				setGirlSay("咦～～～～～～不念嗎不念嗎不念嗎不念嗎不念嗎不念嗎")
+				m_selectmQuestion = 0
 			end
 			
 		end

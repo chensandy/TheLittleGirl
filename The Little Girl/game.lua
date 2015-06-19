@@ -17,6 +17,7 @@ function game_load()
 	t_botton_load()
 	item_load()
 	event_load()
+	event2_load()
 	map_load()
 	objects.door = {}
 	objects.r_botton = {}
@@ -58,6 +59,7 @@ function game_update(dt)
 		screendarkness = math.max(0, screendarkness - dt)
 	end
 	event_update(dt)
+	event2_update(dt)
 	map_update(dt)
 	if gameover then
 		changegamestate("menu")
@@ -83,7 +85,8 @@ function game_draw()
 	love.graphics.draw(horn, 735, 20, 0, 1.3, 1.3)
 	
 	items_draw()
-	event_draw()	
+	event_draw()
+	event2_draw()	
 	talk_draw()
 	if not have_talk_or_question() then
 		r_botton_draw()
@@ -250,7 +253,7 @@ function clickRbotton(id)
 		end
 	end
 	if d ~=0 then
-		if event1Ing and d==27 then
+		if event1Ing and d==29 then
 			setGirlSay("快。點。念。故。事。　　　　　　　　　　不可以出去啦！")
 		else
 			local tmp = objects.r_botton[d]:go()
