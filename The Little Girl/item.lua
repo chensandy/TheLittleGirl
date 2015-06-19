@@ -276,7 +276,7 @@ function item_chang(d)
 					if itemMap1[i] == 10 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -4 and itemLast[i] == 997 then
 						itemLast[i] = 0;
 						event2Ing = true
-						event2Id = 1
+						event2Id = 2
 					end
 				end
 			end
