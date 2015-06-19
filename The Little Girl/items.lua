@@ -17,6 +17,10 @@ function items_load()
 	mouseCursor = love.mouse.newCursor( mouseImage, 0, 0 )
 	love.mouse.setCursor( mouseCursor )
 	
+	items_add("Items/4-1-1-1.png")
+	items_add("Items/USB2.png")
+	items_add("Items/USB3.png")
+	items_add("Items/11-3-3.png")
 	--[[for test
 	items_add("Items/11-2-1.png")
 	items_add("Items/7-2-3-1-1-1.png")
@@ -113,6 +117,10 @@ function items_mousepressed(x, y, button)
 			return true
 		end
 	end
+	
+	if button=='r' then
+		m_selectItems = 0
+	end
 	if x > 10 and x < m_itemBags:getWidth() and y > 10 and y < m_itemBags:getHeight() then
 		return true
 	end
@@ -175,6 +183,7 @@ end
 function initialCombination()
 	m_combination[1] = {item1="Items/7-2-3-1.png", item2="Items/11-1-1-1.png", itemResult="Items/7-2-3-1-1.png"}
 	m_combination[2] = {item1="Items/7-2-3-1-1.png", item2="Items/8-1-2-1.png", itemResult="Items/7-2-3-1-1-1.png"}
+	m_combination[3] = {item1="Items/11-3-1.png", item2="Items/11-3-2.png", itemResult="Items/11-3-1-1.png"}
 end
 
 function items_combination(oldItem, newItem)
