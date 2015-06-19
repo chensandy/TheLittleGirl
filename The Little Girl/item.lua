@@ -4,6 +4,7 @@ function item_load()
 	itemMap1 = {2, 2, 2,
 			    4, 4,
 				5,
+				6,
 				7, 7,
 				8, 8, 8, 8, 8, 8, 8, 8, 8,
 				8, 8, 8, 8, 8,
@@ -14,6 +15,7 @@ function item_load()
 	itemMap2 = {1, 2, 2,
 			    1, 2,
 				1,
+				2,
 				2, 3,
 				1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1,
@@ -24,6 +26,7 @@ function item_load()
 	itemMap3 = {0, 0, 1,
 			    1, 0,
 				1,
+				0,
 				3, 0,
 				2, 3, 3, 3, 3, 3, 3, 3, 3,
 				3, 3, 3, 3, 3,
@@ -33,6 +36,7 @@ function item_load()
 				0}	
 	itemStatus = {-1, -1, -1,
 				  -1, -1,
+				  -1,
 				  -1,
 				  -1, -1,
 				  -1, -2, -3, -4, -5, -8, -6, -7, -9,
@@ -44,6 +48,7 @@ function item_load()
 	itemId = {1, 2, 3,
 			  2, 1,
 			  1,
+			  1,
 			  1, 2,
 			  1, 2, 3, 4, 5, 0, 0, 0, 0,
 			  6, 7, 8, 9, 10,
@@ -54,6 +59,7 @@ function item_load()
 	itemX = {441, 230, 230,
 			 300, 246,
 			 250,
+			 381,
 			 396, 107,
 			 549, 696, 695, 694, 697, 172, 260, 353, 445,
 			 192, 38, 36, 79, 79,
@@ -64,6 +70,7 @@ function item_load()
 	itemY = {174, 225, 225,
 			 380, 234,
 			 117,
+			 239,
 			 307, 319,
 			 378, 230, 274, 322, 367, 234, 234, 234, 234,
 			 297, 153, 212, 153, 212,
@@ -84,6 +91,7 @@ function item_load()
 	itemLast = {0, 1, -2,
 			    0, 0,
 				0,
+				0,
 				0, 0,
 				0, 999, 999, 999, 999, 996, 996, 996, 996,
 				996, 995, 995, 995, 995,
@@ -94,8 +102,9 @@ function item_load()
 	itemUsed = {"Items/2-2-1-1.png", 0, 0,
 			    0, 0,
 				0,
+				0,
 				0, 0,
-				0, "Items/4-1-1-1.png", "Items/USB2.png", "Items/6-1-2-1.png", "Items/11-3-3.png", 0, 0, 0, 0,
+				0, "Items/4-1-1-1.png", "Items/5-3-1.png", "Items/6-2-1.png", "Items/11-3-3.png", 0, 0, 0, 0,
 			    0, 0, 0, 0, 0,
 				0, 0, "Items/13-1.png",
 				"Items/7-2-3-1-1-1.png", "Items/11-2-1.png", "Items/9-2-3-1.png", 0,
@@ -103,6 +112,7 @@ function item_load()
 				0}
 	itemChangBranchTo = {0, {to1=2, to2=2, to3=1}, 0,
 						 0, 0,
+						 0,
 						 0,
 						 0, 0,
 						 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -112,27 +122,30 @@ function item_load()
 						 0, {to1=11, to2=1, to3=1}, 0, 0, 0, 0,
 						 0}
 	itemTalk = {"使用方糖夾，獲得鑰匙", "打開糖罐", "獲得方糖夾",
-			    "獲得隨身碟", "獲得鑰匙",
+			    "獲得黃色 USB", "獲得鑰匙",
 				"獲得磁卡",
+				"獲得綠色 USB",
 				"獲得針", "獲得磁卡",
-				"獲得珠子", "插入艾洛的 USB", "插入馬克的 USB", "插入麥斯的 USB", "插入伊莉的 USB", "艾洛的 USB", "馬克的 USB", "麥斯的 USB", "伊莉的 USB",
+				"獲得珠子", "插入愛洛的 USB", "插入馬克的 USB", "插入麥斯的 USB", "插入伊莉的 USB", "愛洛的 USB", "馬克的 USB", "麥斯的 USB", "伊莉的 USB",
 			    "打開 Data", "打開艾洛的 USB", "打開馬克的 USB", "打開麥斯的 USB", "打開伊莉的 USB",
 				"獲得項鍊", "獲得剪刀", "使用斧頭，砍掉藤蔓",
 				"縫上珠子", "使用蝴蝶結", "剪開布娃娃", "獲得鑰匙",
-				"獲得蝴蝶結", "拉短線頭", "使用剪刀，獲得線圈", "獲得蠟燭", "獲得火柴", "獲得伊莉 USB",
+				"獲得蝴蝶結", "拉短線頭", "使用剪刀，獲得線圈", "獲得蠟燭", "獲得火柴", "獲得桃紅色 USB",
 				"獲得斧頭"}
 	itemDescription = {"沙發下好像有什麼東西，但是手搆不到", "有一個糖罐", "一個方糖夾，可以用來做什麼嗎",
 					   "好像有用歐", "好像可以拿來開門",
 					   "好像可以拿來開門",
+					   "好像有用歐",
 					   "這一根尖尖的是什麼？", "好像有用歐",
 					   "小珠子", "黃色的 USB 孔", "藍色的 USB 孔", "綠色的 USB 孔", "桃紅色的 USB 孔", "I 槽", "J 槽", "K 槽", "H 槽",
-					   "Data", "可查看艾洛的 USB", "可查看馬克的 USB", "可查看麥斯的 USB", "可查看伊莉的 USB",
+					   "Data", "I 槽", "J 槽", "K 槽", "H 槽",
 					   "好漂亮", "好像能拿來剪開東西", "被藤蔓擋住了",
 					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開", "一把銅色鑰匙",
 					   "好漂亮的蝴蝶結", "有線頭", "哎呀，線頭被拉長了，這條線好像蠻堅韌的", "生日蠟燭？", "乾燥的火柴，可以點火", "很可疑",
 					   "好鋒利的斧頭"}
 	itemFirstPressed = {true, true, true,
 						true, true,
+						true,
 						true,
 						true, true,
 						true, true, true, true, true, true, true, true, true,
@@ -179,6 +192,11 @@ function item_chang(d)
 	clickMessage = "itemId: " .. itemId[d] .. " itemStatus: " .. itemStatus[d] .. "\n" .. "itemLast: " .. itemLast[d]
 	
 	if itemFirstPressed[d] then
+		if item_isAboutOpenUSB(d) or item_isAboutDescriptionUSB(d) then
+			if item_checkOpenUSB() then
+				return
+			end
+		end	
 		itemFirstPressed[d] = false
 		setUserSay(itemDescription[d])
 		return
@@ -210,6 +228,11 @@ function item_chang(d)
 				itemStatus[d] = -itemLast[d]
 				branch_changBranch(itemMap1[d], itemMap2[d], itemMap3[d], itemChangBranchTo[d].to1, itemChangBranchTo[d].to2, itemChangBranchTo[d].to3)
 			elseif itemLast[d] == 999 then
+				if item_isAboutOpenUSB(d) then
+					if item_checkOpenUSB() then
+						return
+					end
+				end
 				itemLast[d] = 998
 			elseif itemLast[d] == 998 then
 				return
@@ -250,55 +273,8 @@ function item_chang(d)
 						itemLast[i] = 0;
 					end
 				end
-			--插入艾洛的隨身碟
-			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -2 and itemLast[d] == 998 then
-				for i=1,#itemMap1 do
-					--顯示艾洛的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -8 and itemLast[i] == 996 then
-						itemLast[i] = 998;
-					end
-					--可打開艾洛的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 and itemLast[i] == 995 then
-						itemLast[i] = 999;
-					end
-				end
-			--插入馬克的隨身碟
-			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -3 and itemLast[d] == 998 then
-				for i=1,#itemMap1 do
-					--顯示馬克的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -6 and itemLast[i] == 996 then
-						itemLast[i] = 998;
-					end
-					--可打開馬克的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 and itemLast[i] == 995 then
-						itemLast[i] = 999;
-					end
-				end
-			--插入麥斯的隨身碟
-			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -4 and itemLast[d] == 998 then
-				for i=1,#itemMap1 do
-					--顯示麥斯的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -7 and itemLast[i] == 996 then
-						itemLast[i] = 998;
-					end
-					--可打開麥斯的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 and itemLast[i] == 995 then
-						itemLast[i] = 999;
-					end
-				end
-			--插入伊莉的隨身碟
-			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -5 and itemLast[d] == 998 then
-				for i=1,#itemMap1 do
-					--顯示伊莉的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -9 and itemLast[i] == 996 then
-						itemLast[i] = 998;
-					end
-					--可打開伊莉的隨身碟
-					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 and itemLast[i] == 995 then
-						itemLast[i] = 999;
-					end
-				end
 			end
+			item_usedUSB(d)	
 		end
 	end
 end
@@ -313,6 +289,128 @@ end
 
 function item_showDescription(d)
 	if itemStatus[d] ~= itemLast[d] and itemLast[d] ~= 998 then
+		if item_isAboutOpenUSB(d) or item_isAboutDescriptionUSB(d) then
+			if item_checkOpenUSB() then
+				return
+			end
+		end	
+		itemFirstPressed[d] = false
 		setUserSay(itemDescription[d])
 	end
+end
+
+function item_usedUSB(d)
+	--插入愛洛的隨身碟
+	if itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -2 and itemLast[d] == 998 then
+		for i=1,#itemMap1 do
+			--顯示愛洛的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -8 and itemLast[i] == 996 then
+				itemLast[i] = 998;
+			end
+			--可打開愛洛的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 and itemLast[i] == 995 then
+				itemLast[i] = 999;
+				itemDescription[i] = "可查看愛洛的隨身碟"
+				itemFirstPressed[i] = true
+			end
+		end
+	--插入馬克的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -3 and itemLast[d] == 998 then
+		for i=1,#itemMap1 do
+			--顯示馬克的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -6 and itemLast[i] == 996 then
+				itemLast[i] = 998;
+			end
+			--可打開馬克的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 and itemLast[i] == 995 then
+				itemLast[i] = 999;
+				itemDescription[i] = "可查看馬克的隨身碟"
+				itemFirstPressed[i] = true
+			end
+		end
+	--插入麥斯的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -4 and itemLast[d] == 998 then
+		for i=1,#itemMap1 do
+			--顯示麥斯的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -7 and itemLast[i] == 996 then
+				itemLast[i] = 998;
+			end
+			--可打開麥斯的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 and itemLast[i] == 995 then
+				itemLast[i] = 999;
+				itemDescription[i] = "可查看麥斯的隨身碟"
+				itemFirstPressed[i] = true
+			end
+		end
+	--插入伊莉的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -5 and itemLast[d] == 998 then
+		for i=1,#itemMap1 do
+			--顯示伊莉的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -9 and itemLast[i] == 996 then
+				itemLast[i] = 998;
+			end
+			--可打開伊莉的隨身碟
+			if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 and itemLast[i] == 995 then
+				itemLast[i] = 999;
+				itemDescription[i] = "可查看伊莉的隨身碟"
+				itemFirstPressed[i] = true
+			end
+		end
+	end
+end
+
+--檢查是否開啟資料夾
+function item_checkOpenUSB()
+	for i=1,#itemMap1 do
+		--已開啟愛洛的隨身碟
+		if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 and itemLast[i] == 998 then
+			return true
+		--已開啟馬克的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 and itemLast[i] == 998 then
+			return true
+		--已開啟麥斯的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 and itemLast[i] == 998 then
+			return true
+		--已開啟伊莉的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 and itemLast[i] == 998 then
+			return true
+		end
+	end
+	return false
+end
+
+function item_isAboutOpenUSB(d)
+	--想開啟愛洛的隨身碟
+	if itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -11 and itemLast[d] == 999 then
+		return true
+	--想開啟馬克的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -12 and itemLast[d] == 999 then
+		return true
+	--想開啟麥斯的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -13 and itemLast[d] == 999 then
+		return true
+	--想開啟伊莉的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -14 and itemLast[d] == 999 then
+		return true
+	end
+	
+	return false
+end
+
+function item_isAboutDescriptionUSB(d)
+	--想開啟愛洛的隨身碟
+	if itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -11 and itemLast[d] == 995 then
+		return true
+	--想開啟馬克的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -12 and itemLast[d] == 995 then
+		return true
+	--想開啟麥斯的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -13 and itemLast[d] == 995 then
+		return true
+	--想開啟伊莉的隨身碟
+	elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -14 and itemLast[d] == 995 then
+		return true
+	end
+	
+	return false
 end
