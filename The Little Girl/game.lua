@@ -282,7 +282,7 @@ function clickItem(id)
 		end
 	end
 	if d ~=0 then
-		item_chang(d, objects)
+		item_chang(d)
 	end
 end
 

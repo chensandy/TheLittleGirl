@@ -131,15 +131,15 @@ function items_add(someItem)
 	if love.filesystem.exists( someItem ) and #m_items < m_itemsMaxNumber then
 		m_items[#m_items + 1] = someItem
 		
-		local itemGraphics = love.graphics.newImage( someItem )		
-		m_itemsGraphics[#m_itemsGraphics + 1] = itemGraphics
-		itemGraphics = nil
+		local itemsGraphics = love.graphics.newImage( someItem )		
+		m_itemsGraphics[#m_itemsGraphics + 1] = itemsGraphics
+		itemsGraphics = nil
 		
-		local itemImageData = love.image.newImageData( someItem )
-		itemImageData:paste(mouseImage, 0, 0, 0, 0)
-		local itemCursor = love.mouse.newCursor( itemImageData, 0, 0 )
+		local itemsImageData = love.image.newImageData( someItem )
+		itemsImageData:paste(mouseImage, 0, 0, 0, 0)
+		local itemCursor = love.mouse.newCursor( itemsImageData, 0, 0 )
 		m_itemsCursor[#m_itemsCursor + 1] = itemCursor
-		itemImageData = nil
+		itemsImageData = nil
 		itemCursor = nil
 	end
 end

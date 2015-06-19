@@ -6,6 +6,7 @@ function item_load()
 				5,
 				7, 7,
 				8, 8, 8, 8, 8, 8, 8, 8, 8,
+				8, 8, 8, 8, 8,
 			    9, 9, 9,
 				10, 10, 10, 10,
 				11, 11, 11, 11, 11, 11,
@@ -15,6 +16,7 @@ function item_load()
 				1,
 				2, 3,
 				1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1,
 			    1, 2, 2,
 				2, 2, 2, 2,
 				2, 1, 1, 3, 3, 3,
@@ -24,6 +26,7 @@ function item_load()
 				1,
 				3, 0,
 				2, 3, 3, 3, 3, 3, 3, 3, 3,
+				3, 3, 3, 3, 3,
 			    1, 3, 1,
 				1, 1, 1, 1,
 				0, 0, 1, 0, 0, 0,
@@ -33,6 +36,7 @@ function item_load()
 				  -1,
 				  -1, -1,
 				  -1, -2, -3, -4, -5, -8, -6, -7, -9,
+				  -10, -11, -12, -13, -14,
 				  -1, -1, -1,
 				  -1, -2, -3, -4,
 				  -1, -1, -1, -1, -2, -3,
@@ -41,7 +45,8 @@ function item_load()
 			  2, 1,
 			  1,
 			  1, 2,
-			  1, 2, 3, 4, 5, 7, 8, 9, 10,
+			  1, 2, 3, 4, 5, 0, 0, 0, 0,
+			  6, 7, 8, 9, 10,
 			  1, 2, 3,
 			  1, 2, 3, 4,
 			  2, 1, 3, 5, 4, 6,
@@ -51,6 +56,7 @@ function item_load()
 			 250,
 			 396, 107,
 			 549, 696, 695, 694, 697, 172, 260, 353, 445,
+			 192, 38, 36, 79, 79,
 			 677, 390, 244,
 			 404, 307, 277, 304,
 			 365, 680, 672, 419, 216, 144,
@@ -60,6 +66,7 @@ function item_load()
 			 117,
 			 307, 319,
 			 378, 230, 274, 322, 367, 234, 234, 234, 234,
+			 297, 153, 212, 153, 212,
 			 389, 467, 87,
 			 179, 280, 329, 317,
 			 216, 219, 218, 336, 380, 342,
@@ -69,15 +76,17 @@ function item_load()
 	itemLast>0 : 改變連結到此的 branch (itemMap1-itemMap2-0 改成 itemMap1-itemMap2-itemLast)
 	itemLast<0 : 改變顯示的 item ( itemMap1-itemMap2-itemMap3-itemStatus 改成 itemMap1-itemMap2-itemMap3-(itemStatus-1) )
 	itemLast=999 ：一開始不在(不顯示)，拿了之後 itemLast 變成 998
-	itemLast=998 ：已使用 item，要顯示出來，不可再拿取
+	itemLast=998 ：已使用 item，或其他事件觸發後，要顯示出來，不可再拿取
 	itemLast=997 ：由其他事件觸發此物件出現，出現後可拿取，itemLast 變成 0
 	itemLast=996 ：由其他事件觸發此物件出現，出現後不可拿取，itemLast 變成 998
+	itemLast=995 ：由其他事件觸發此物件可點擊後出現，itemLast 變成 999
 	--]]
 	itemLast = {0, 1, -2,
 			    0, 0,
 				0,
 				0, 0,
 				0, 999, 999, 999, 999, 996, 996, 996, 996,
+				996, 995, 995, 995, 995,
 			    0, 0, 0,
 				999, 999, 999, 997,
 				0, 1, 0, 0, 0, 0,
@@ -87,7 +96,8 @@ function item_load()
 				0,
 				0, 0,
 				0, "Items/4-1-1-1.png", "Items/USB2.png", "Items/USB3.png", "Items/11-3-3.png", 0, 0, 0, 0,
-			    0, 0, "Items/13-1.png",
+			    0, 0, 0, 0, 0,
+				0, 0, "Items/13-1.png",
 				"Items/7-2-3-1-1-1.png", "Items/11-2-1.png", "Items/9-2-3-1.png", 0,
 				0, 0, "Items/9-2-3-1.png", 0, 0, 0,
 				0}
@@ -96,6 +106,7 @@ function item_load()
 						 0,
 						 0, 0,
 						 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						 0, 0, 0, 0, 0,
 						 0, 0, 0,
 						 0, 0, 0, 0,
 						 0, {to1=11, to2=1, to3=1}, 0, 0, 0, 0,
@@ -105,7 +116,8 @@ function item_load()
 				"獲得磁卡",
 				"獲得針", "獲得磁卡",
 				"獲得珠子", "插入艾洛的 USB", "插入馬克的 USB", "插入麥斯的 USB", "插入伊莉的 USB", "艾洛的 USB", "馬克的 USB", "麥斯的 USB", "伊莉的 USB",
-			    "獲得項鍊", "獲得剪刀", "使用斧頭，砍掉藤蔓",
+			    "打開 Data", "打開艾洛的 USB", "打開馬克的 USB", "打開麥斯的 USB", "打開伊莉的 USB",
+				"獲得項鍊", "獲得剪刀", "使用斧頭，砍掉藤蔓",
 				"縫上珠子", "使用蝴蝶結", "剪開布娃娃", "獲得鑰匙",
 				"獲得蝴蝶結", "拉短線頭", "使用剪刀，獲得線圈", "獲得蠟燭", "獲得火柴", "獲得伊莉 USB",
 				"獲得斧頭"}
@@ -114,6 +126,7 @@ function item_load()
 					   "好像可以拿來開門",
 					   "這一根尖尖的是什麼？", "好像有用歐",
 					   "小珠子", "黃色的 USB 孔", "藍色的 USB 孔", "綠色的 USB 孔", "桃紅色的 USB 孔", "I 槽", "J 槽", "K 槽", "H 槽",
+					   "Data", "可查看艾洛的 USB", "可查看馬克的 USB", "可查看麥斯的 USB", "可查看伊莉的 USB",
 					   "好漂亮", "好像能拿來剪開東西", "被藤蔓擋住了",
 					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開", "一把銅色鑰匙",
 					   "好漂亮的蝴蝶結", "有線頭", "哎呀，線頭被拉長了，這條線好像蠻堅韌的", "生日蠟燭？", "乾燥的火柴，可以點火", "很可疑",
@@ -123,6 +136,7 @@ function item_load()
 						true,
 						true, true,
 						true, true, true, true, true, true, true, true, true,
+						true, true, true, true, true,
 						true, true, true,
 						true, true, true, true,
 						true, true, true, true, true, true,
@@ -145,7 +159,7 @@ function item_draw(map1, map2, map3)
 	for i=1,#itemMap1 do
 		if itemMap1[i] == map1 and itemMap2[i] == -map2 and itemMap3[i] == -map3 then
 			--判斷 item 拿走不會再出現 or 還未出現
-			if itemStatus[i] ~= 0 and itemLast[i] ~= 999 and itemLast[i] ~= 997 and itemLast[i] ~= 996 then
+			if itemStatus[i] ~= 0 and itemLast[i] ~= 999 and itemLast[i] ~= 997 and itemLast[i] ~= 996 and itemLast[i] ~= 995 then
 				local itemGraphics
 				if -map3 ~= 0 then
 					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. map2 .. map3 .. itemStatus[i] ..".png")
@@ -161,8 +175,8 @@ function item_draw(map1, map2, map3)
 	end
 end
 
-function item_chang(d, objects)
-	--clickMessage = "*** "..self.status.." "..self.last
+function item_chang(d)
+	clickMessage = "itemId: " .. itemId[d] .. " itemStatus: " .. itemStatus[d] .. "\n" .. "itemLast: " .. itemLast[d]
 	
 	if itemFirstPressed[d] then
 		itemFirstPressed[d] = false
@@ -203,6 +217,8 @@ function item_chang(d, objects)
 				return
 			elseif itemLast[d] == 996 then
 				return
+			elseif itemLast[d] == 995 then
+				return
 			else
 				itemStatus[d] = itemStatus[d] - 1
 			end
@@ -237,29 +253,49 @@ function item_chang(d, objects)
 			--插入艾洛的隨身碟
 			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -2 and itemLast[d] == 998 then
 				for i=1,#itemMap1 do
+					--顯示艾洛的隨身碟
 					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -8 and itemLast[i] == 996 then
 						itemLast[i] = 998;
+					end
+					--可打開艾洛的隨身碟
+					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 and itemLast[i] == 995 then
+						itemLast[i] = 999;
 					end
 				end
 			--插入馬克的隨身碟
 			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -3 and itemLast[d] == 998 then
 				for i=1,#itemMap1 do
+					--顯示馬克的隨身碟
 					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -6 and itemLast[i] == 996 then
 						itemLast[i] = 998;
+					end
+					--可打開馬克的隨身碟
+					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 and itemLast[i] == 995 then
+						itemLast[i] = 999;
 					end
 				end
 			--插入麥斯的隨身碟
 			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -4 and itemLast[d] == 998 then
 				for i=1,#itemMap1 do
+					--顯示麥斯的隨身碟
 					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -7 and itemLast[i] == 996 then
 						itemLast[i] = 998;
+					end
+					--可打開麥斯的隨身碟
+					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 and itemLast[i] == 995 then
+						itemLast[i] = 999;
 					end
 				end
 			--插入伊莉的隨身碟
 			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -5 and itemLast[d] == 998 then
 				for i=1,#itemMap1 do
+					--顯示伊莉的隨身碟
 					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -9 and itemLast[i] == 996 then
 						itemLast[i] = 998;
+					end
+					--可打開伊莉的隨身碟
+					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 and itemLast[i] == 995 then
+						itemLast[i] = 999;
 					end
 				end
 			end
