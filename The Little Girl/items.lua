@@ -19,7 +19,7 @@ function items_load()
 	
 	items_add("Items/4-1-1-1.png")
 	items_add("Items/USB2.png")
-	items_add("Items/USB3.png")
+	items_add("Items/6-1-2-1.png")
 	items_add("Items/11-3-3.png")
 	--[[for test
 	items_add("Items/11-2-1.png")

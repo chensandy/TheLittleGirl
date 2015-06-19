@@ -95,7 +95,7 @@ function item_load()
 			    0, 0,
 				0,
 				0, 0,
-				0, "Items/4-1-1-1.png", "Items/USB2.png", "Items/USB3.png", "Items/11-3-3.png", 0, 0, 0, 0,
+				0, "Items/4-1-1-1.png", "Items/USB2.png", "Items/6-1-2-1.png", "Items/11-3-3.png", 0, 0, 0, 0,
 			    0, 0, 0, 0, 0,
 				0, 0, "Items/13-1.png",
 				"Items/7-2-3-1-1-1.png", "Items/11-2-1.png", "Items/9-2-3-1.png", 0,
