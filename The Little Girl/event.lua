@@ -139,8 +139,11 @@ function clickEventI(id)
 		clickEvent1Item = true
 		EventItemID = id
 		setQuestion({"就決定念這本書了", "還是算了"})
-	else
+	elseif id<=3 then
 		setUserSay("好像沒什麼特別的。")
+	elseif event4Ing and id==4 then
+		endId = 1
+		changegamestate("end")
 	end
 end
 

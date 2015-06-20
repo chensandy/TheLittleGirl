@@ -23,6 +23,16 @@ function event2_load()
 					 "我不想再和你講話了。"
 					}
 	eventp2 = love.graphics.newImage("maps/map10-2-2.png");
+	ssss = false
+	e4dd = 0
+	count4 = 1
+	event4Ing = false
+	eventp4 = {love.graphics.newImage("maps/map10-1-7.png"),
+			   love.graphics.newImage("maps/map10-1-8.png"),
+			   love.graphics.newImage("maps/map10-1-9.png"),
+			   love.graphics.newImage("maps/map10-1-10.png"),
+			  }
+	
 end
 
 function event2_update(dt)
@@ -48,11 +58,23 @@ function event2_update(dt)
 			end
 		end
 	end
+	if event4Ing then
+		e4dd = e4dd+1
+		if e4dd>300 then
+			e4dd = e4dd-300
+			count4 = count4+1
+		end
+	end
 end
 
 function event2_draw()
 	if event2Ing and event2Id == 1 and count2>5 and count2<9 then
 		love.graphics.draw(eventp2, 0, 0)
+	end
+	if event4Ing then
+		if count4>0 and count4<5 then
+			love.graphics.draw(eventp4[count4], 0, 0)
+		end
 	end
 end
 
@@ -61,5 +83,8 @@ function event2_mousepressed(x, y, button)
 		if event2Id==1 and count2==5 then
 			moveMap(10,2,2)
 		end
+	end
+	if event4Ing then
+		ssss = true
 	end
 end

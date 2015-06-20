@@ -206,9 +206,11 @@ function moveMap(id1, id2, id3)
 				moveMap(5, 3, 0)
 			end
 		end
-
+		
+		--true end
 		if(id1==10 and id2==1 and id3==3) and item_IsPushALandCE() then
 			event4Ing = true
+			moveMap(10,1,10)
 		end
 	end
 end
