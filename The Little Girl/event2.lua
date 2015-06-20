@@ -22,6 +22,7 @@ function event2_load()
 					 "「......」",
 					 "我不想再和你講話了。"
 					}
+	eventp2 = love.graphics.newImage("maps/map10-2-2.png");
 end
 
 function event2_update(dt)
@@ -51,8 +52,7 @@ end
 
 function event2_draw()
 	if event2Ing and event2Id == 1 and count2>5 and count2<9 then
-		--event2 = love.graphics.newImage("maps/map10-2-2.png");
-		--love.graphics.draw(event2, 0, 0)
+		love.graphics.draw(eventp2, 0, 0)
 	end
 end
 

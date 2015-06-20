@@ -47,7 +47,8 @@ function event_load()
 				  "噗噗～答錯了～請你餓死在這邊吧！",
 				  "嗚！肚子好餓...",
 				  "啊啊，突然眼前一片黑...(我使掉惹)",
-				  "ＧＡＭＥ　ＯＶＥＲ"} 		  
+				  "ＧＡＭＥ　ＯＶＥＲ"} 	
+	event = love.graphics.newImage("maps/map7-1-1.png")
 end
 
 function event_update(dt)
@@ -117,14 +118,13 @@ end
 
 function event_draw()
 	if event1Ing and nowEvent == 4 and count < 4 then
-		event = love.graphics.newImage("maps/map7-1-1.png");
 		love.graphics.draw(event, 0, 0)
 	end
 end
 
 function event_mousepressed(x, y, button)
 	if event1Ing and button =='l' then
-		if nowEvent == 4 then
+		if nowEvent == 4 and count == 1 then
 			moveMap(7,1,2)
 			nextEvent = 10
 		end
