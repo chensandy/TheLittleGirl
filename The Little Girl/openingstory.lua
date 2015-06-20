@@ -38,7 +38,7 @@ function openingstory_load()
 	printx = 80
 	printy = 150
 	dd = 0;
-	--music:stop()
+	music:stop()
 	--musicrev:play()
 end
 

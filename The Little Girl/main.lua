@@ -25,6 +25,8 @@ function love.load()
 	--deck[i] = love.graphics.newImage("graphics/" .. i .. ".gif");
 	
 	love.window.setIcon(love.image.newImageData("graphics/icon4.png"))
+	--musicrev = love.audio.newSource("sounds/musicrev.ogg");musicrev:setVolume(0.1);musicrev:setLooping(true)
+	music = love.audio.newSource("sounds/SecretGarden.mp3");music:setVolume(0.1);music:setLooping(true)
 	
 	changegamestate("menu")
 	gameover = false

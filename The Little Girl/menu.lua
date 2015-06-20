@@ -9,7 +9,7 @@ function menu_load()
 	noise = 0
 	
 	--music:stop()
-	--musicrev:play()
+	music:play()
 end
 
 function menu_update(dt)
@@ -40,6 +40,7 @@ function menu_draw()
 	love.graphics.setColor(0, 0, 0, 255*screendarkness)
 	love.graphics.rectangle("fill", 0, 0, 800, 600)
 	love.graphics.setColor(255, 255, 255)
+	
 end
 
 function menu_mousepressed(x, y, button)
