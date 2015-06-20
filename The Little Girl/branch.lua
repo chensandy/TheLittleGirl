@@ -57,7 +57,7 @@ function branch:go()
 end
 
 function branch_changBranch(m1, m2, m3, to1, to2 ,to3)
-	for i=1,branchNum do
+	for i=1,#branchMap do
 		local tmp = objects.branch[i]:go()
 		if tmp[1] == m1 and tmp[2] == m2 and tmp[3] == m3 then
 			tmp[1] = to1
@@ -70,5 +70,5 @@ function branch_changBranch(m1, m2, m3, to1, to2 ,to3)
 end
 
 function branch_lockForOpenData(d)
-	return false
+	return item_isLockBranch(branchMap[d], branchGoBranch1[d], branchGoBranch2[d])
 end

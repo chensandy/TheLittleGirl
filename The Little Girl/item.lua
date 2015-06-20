@@ -3,6 +3,7 @@ item = class:new()
 function item_load()
 	m_itemGraphics = {}
 	m_whoOpenVine = 0
+	m_itemLockBranch = {}
 	itemMap1 = {2, 2, 2, 2,
 			    4, 4,
 				5, 5,
@@ -63,7 +64,7 @@ function item_load()
 			 250, 391,
 			 381,
 			 396, 107,
-			 549, 696, 695, 694, 697, 172, 260, 353, 445,
+			 549, 696, 695, 694, 697, 181, 269, 362, 454,
 			 38, 36, 79, 79, 435, 192, 
 			 677, 390, 244, 292,
 			 404, 307, 277, 304, 148, 176, 399,
@@ -74,7 +75,7 @@ function item_load()
 			 117, 175,
 			 239,
 			 307, 319,
-			 378, 230, 274, 322, 367, 234, 234, 234, 234,
+			 378, 230, 274, 322, 367, 203, 203, 204, 204,
 			 153, 212, 153, 212, 263, 297, 
 			 389, 467, 87, 451,
 			 179, 280, 329, 317, 293, 170, 93,
@@ -130,7 +131,7 @@ function item_load()
 				"獲得針", "獲得磁卡",
 				"獲得珠子", "插入愛洛的 USB", "插入馬克的 USB", "插入麥斯的 USB", "插入伊莉的 USB", "愛洛的 USB", "馬克的 USB", "麥斯的 USB", "伊莉的 USB",
 			    "打開艾洛的 USB", "打開馬克的 USB", "打開麥斯的 USB", "打開伊莉的 USB", "開啟隱藏項目", "打開 Data", 
-				"獲得項鍊", "獲得剪刀", "使用斧頭，砍掉藤蔓", "獲得小木棒",
+				"獲得項鍊", "獲得剪刀", "呼~去除藤蔓了", "獲得小木棒",
 				"縫上珠子", "使用蝴蝶結", "剪開布娃娃", "獲得鑰匙", "獲得鑰匙", "放入雕刻物 AL", "放入雕刻物 CE",
 				"獲得蝴蝶結", "拉短線頭", "使用剪刀，獲得線圈", "獲得蠟燭", "獲得火柴", "獲得桃紅色 USB",
 				"獲得斧頭"}
@@ -157,6 +158,7 @@ function item_load()
 						true, true, true, true, true, true,
 						true}
 	item_initial()
+	item_initialLockBranch()
 end
 
 function item_initial()
@@ -227,6 +229,7 @@ function item_chang(d)
 					if getSelectItems() == itemUsed[d][i] then
 						if itemUsed[d][i] == "Items/13-1.png" then
 							m_whoOpenVine = 1
+							
 						elseif itemUsed[d][i] == "Items/11-3-1-1.png" then
 							m_whoOpenVine = 2
 						end
@@ -496,3 +499,31 @@ function item_IsPushALandCE()
 		return false
 	end
 end
+
+function item_initialLockBranch()
+	m_itemLockBranch[1] = {item={8,1,3,-11}, last = 998, branch={8,1,4}}
+	m_itemLockBranch[2] = {item={8,1,3,-12}, last = 998, branch={8,1,6}}
+	m_itemLockBranch[3] = {item={8,1,3,-13}, last = 998, branch={8,1,8}}
+	m_itemLockBranch[4] = {item={8,1,3,-1}, last = 998, branch={8,1,9}}
+end
+
+function item_isLockBranch(b1, b2, b3)
+	--clickMessage = b1..b2..b3.." "
+	for i=1,#m_itemLockBranch do
+		if m_itemLockBranch[i].branch[1] == b1 and m_itemLockBranch[i].branch[2] == b2 and m_itemLockBranch[i].branch[3] == b3 then
+			--clickMessage = clickMessage .. "in1 "
+			for j=1,#itemMap1 do
+				if itemMap1[j] == m_itemLockBranch[i].item[1] and itemMap2[j] == m_itemLockBranch[i].item[2] 
+						and itemMap3[j] == m_itemLockBranch[i].item[3] and itemStatus[j] == m_itemLockBranch[i].item[4] then
+					--clickMessage = clickMessage .. "in2 " .. itemLast[j]
+					if itemLast[j] == m_itemLockBranch[i].last then
+						return false
+					else
+						return true
+					end
+				end
+			end
+		end
+	end
+end
+
