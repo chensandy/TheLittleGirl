@@ -8,6 +8,8 @@ function game_load()
 	mask = love.image.newImageData("maps/map1_mask.png");
 	mainMap = {1, 0, 0};
 	
+	USBread = {false, false, false, false}
+	
 	items_load()
 	talk_load()
 	objects = {}
