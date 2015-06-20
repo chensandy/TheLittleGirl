@@ -210,6 +210,14 @@ function moveMap(id1, id2, id3)
 			end
 		end
 		
+		if(id1==8 and id2==1 and id3==3) then
+			item_USBback()
+		end
+		
+		if(id1==8 and id2==1 and id3==0) then
+			item_USBleave()
+		end
+		
 		if(id1==5 and id2==2 and id3==1) then
 			if objects.door[11].lock == 0 then
 				moveMap(5, 3, 0)

@@ -140,7 +140,7 @@ function item_load()
 					   "好像可以拿來開門", "好像有用歐",
 					   "好像有用歐",
 					   "這一根尖尖的是什麼？", "好像有用歐",
-					   "小珠子", "黃色的 USB 孔", "藍色的 USB 孔", "綠色的 USB 孔", "桃紅色的 USB 孔", "I 槽", "J 槽", "K 槽", "H 槽",
+					   "小珠子", "黃色的 USB 孔", "藍色的 USB 孔", "綠色的 USB 孔", "桃紅色的 USB 孔", "I", "J", "K", "H",
 					   "I 槽", "J 槽", "K 槽", "H 槽", "可開啟隱藏項目", "Data", 
 					   "好漂亮", "好像能拿來剪開東西", "被藤蔓擋住了", "短小的木棒",
 					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開", "一把銅色鑰匙", "一把銀灰色鑰匙", "空空的", "好像少了甚麼",
@@ -527,3 +527,71 @@ function item_isLockBranch(b1, b2, b3)
 	end
 end
 
+function item_USBback()
+	for i=1,#itemMap1 do
+		--已開啟愛洛的隨身碟
+		if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 and itemLast[i] == 998 then
+			itemLast[i] = 999
+			USBread[1] = true
+		--已開啟馬克的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 and itemLast[i] == 998 then
+			itemLast[i] = 999
+		--已開啟麥斯的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 and itemLast[i] == 998 then
+			itemLast[i] = 999
+		--已開啟伊莉的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 and itemLast[i] == 998 then
+			itemLast[i] = 999
+			for j=1,#itemMap1 do
+				if itemMap1[j] == 8 and itemMap2[j] == 1 and itemMap3[j] == 3 and itemStatus[j] == -1 and itemLast[j] == 998 then
+					itemLast[j] = 995
+				end
+				if itemMap1[j] == 8 and itemMap2[j] == 1 and itemMap3[j] == 3 and itemStatus[j] == -10 and itemLast[j] == 998 then
+					itemLast[j] = 996
+				end
+			end
+		end
+	end
+end
+
+function item_USBleave()
+	for i=1,#itemMap1 do
+		--已插入愛洛的隨身碟
+		if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -2 and itemLast[i] == 998 then
+			itemLast[i] = 999
+			items_add("Items/4-1-1-1.png")
+		--已插入馬克的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -3 and itemLast[i] == 998 then
+			itemLast[i] = 999
+			items_add("Items/5-3-1.png")
+		--已插入麥斯的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -4 and itemLast[i] == 998 then
+			itemLast[i] = 999
+			items_add("Items/6-2-1.png")
+		--已插入伊莉的隨身碟
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -5 and itemLast[i] == 998 then
+			itemLast[i] = 999
+			items_add("Items/11-3-3.png")
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -6 then
+			itemLast[i] = 996
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -7 then
+			itemLast[i] = 996
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -8 then
+			itemLast[i] = 996
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -9 then
+			itemLast[i] = 996
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 then
+			itemLast[i] = 995
+			itemDescription[i] = "I 槽"
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 then
+			itemLast[i] = 995
+			itemDescription[i] = "J 槽"
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 then
+			itemLast[i] = 995
+			itemDescription[i] = "K 槽"
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 then
+			itemLast[i] = 995
+			itemDescription[i] = "H 槽"
+		end
+	end
+end
