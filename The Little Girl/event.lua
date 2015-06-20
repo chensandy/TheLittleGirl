@@ -60,7 +60,13 @@ function event_load()
 				  "我走出門外。",
 				  "再見了，大哥哥。"
 				 }
-
+	event5Ing = false
+	count5=1
+	event5 = {1,2,1}
+	event5talk = {"我推開門，正要踏出門檻時",
+				  "才不會這麼簡單讓你走！",
+				  "我聽到小女孩冷酷的說。",
+				 }
 end
 
 function event_update(dt)
@@ -124,6 +130,21 @@ function event_update(dt)
 				setGirlSay(event3talk[count3])
 			end
 			count3 = count3+1	
+		end
+	end
+	if event5Ing then
+		if have_talk_or_question() == false then
+			if count5 > #event5 then
+				event5Ing = false
+				endId = 3
+				changegamestate("end")
+			end
+			if event5[count5] == 1 then
+				setUserSay(event5talk[count5])
+			else
+				setGirlSay(event5talk[count5])
+			end
+			count5 = count5+1	
 		end
 	end
 end

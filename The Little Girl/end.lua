@@ -44,6 +44,15 @@ function end_load()
 				  "「磅！」地一聲槍響，結束了我的生命。",
 				  true
 				 }
+	EndText[3] = {"回頭一看",
+				  "發現管家機器人拿著我剛使用的斧頭站在我的身後",
+				  "還來不及反應，我就被機器人砍死了",
+				  false,
+				  "「我果然不應該相信的......」",
+				  "是錯覺嗎？",
+				  "斧頭落下的瞬間，我好像聽到不同於小女孩的女孩聲音",
+				  true
+				 }
 	EndTextColor = {}
 	EndTextColor[1] = {{255,255,255},{255,255,255},{255,255,255},{},{255,185,200},
 						{255,255,255},{255,245,80},{255,255,255},{255,255,255},{255,255,255},
@@ -55,10 +64,14 @@ function end_load()
 	EndTextColor[2] = {{255,255,255},{255,255,255},{255,0,0},{255,255,255},{},
 					   {255,255,255},{170,0,25},{}
 					  }
+	EndTextColor[3] = {{0,0,0},{0,0,0},{0,0,0},{},{255,185,200},
+					   {255,255,255},{255,255,255},{}
+					  }
 	--background = love.graphics.newImage("maps/map1.png");
 	background = {}
 	background[1] = {}
 	background[2] = {love.graphics.newImage("event/CG_1.png")}
+	background[3] = {love.graphics.newImage("event/CG_3.png")}
 	endStart = false
 	textStart = 1
 	endCount = 1
@@ -92,9 +105,13 @@ function end_draw()
 			love.graphics.print("～ＴＲＵＥ　ＥＮＤ～", 100, 250)
 		elseif endId == 2 then
 			love.graphics.print("～ＧＵＮ　ＥＮＤ～", 120, 250)
+		elseif endId == 3 then
+			love.graphics.print("～ＡＸＥ　ＥＮＤ～", 120, 250)
 		end
 	elseif endId == 2 and textStart == 6 then
 		love.graphics.draw(background[2][1], 0, 0)
+	elseif endId == 3 and textStart == 1 then
+		love.graphics.draw(background[3][1], 0, 0)
 	end
 			
 	if endStart then

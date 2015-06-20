@@ -161,11 +161,7 @@ function game_keypressed(key)
 		elseif key == 'e' then
 			changegamestate("end")
 		elseif key == 'd' then
-			if objects.door[-1*mainMap[2]]:islock() then
-			else
-				local tmp = objects.door[-1*mainMap[2]]:go()
-				moveMap(tmp[1], tmp[2], tmp[3])
-			end
+			event5Ing = true
 		else
 			items_keypressed(key)
 			talk_keypressed(key)
@@ -330,7 +326,7 @@ function clickItem(id)
 			end
 		elseif item_whoOpenVine()==1 then
 			--axe end
-			--event5Ing = true
+			event5Ing = true
 		end
 	end
 	
