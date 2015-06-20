@@ -330,6 +330,15 @@ function item_chang(d)
 			item_usedUSB(d)	
 		end
 	end
+	
+	--for test
+	--[[
+	if item_IsPushALandCE() then
+		clickMessage = "t"
+	else
+		clickMessage = "f"
+	end
+	--]]
 end
 
 function item_needChangBranch(d)
@@ -470,4 +479,20 @@ end
 
 function item_whoOpenVine()
 	return m_whoOpenVine
+end
+
+function item_IsPushALandCE()
+	local temp = 0
+	for i=1,#itemMap1 do
+		if itemMap1[i] == 10 and itemMap2[i] == 1 and itemMap3[i] == 6 and itemStatus[i] == -1 and itemLast[i] == 998 then
+			temp = temp + 1
+		elseif itemMap1[i] == 10 and itemMap2[i] == 1 and itemMap3[i] == 6 and itemStatus[i] == -2 and itemLast[i] == 998 then
+			temp = temp + 1
+		end
+	end
+	if temp == 2 then
+		return true
+	else
+		return false
+	end
 end

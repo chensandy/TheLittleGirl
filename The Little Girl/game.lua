@@ -242,9 +242,13 @@ function clickBranch(id)
 		end
 	end
 	if d ~=0 then
-		local tmp = objects.branch[d]:go()
-		-- playsound
-		moveMap(tmp[1], tmp[2], tmp[3])
+		if branch_lockForOpenData(d) then
+			return
+		else
+			local tmp = objects.branch[d]:go()
+			-- playsound
+			moveMap(tmp[1], tmp[2], tmp[3])
+		end
 	end
 end
 

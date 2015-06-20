@@ -21,6 +21,8 @@ function items_load()
 	items_add("Items/5-3-1.png")
 	items_add("Items/6-2-1.png")
 	items_add("Items/11-3-3.png")
+	--items_add("Items/7-1-2-1.png")
+	--items_add("Items/10-2-2-1.png")
 	--[[for test
 	items_add("Items/11-2-1.png")
 	items_add("Items/7-2-3-1-1-1.png")
