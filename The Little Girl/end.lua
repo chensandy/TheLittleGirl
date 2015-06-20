@@ -73,7 +73,7 @@ end
 
 function end_update(dt)
 	if screendarkness > 0 then
-		screendarkness = math.max(0, screendarkness - dt/5)
+		screendarkness = math.max(0, screendarkness - dt)
 	end
 	
 	if endStart then

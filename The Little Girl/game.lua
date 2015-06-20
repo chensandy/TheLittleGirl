@@ -1,5 +1,5 @@
 function game_load()
-	screendarkness = 1
+	screendarkness = 0
 	mainFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 40);
 	love.graphics.setBackgroundColor(192, 192, 255)
 	
