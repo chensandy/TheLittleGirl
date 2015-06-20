@@ -2,7 +2,7 @@ item = class:new()
 
 function item_load()
 	m_itemGraphics = {}
-	itemMap1 = {2, 2, 2,
+	itemMap1 = {2, 2, 2, 2,
 			    4, 4,
 				5, 5,
 				6,
@@ -13,7 +13,7 @@ function item_load()
 				10, 10, 10, 10, 10, 10, 10,
 				11, 11, 11, 11, 11, 11,
 				13}	
-	itemMap2 = {1, 2, 2,
+	itemMap2 = {1, 2, 2, 2,
 			    1, 2,
 				1, 3,
 				2,
@@ -24,7 +24,7 @@ function item_load()
 				2, 2, 2, 2, 1, 1, 1,
 				2, 1, 1, 3, 3, 3,
 				0}
-	itemMap3 = {0, 0, 1,
+	itemMap3 = {0, 0, 1, 1,
 			    1, 0,
 				1, 0,
 				0,
@@ -35,7 +35,7 @@ function item_load()
 				1, 1, 1, 1, 4, 6, 6, 
 				0, 0, 1, 0, 0, 0,
 				0}	
-	itemStatus = {-1, -1, -1,
+	itemStatus = {-1, -1, -1, -2,
 				  -1, -1,
 				  -1, -1,
 				  -1,
@@ -46,7 +46,7 @@ function item_load()
 				  -1, -2, -3, -4, -1, -1, -2,
 				  -1, -1, -1, -1, -2, -3,
 				  -1}
-	itemId = {1, 2, 3,
+	itemId = {1, 2, 3, 0,
 			  2, 1,
 			  1, 2,
 			  1,
@@ -57,7 +57,7 @@ function item_load()
 			  1, 2, 3, 4, 5, 6, 7,
 			  2, 1, 3, 5, 4, 6,
 			  1}
-	itemX = {441, 230, 230,
+	itemX = {441, 230, 230, 230,
 			 300, 246,
 			 250, 391,
 			 381,
@@ -68,7 +68,7 @@ function item_load()
 			 404, 307, 277, 304, 148, 176, 399,
 			 365, 680, 672, 419, 216, 144,
 			 525}
-	itemY = {174, 225, 225,
+	itemY = {174, 225, 225, 225,
 			 380, 234,
 			 117, 175,
 			 239,
@@ -89,7 +89,7 @@ function item_load()
 	itemLast=996 ：由其他事件觸發此物件出現，出現後不可拿取，itemLast 變成 998
 	itemLast=995 ：由其他事件觸發此物件可點擊後出現，itemLast 變成 999
 	--]]
-	itemLast = {0, 1, -2,
+	itemLast = {0, 1, 0, 996,
 			    0, 0,
 				0, 0,
 				0,
@@ -100,7 +100,7 @@ function item_load()
 				999, 999, 999, 997, 0, 999, 999,
 				0, 1, 0, 0, 0, 0,
 				0}
-	itemUsed = {"Items/2-2-1-1.png", 0, 0,
+	itemUsed = {"Items/2-2-1-1.png", 0, 0, 0,
 			    0, 0,
 				0, 0,
 				0,
@@ -111,7 +111,7 @@ function item_load()
 				"Items/7-2-3-1-1-1.png", "Items/11-2-1.png", "Items/9-2-3-1.png", 0, 0, "Items/7-1-2-1.png", "Items/10-2-2-1.png",
 				0, 0, "Items/9-2-3-1.png", 0, 0, 0,
 				0}
-	itemChangBranchTo = {0, {to1=2, to2=2, to3=1}, 0,
+	itemChangBranchTo = {0, {to1=2, to2=2, to3=1}, 0, 0,
 						 0, 0,
 						 0, 0,
 						 0,
@@ -122,7 +122,7 @@ function item_load()
 						 0, 0, 0, 0, 0, 0, 0,
 						 0, {to1=11, to2=1, to3=1}, 0, 0, 0, 0,
 						 0}
-	itemTalk = {"使用方糖夾，獲得鑰匙", "打開糖罐", "獲得方糖夾",
+	itemTalk = {"使用方糖夾，獲得鑰匙", "打開糖罐", "獲得方糖夾", "沒甚麼特別的",
 			    "獲得黃色 USB", "獲得鑰匙",
 				"獲得磁卡", "獲得藍色 USB",
 				"獲得綠色 USB",
@@ -133,7 +133,7 @@ function item_load()
 				"縫上珠子", "使用蝴蝶結", "剪開布娃娃", "獲得鑰匙", "獲得鑰匙", "放入雕刻物 AL", "放入雕刻物 CE",
 				"獲得蝴蝶結", "拉短線頭", "使用剪刀，獲得線圈", "獲得蠟燭", "獲得火柴", "獲得桃紅色 USB",
 				"獲得斧頭"}
-	itemDescription = {"沙發下好像有什麼東西，但是手搆不到", "有一個糖罐", "一個方糖夾，可以用來做什麼嗎",
+	itemDescription = {"沙發下好像有什麼東西，但是手搆不到", "有一個糖罐", "一個方糖夾，可以用來做什麼嗎", "沒甚麼特別的",
 					   "好像有用歐", "好像可以拿來開門",
 					   "好像可以拿來開門", "好像有用歐",
 					   "好像有用歐",
@@ -144,7 +144,7 @@ function item_load()
 					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開", "一把銅色鑰匙", "一把銀灰色鑰匙", "空空的", "好像少了甚麼",
 					   "好漂亮的蝴蝶結", "有線頭", "哎呀，線頭被拉長了，這條線好像蠻堅韌的", "生日蠟燭？", "乾燥的火柴，可以點火", "很可疑",
 					   "好鋒利的斧頭"}
-	itemFirstPressed = {true, true, true,
+	itemFirstPressed = {true, true, true, false,
 						false, true,
 						true, false,
 						false,
@@ -257,7 +257,7 @@ function item_chang(d)
 				end
 				itemStatus[d] = itemLast[d]
 			elseif item_needChangBranch(d) then
-				itemStatus[d] = -itemLast[d]
+				--itemStatus[d] = -itemLast[d]
 				branch_changBranch(itemMap1[d], itemMap2[d], itemMap3[d], itemChangBranchTo[d].to1, itemChangBranchTo[d].to2, itemChangBranchTo[d].to3)
 			elseif itemLast[d] == 999 then
 				if item_isAboutOpenUSB(d) then
@@ -322,6 +322,14 @@ function item_chang(d)
 			elseif itemMap1[d] == 8 and itemMap2[d] == 1 and itemMap3[d] == 3 and itemStatus[d] == -1 and itemLast[d] == 998 then
 				for i=1,#itemMap1 do
 					if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -10 and itemLast[i] == 996 then
+						itemLast[i] = 998;
+					end
+				end
+			elseif itemMap1[d] == 2 and itemMap2[d] == 2 and itemMap3[d] == 1 and itemStatus[d] == 0 and itemLast[d] == 0 then
+				clickMessage = "***"
+				for i=1,#itemMap1 do
+					
+					if itemMap1[i] == 2 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -2 and itemLast[i] == 996 then
 						itemLast[i] = 998;
 					end
 				end
