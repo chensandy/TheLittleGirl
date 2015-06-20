@@ -206,10 +206,9 @@ function moveMap(id1, id2, id3)
 				moveMap(5, 3, 0)
 			end
 		end
-		
-		--gun end
-		if(id1==9 and id2==2 and id3==1) and item_whoOpenVine()==2 then
-			event3Ing = true
+
+		if(id1==10 and id2==1 and id3==3) and item_IsPushALandCE() then
+			event4Ing = true
 		end
 	end
 end
@@ -302,6 +301,10 @@ function clickItem(id)
 	end
 	if d ~=0 then
 		item_chang(d)
+	end
+	--gun end
+	if(mainMap[1]==9 and mainMap[2]==-2 and mainMap[3]==-1) and item_whoOpenVine()==2 then
+		event3Ing = true
 	end
 end
 
