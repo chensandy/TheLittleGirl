@@ -2,6 +2,7 @@ item = class:new()
 
 function item_load()
 	m_itemGraphics = {}
+	m_whoOpenVine = 0
 	itemMap1 = {2, 2, 2, 2,
 			    4, 4,
 				5, 5,
@@ -188,17 +189,6 @@ function item_draw(map1, map2, map3)
 			--判斷 item 拿走不會再出現 or 還未出現
 			if itemStatus[i] ~= 0 and itemLast[i] ~= 999 and itemLast[i] ~= 997 and itemLast[i] ~= 996 and itemLast[i] ~= 995 then
 				love.graphics.draw(m_itemGraphics[i], itemX[i], itemY[i])
-				
-				--[[
-				if -map3 ~= 0 then
-					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. map2 .. map3 .. itemStatus[i] ..".png")
-				elseif -map2~=0 then
-					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. map2 .. itemStatus[i] ..".png")
-				else
-					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. itemStatus[i] ..".png")
-				end
-				love.graphics.draw(itemGraphics, itemX[i], itemY[i])
-				--]]
 			end
 		end
 	end
@@ -235,6 +225,11 @@ function item_chang(d)
 				for i=1,#itemUsed[d] do
 					--選對東西先刪除 items
 					if getSelectItems() == itemUsed[d][i] then
+						if itemUsed[d][i] == "Items/13-1.png" then
+							m_whoOpenVine = 1
+						elseif itemUsed[d][i] == "Items/11-3-1-1.png" then
+							m_whoOpenVine = 2
+						end
 						bIsMachSelectItems = true
 						items_delete(getSelectItems())
 					end
@@ -326,9 +321,7 @@ function item_chang(d)
 					end
 				end
 			elseif itemMap1[d] == 2 and itemMap2[d] == 2 and itemMap3[d] == 1 and itemStatus[d] == 0 and itemLast[d] == 0 then
-				clickMessage = "***"
 				for i=1,#itemMap1 do
-					
 					if itemMap1[i] == 2 and itemMap2[i] == 2 and itemMap3[i] == 1 and itemStatus[i] == -2 and itemLast[i] == 996 then
 						itemLast[i] = 998;
 					end
@@ -473,4 +466,8 @@ function item_isAboutDescriptionUSB(d)
 	end
 	
 	return false
+end
+
+function item_whoOpenVine()
+	return m_whoOpenVine
 end

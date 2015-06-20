@@ -2,27 +2,27 @@ t_botton = class:new()
 
 function t_botton_load() --50
 	tMap = {7,
-			8, 8, 8,
+			8, 8, 8, 8, 8, 8, 8,
 			10, 10
 			}
 	tId = {1,
-		   1, 2, 3,
+		   1, 2, 3, 4, 5, 6, 7,
 		   1, 2
 		   }
 	tGoBranch = {2,
-				 2, 1, 1,
+				 2, 1, 1, 1, 1, 1, 1,
 				 1, 2
 				 }
 	tGoBranch2 = {3,
-				  0, 0, 5,
+				  0, 0, 5, 7, 10, 11, 12,
 				  0, 0
 				  }
 	tOnBotton = {"maps/arrow_right_hover.png",
-				 "maps/flipup_hover.png", "maps/flipup_hover.png",0,
+				 "maps/flipup_hover.png", "maps/flipup_hover.png",0,0,0,0,0,
 				 "maps/flipdown_hover.png", "maps/flipdown_hover.png"
 				 }
 	tBottonAt = {{748,282},
-				 {743,282},{743,282},{748,282},
+				 {743,282},{743,282},{748,282},{748,282},{748,282},{748,282},{748,282},
 				 {743,282},{743,282}}
 end
 function t_botton:init(m, id, b, b2)
