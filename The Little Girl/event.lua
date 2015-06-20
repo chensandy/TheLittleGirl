@@ -29,11 +29,11 @@ function event_load()
 				  "「從此，替代小兔就取代了凱莉心理一直鍾愛的小兔的位子。~END~」",
 				  "這什麼怪故事=__=",
 				  "我覺得這個故事很有趣啊！",
-				  "我每次聽的時候都會想很多事，　　例如，所以替代小兔成為小兔，那原本的小兔是什麼呢？",
+				  "我每次聽的時候都會想很多事，　　　　　　例如，所以替代小兔成為小兔，那原本的小兔是什麼呢？",
 				  "明明是替代小兔，但是卻被當成小兔，那替代小兔會覺得自己還是自己嗎？",
 				  "如果最後小女孩發現替代小兔不是小兔，那會發生什麼事呢？就像麥...不，沒什麼。",
-				  "欺瞞、盲目、安於現狀～～～～　　好多的人性在這故事裡面呢。",
-				  "......想的真多啊你不還是個小女孩嗎？然後那個麥是什麼意思？　　　　唉，問了他也不會回答我吧。"}
+				  "欺瞞、盲目、安於現狀～～～～　　　　　　好多的人性在這故事裡面呢。",
+				  "......想的真多啊你不還是個小女孩嗎？然後那個麥是什麼意思？　　　　　　　　　　　　唉，問了他也不會回答我吧。"}
 	event1talk[3] = {"「我要念囉，書名：愛麗絲夢遊仙境」",
 				  "「從前從前......」",
 				  "唔...雖然不是正解，但是算你過關好了＝３＝",
@@ -53,10 +53,6 @@ end
 function event_update(dt)
 	if event1Ing then
 		if nowEvent>0 then
-			if nowEvent == 4 then
-				moveMap(7,1,2)
-				nextEvent = 10
-			end
 			if have_talk_or_question() == false then
 				if event1[nowEvent][count] == 1 then
 					setUserSay(event1talk[nowEvent][count])
@@ -123,5 +119,14 @@ function event_draw()
 	if event1Ing and nowEvent == 4 and count < 4 then
 		event = love.graphics.newImage("maps/map7-1-1.png");
 		love.graphics.draw(event, 0, 0)
+	end
+end
+
+function event_mousepressed(x, y, button)
+	if event1Ing and button =='l' then
+		if nowEvent == 4 then
+			moveMap(7,1,2)
+			nextEvent = 10
+		end
 	end
 end

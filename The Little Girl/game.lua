@@ -139,6 +139,8 @@ function game_mousepressed(x, y, button)
 			clickMessage=""
 		end
 	end
+	event_mousepressed(x, y, button)
+	event2_mousepressed(x, y, button)
 end
 
 function game_keypressed(key)

@@ -27,9 +27,6 @@ end
 function event2_update(dt)
 	if event2Ing then
 		if event2Id>0 then
-			if event2Id==1 and count2==5 then
-				moveMap(10,2,2)
-			end
 			if have_talk_or_question() == false and count2>0 then
 				if event2[event2Id][count2] == 1 then
 					setUserSay(event2talk[event2Id][count2])
@@ -56,5 +53,13 @@ function event2_draw()
 	if event2Ing and event2Id == 1 and count2>5 and count2<9 then
 		--event2 = love.graphics.newImage("maps/map10-2-2.png");
 		--love.graphics.draw(event2, 0, 0)
+	end
+end
+
+function event2_mousepressed(x, y, button)
+	if event2Ing then
+		if event2Id==1 and count2==5 then
+			moveMap(10,2,2)
+		end
 	end
 end
