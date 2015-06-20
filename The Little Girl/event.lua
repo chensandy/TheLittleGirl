@@ -49,6 +49,18 @@ function event_load()
 				  "啊啊，突然眼前一片黑...(我使掉惹)",
 				  "ＧＡＭＥ　ＯＶＥＲ"} 	
 	event = love.graphics.newImage("maps/map7-1-1.png")
+	event3Ing = false
+	count3=1
+	event3 = {2,1,2,1,2,1,2}
+	event3talk = {"要走了嗎？",
+				  "小女孩很落寞地嘆氣。",
+				  "你也覺得我是殺人兇手嗎？",
+				  "「......」",
+				  "算了，你走吧，當作感謝你幫我修好小兔。",
+				  "我走出門外。",
+				  "再見了，大哥哥。"
+				 }
+
 end
 
 function event_update(dt)
@@ -96,6 +108,22 @@ function event_update(dt)
 				m_selectmQuestion = 0
 			end
 			
+		end
+	end
+	
+	if event3Ing then
+		if have_talk_or_question() == false then
+			if count3 > #event3 then
+				event3Ing = false
+				endId = 2
+				changegamestate("end")
+			end
+			if event3[count3] == 1 then
+				setUserSay(event3talk[count3])
+			else
+				setGirlSay(event3talk[count3])
+			end
+			count3 = count3+1	
 		end
 	end
 end

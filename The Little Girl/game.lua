@@ -151,7 +151,7 @@ function game_keypressed(key)
 		elseif key == 'b' then
 			moveMap(1, 0, 0)
 		elseif key == 'z' then
-			moveMap(mainMap[1], 0, 0)
+			event3Ing = true
 		elseif key == 'e' then
 			changegamestate("end")
 		elseif key == 'd' then
@@ -205,6 +205,11 @@ function moveMap(id1, id2, id3)
 			if objects.door[11].lock == 0 then
 				moveMap(5, 3, 0)
 			end
+		end
+		
+		--gun end
+		if(id1==9 and id2==2 and id3==1) and item_whoOpenVine()==2 then
+			event3Ing = true
 		end
 	end
 end

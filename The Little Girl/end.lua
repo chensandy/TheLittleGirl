@@ -35,6 +35,15 @@ function end_load()
 				   "至於往後一起度過的生活，又是另一個故事了",
 				   true
 				  }
+	EndText[2] = {"我帶著複雜的心情步出門外，",
+				  "走不到幾步沒想到就被政府的人被抓了起來",
+				  "「辛苦你了，但是，你知道的事情太多了。」",
+				  "他們這樣說。",
+				  false,
+				  "他們把我從實驗室裡帶出的東西拿走，",
+				  "「磅！」地一聲槍響，結束了我的生命。",
+				  true
+				 }
 	EndTextColor = {}
 	EndTextColor[1] = {{255,255,255},{255,255,255},{255,255,255},{},{255,185,200},
 						{255,255,255},{255,245,80},{255,255,255},{255,255,255},{255,255,255},
@@ -42,9 +51,14 @@ function end_load()
 						{255,245,80},{255,185,200},{255,255,255},{},{255,245,80},
 						{255,245,80},{},{255,255,255},{255,255,255},{255,255,255},
 						{255,255,255},{},{255,255,255},{},
-	
 						}
+	EndTextColor[2] = {{255,255,255},{255,255,255},{255,0,0},{255,255,255},{},
+					   {128,128,255},{255,0,0},{}
+					  }
 	--background = love.graphics.newImage("maps/map1.png");
+	background = {}
+	background[1] = {}
+	background[2] = {love.graphics.newImage("event/CG_1.png")}
 	endStart = false
 	textStart = 1
 	endCount = 1
@@ -72,11 +86,21 @@ function end_update(dt)
 end
 
 function end_draw()
+	
+	if endCount == #EndText[endId] then
+		if endId == 1 then
+			love.graphics.print("～ＴＲＵＥ　ＥＮＤ～", 100, 250)
+		elseif endId == 2 then
+			love.graphics.print("～ＧＵＮ　ＥＮＤ～", 120, 250)
+		end
+	elseif endId == 2 and textStart == 6 then
+		love.graphics.draw(background[2][1], 0, 0)
+	end
+			
 	if endStart then
 		local c = letterCount
 		for i=textStart, endCount do
 			if EndText[endId][i] == true then
-				love.graphics.print("～ＴＲＵＥ　ＥＮＤ～", 100, 250)
 				break
 			end
 			if EndText[endId][i] == false then
