@@ -4,6 +4,7 @@ function menu_load()
 	mainFont = love.graphics.newFont("Fonts/NotoSansCJKtc-Regular.otf", 40);
 	love.graphics.setBackgroundColor(192, 192, 255)
 	menuitems = {"開始遊戲", "讀取進度", "結束遊戲"}
+	menubackground = love.graphics.newImage("event/menu.png");
 	m_menuSelect = 0
 	noise = 0
 	
@@ -19,12 +20,14 @@ function menu_update(dt)
 end
 
 function menu_draw()
+	love.graphics.draw(menubackground, 0, 0)
+	
 	--MAIN MENU
 	for i = 1, #menuitems do
 		local x = love.mouse.getX( )
 		local y = love.mouse.getY( )
 		if x > 180 and x < 350 and y > 150+55*i and y < 150+55*(i+1) - 10 then
-			love.graphics.setColor(255, 0, 0)
+			love.graphics.setColor(255,245,80)
 		else
 			love.graphics.setColor(255, 255, 255)
 		end
