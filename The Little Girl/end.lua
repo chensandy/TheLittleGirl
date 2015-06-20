@@ -69,7 +69,12 @@ function end_load()
 					  }
 	--background = love.graphics.newImage("maps/map1.png");
 	background = {}
-	background[1] = {}
+	background[1] = {love.graphics.newImage("event/CG_2-1.png"),
+					 love.graphics.newImage("event/CG_2-4.png"),
+					 love.graphics.newImage("event/CG_2-2.png"),
+					 love.graphics.newImage("event/CG_2-3.png"),
+					 love.graphics.newImage("event/CG_2-5.png")
+					}
 	background[2] = {love.graphics.newImage("event/CG_1.png")}
 	background[3] = {love.graphics.newImage("event/CG_3.png")}
 	endStart = false
@@ -78,10 +83,12 @@ function end_load()
 	letterCount = 0
 	printx = 80
 	printy = 150
-	dd = 0;
+	dd = 0
+	dd2 = 0
 	endToMenu = false
 	--music:stop()
 	--musicrev:play()
+	end1Id = 3
 end
 
 function end_update(dt)
@@ -96,6 +103,16 @@ function end_update(dt)
 			letterCount = letterCount+3
 		end
 	end
+	if endId == 1 and textStart == 23 then
+		dd2 = dd2+1;
+		if(dd2>300) then
+			end1Id = 4
+		end
+		if(dd2>600) then
+			dd2 = dd2-600
+			end1Id = 3
+		end
+	end
 end
 
 function end_draw()
@@ -108,6 +125,14 @@ function end_draw()
 		elseif endId == 3 then
 			love.graphics.print("～ＡＸＥ　ＥＮＤ～", 120, 250)
 		end
+	elseif endId == 1 and textStart == 1 then
+		love.graphics.draw(background[1][1], 0, 0)
+	elseif endId == 1 and (textStart == 5 or textStart == 12) then
+		love.graphics.draw(background[1][2], 0, 0)
+	elseif endId == 1 and textStart == 23 then
+		love.graphics.draw(background[1][end1Id], 0, 0)
+	elseif endId == 1 and textStart == 28 then
+		love.graphics.draw(background[1][5], 0, 0)
 	elseif endId == 2 and textStart == 6 then
 		love.graphics.draw(background[2][1], 0, 0)
 	elseif endId == 3 and textStart == 1 then
