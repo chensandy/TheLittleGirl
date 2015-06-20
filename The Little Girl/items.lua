@@ -38,7 +38,6 @@ function items_draw()
 	for i = 1, m_itemsMaxNumber/2 do		
 		love.graphics.draw(m_itemGrid, 20 + (i-1)*(80), 20)
 	end
-	
 	local j = 1
 	local tempEnd = 0
 	if m_itemsPage == 1 then
@@ -54,7 +53,6 @@ function items_draw()
 	end
 	love.graphics.print(itemsPageMsg, 655, 40)
 	itemsPageMsg = nil
-	
 	for i = (m_itemsPage-1)*8+1, tempEnd do		
 		love.graphics.draw(m_itemsGraphics[i], 20 + (j-1)*(80), 20)
 		if i == m_selectItems then

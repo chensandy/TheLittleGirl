@@ -1,6 +1,7 @@
 item = class:new()
 
 function item_load()
+	m_itemGraphics = {}
 	itemMap1 = {2, 2, 2,
 			    4, 4,
 				5, 5,
@@ -154,6 +155,19 @@ function item_load()
 						true, true, true, true, true, true, true,
 						true, true, true, true, true, true,
 						true}
+	item_initial()
+end
+
+function item_initial()
+	for i=1,#itemMap1 do
+		if itemMap3[i] ~= 0 then
+			m_itemGraphics[i] = love.graphics.newImage("maps/item" .. itemMap1[i] .. "-" .. itemMap2[i] .. "-" .. itemMap3[i] .. itemStatus[i] ..".png")
+		elseif itemMap2[i]~=0 then
+			m_itemGraphics[i] = love.graphics.newImage("maps/item" .. itemMap1[i] .. "-" .. itemMap2[i] .. itemStatus[i] ..".png")
+		else
+			m_itemGraphics[i] = love.graphics.newImage("maps/item" .. itemMap1[i] .. itemStatus[i] ..".png")
+		end
+	end
 end
 
 function item:init(m1, m2, m3, id, status, x, y, last, used)
@@ -173,7 +187,9 @@ function item_draw(map1, map2, map3)
 		if itemMap1[i] == map1 and itemMap2[i] == -map2 and itemMap3[i] == -map3 then
 			--判斷 item 拿走不會再出現 or 還未出現
 			if itemStatus[i] ~= 0 and itemLast[i] ~= 999 and itemLast[i] ~= 997 and itemLast[i] ~= 996 and itemLast[i] ~= 995 then
-				local itemGraphics
+				love.graphics.draw(m_itemGraphics[i], itemX[i], itemY[i])
+				
+				--[[
 				if -map3 ~= 0 then
 					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. map2 .. map3 .. itemStatus[i] ..".png")
 				elseif -map2~=0 then
@@ -182,7 +198,7 @@ function item_draw(map1, map2, map3)
 					itemGraphics = love.graphics.newImage("maps/item" .. map1 .. itemStatus[i] ..".png")
 				end
 				love.graphics.draw(itemGraphics, itemX[i], itemY[i])
-				itemGraphics = nil
+				--]]
 			end
 		end
 	end

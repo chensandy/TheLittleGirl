@@ -2,27 +2,27 @@ t_botton = class:new()
 
 function t_botton_load() --50
 	tMap = {7,
-			8, 8,
+			8, 8, 8,
 			10, 10
 			}
 	tId = {1,
-		   1, 2,
+		   1, 2, 3,
 		   1, 2
 		   }
 	tGoBranch = {2,
-				 2, 1,
+				 2, 1, 1,
 				 1, 2
 				 }
 	tGoBranch2 = {3,
-				  0, 0,
+				  0, 0, 5,
 				  0, 0
 				  }
 	tOnBotton = {"maps/arrow_right_hover.png",
-				 "maps/flipup_hover.png", "maps/flipup_hover.png",
+				 "maps/flipup_hover.png", "maps/flipup_hover.png",0,
 				 "maps/flipdown_hover.png", "maps/flipdown_hover.png"
 				 }
 	tBottonAt = {{748,282},
-				 {743,282},{743,282},
+				 {743,282},{743,282},{748,282},
 				 {743,282},{743,282}}
 end
 function t_botton:init(m, id, b, b2)
@@ -48,8 +48,10 @@ function t_botton_draw()
 			end
 		end
 		if d~=0 then
-			on_t_botton = love.graphics.newImage(tOnBotton[d])
-			love.graphics.draw(on_t_botton, tBottonAt[d][1], tBottonAt[d][2])
+			if love.filesystem.exists( tOnBotton[d] ) then
+				on_t_botton = love.graphics.newImage(tOnBotton[d])
+				love.graphics.draw(on_t_botton, tBottonAt[d][1], tBottonAt[d][2])
+			end
 		end
 	end
 end
