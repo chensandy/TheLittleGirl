@@ -15,7 +15,7 @@ function love.load()
 	require "end"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
-	
+	love.window.setTitle( "The Little Girl" )
 
 	love.graphics.setLineWidth(1)
 					
