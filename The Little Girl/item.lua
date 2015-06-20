@@ -106,7 +106,7 @@ function item_load()
 				0, 0,
 				0, "Items/4-1-1-1.png", "Items/5-3-1.png", "Items/6-2-1.png", "Items/11-3-3.png", 0, 0, 0, 0,
 			    0, 0, 0, 0, 0, 0,
-				0, 0, "Items/13-1.png", 0,
+				0, 0, {"Items/13-1.png", "Items/11-3-1-1.png"}, 0,
 				"Items/7-2-3-1-1-1.png", "Items/11-2-1.png", "Items/9-2-3-1.png", 0, 0, "Items/7-1-2-1.png", "Items/10-2-2-1.png",
 				0, 0, "Items/9-2-3-1.png", 0, 0, 0,
 				0}
@@ -205,12 +205,28 @@ function item_chang(d)
 	--不是最終狀態
 	if itemStatus[d] ~= itemLast[d] then
 		--clickMessage = "*** "..getSelectItems().." "..itemUsed[d]
-		--選對拿取的 item or 直接可拿
-		if getSelectItems() == itemUsed[d] or itemUsed[d] == 0 then
-			--選對東西先刪除 items
-			if getSelectItems() == itemUsed[d] then
-				items_delete(getSelectItems())
+		
+		bIsMachSelectItems = false
+		if itemUsed[d] ~= 0 then
+			if type(itemUsed[d]) == "string" then
+				--選對東西先刪除 items
+				if getSelectItems() == itemUsed[d] then
+					bIsMachSelectItems = true
+					items_delete(getSelectItems())
+				end
+			elseif type(itemUsed[d]) == "table" then
+				clickMessage = "#itemUsed[d]: " .. #itemUsed[d]
+				for i=1,#itemUsed[d] do
+					--選對東西先刪除 items
+					if getSelectItems() == itemUsed[d][i] then
+						bIsMachSelectItems = true
+						items_delete(getSelectItems())
+					end
+				end
 			end
+		end
+		--選對拿取的 item or 直接可拿
+		if bIsMachSelectItems or itemUsed[d] == 0 then
 			--拿取 items 
 			if itemLast[d] == 0 or itemStatus[d] == itemLast[d] + 1 then
 				if itemMap3[d] ~= 0 then
