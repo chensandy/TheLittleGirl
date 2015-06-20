@@ -148,10 +148,16 @@ function game_keypressed(key)
 	if have_talk_or_question() == false then
 		if key == 'a' then
 			moveMap(mainMap[1], 1, 0)
-		elseif key == 'b' then
-			moveMap(1, 0, 0)
 		elseif key == 'z' then
 			event3Ing = true
+		elseif key == 'v' then
+			USBread[1] = not USBread[1]
+		elseif key == 'b' then
+			USBread[2] = not USBread[2]
+		elseif key == 'n' then
+			USBread[3] = not USBread[3]
+		elseif key == 'm' then
+			USBread[4] = not USBread[4]
 		elseif key == 'e' then
 			changegamestate("end")
 		elseif key == 'd' then
@@ -168,7 +174,9 @@ function game_keypressed(key)
 end
 
 function moveMap(id1, id2, id3)
-	if have_talk_or_question() == false then
+	if(id1==10 and id2==1 and id3==6) and (not USBread[4]) then
+		setUserSay("維納斯的誕生......")	
+	elseif have_talk_or_question() == false then
 		mainMap[1] = id1
 		mainMap[2] = -1*id2
 		mainMap[3] = -1*id3
@@ -201,12 +209,12 @@ function moveMap(id1, id2, id3)
 				items_add("Items/7-1-2-1.png")
 			end
 		end
+		
 		if(id1==5 and id2==2 and id3==1) then
 			if objects.door[11].lock == 0 then
 				moveMap(5, 3, 0)
 			end
 		end
-		
 		--true end
 		if(id1==10 and id2==1 and id3==3) and item_IsPushALandCE() then
 			event4Ing = true
@@ -301,12 +309,25 @@ function clickItem(id)
 			break
 		end
 	end
+	
+	if(mainMap[1]==9 and mainMap[2]==-2 and mainMap[3]==-1) then
+		if item_whoOpenVine()==2 then
+			if USBread[4] then
+				setUserSay("我還不能出去，我要去找愛莉斯。")
+			elseif USBread[1] and USBread[2] and USBread[3] then
+				--gun end
+				event3Ing = true
+			else
+				setUserSay("我的資料不知道帶齊全了沒，還是回去確認一下好了。")
+			end
+		elseif item_whoOpenVine()==1 then
+			--axe end
+			--event5Ing = true
+		end
+	end
+	
 	if d ~=0 then
 		item_chang(d)
-	end
-	--gun end
-	if(mainMap[1]==9 and mainMap[2]==-2 and mainMap[3]==-1) and item_whoOpenVine()==2 then
-		event3Ing = true
 	end
 end
 
