@@ -47,7 +47,7 @@ function menu_mousepressed(x, y, button)
 		for i = 1, #menuitems do
 			if x > 180 and x < 350 and y > 150+55*i and y < 150+55*(i+1) - 10 then
 				if i == 1 then
-					changegamestate("game")
+					changegamestate("openingstory")
 				elseif i==3 then
 					love.event.quit()
 				end

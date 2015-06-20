@@ -13,6 +13,7 @@ function love.load()
 	require "event2"
 	require "map"
 	require "end"
+	require "openingstory"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
 	love.window.setTitle( "The Little Girl" )
