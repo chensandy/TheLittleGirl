@@ -31,7 +31,7 @@ function door_load() --15
 				0, 0, 0,
 				0, 0,
 				0}
-
+--]]
 	doorKey = {"Items/2-1-1.png", 0, "Items/5-1-1-1.png", -1,
 			   0, "Items/4-2-1.png", "Items/10-1-4-1.png", 0, "Items/9-1-1-1.png", "Items/10-2-1-4.png",
 			   "Items/9-2-5-1.png",

@@ -146,17 +146,17 @@ function item_load()
 					   "少一顆珠子", "好像缺少了甚麼", "好像可以剪開", "一把銅色鑰匙", "一把銀灰色鑰匙", "空空的", "好像少了甚麼",
 					   "好漂亮的蝴蝶結", "有線頭", "哎呀，線頭被拉長了，這條線好像蠻堅韌的", "生日蠟燭？", "乾燥的火柴，可以點火", "很可疑",
 					   "好鋒利的斧頭"}
-	itemFirstPressed = {true, true, true, false,
-						false, true,
-						true, false,
+	itemFirstPressed = {true, true, false, false,
+						false, false,
+						false, false,
 						false,
-						true, false,
-						true, false, false, false, false, false, false, false, false,
+						false, false,
+						false, false, false, false, false, false, false, false, false,
 						false, false, false, false, false, false,
-						true, true, true, true,
-						true, true, true, true, true, true, true,
-						true, true, true, true, true, true,
-						true}
+						false, false, true, false,
+						true, true, true, false, false, true, true,
+						false, true, true, false, false, false,
+						false}
 	item_initial()
 	item_initialLockBranch()
 end
