@@ -536,12 +536,15 @@ function item_USBback()
 		--已開啟馬克的隨身碟
 		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -12 and itemLast[i] == 998 then
 			itemLast[i] = 999
+			USBread[2] = true
 		--已開啟麥斯的隨身碟
 		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -13 and itemLast[i] == 998 then
 			itemLast[i] = 999
+			USBread[3] = true
 		--已開啟伊莉的隨身碟
 		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -14 and itemLast[i] == 998 then
 			itemLast[i] = 999
+			USBread[4] = true
 			for j=1,#itemMap1 do
 				if itemMap1[j] == 8 and itemMap2[j] == 1 and itemMap3[j] == 3 and itemStatus[j] == -1 and itemLast[j] == 998 then
 					itemLast[j] = 995
