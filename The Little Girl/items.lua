@@ -191,6 +191,13 @@ function items_combination(oldItem, newItem)
 			items_delete(newItem)
 			items_add(m_combination[i].itemResult)
 			m_selectItems = 0
+			
+			if i == 3 then
+				local tempItemsMusic = love.audio.newSource("sounds/makeFire.mp3");tempItemsMusic:setVolume(1);tempItemsMusic:setLooping(false)
+				tempItemsMusic:play()
+				tempItemsMusic = nil
+			end
+			
 			return true
 		end
 	end

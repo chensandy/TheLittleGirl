@@ -240,9 +240,10 @@ function item_chang(d)
 					if getSelectItems() == itemUsed[d][i] then
 						if itemUsed[d][i] == "Items/13-1.png" then
 							m_whoOpenVine = 1
-							
+							itemMusic[d] = "sounds/Ax.mp3"
 						elseif itemUsed[d][i] == "Items/11-3-1-1.png" then
 							m_whoOpenVine = 2
+							itemMusic[d] = "sounds/fire.mp3"
 						end
 						bIsMachSelectItems = true
 						items_delete(getSelectItems())
