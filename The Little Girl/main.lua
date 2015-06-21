@@ -13,6 +13,7 @@ function love.load()
 	require "event2"
 	require "map"
 	require "end"
+	require "ending"
 	require "openingstory"
 	
 	love.filesystem.setIdentity( "The Little Girl" )
@@ -26,8 +27,9 @@ function love.load()
 	
 	love.window.setIcon(love.image.newImageData("graphics/icon4.png"))
 	--musicrev = love.audio.newSource("sounds/musicrev.ogg");musicrev:setVolume(0.1);musicrev:setLooping(true)
-	music = love.audio.newSource("sounds/SecretGarden.mp3");music:setVolume(0.1);music:setLooping(true)
-	
+	music = love.audio.newSource("sounds/SecretGarden.mp3");music:setVolume(0.5)music:setLooping(true)
+	gmusic = love.audio.newSource("sounds/moon1.mp3");gmusic:setVolume(1)gmusic:setLooping(true)
+	music2 = love.audio.newSource("sounds/Chiisana Tameiki.mp3");music2:setVolume(0.2);music2:setLooping(true)
 	changegamestate("menu")
 	gameover = false
 end

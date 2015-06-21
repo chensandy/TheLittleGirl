@@ -89,6 +89,11 @@ function end_load()
 	--music:stop()
 	--musicrev:play()
 	end1Id = 3
+	
+	if endId==1 then
+		gmusic:stop()
+		music2:play()
+	end
 end
 
 function end_update(dt)
@@ -170,7 +175,11 @@ end
 function end_mousepressed(x, y, button)
 	if endStart and button=='l' then
 		if endCount == #EndText[endId] then
-			changegamestate("menu")
+			if endId==1 then
+				changegamestate("ending")
+			else
+				changegamestate("menu")
+			end
 		elseif letterCount > #EndText[endId][endCount] then
 			endCount = endCount+1
 			if endCount == #EndText[endId] then

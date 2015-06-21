@@ -8,7 +8,7 @@ function menu_load()
 	m_menuSelect = 0
 	noise = 0
 	
-	--music:stop()
+	music2:stop()
 	music:play()
 end
 

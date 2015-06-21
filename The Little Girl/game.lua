@@ -147,7 +147,7 @@ function game_keypressed(key)
 	--有話要說或有問題要回答時，對鍵盤無效
 	if have_talk_or_question() == false then
 		if key == 'a' then
-			moveMap(mainMap[1], 1, 0)
+			changegamestate("ending")
 		elseif key == 'z' then
 			event3Ing = true
 		elseif key == 'v' then
