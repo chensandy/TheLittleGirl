@@ -40,7 +40,7 @@ function openingstory_load()
 	dd = 0;
 	ddd = 0
 	music:stop()
-	gmusic:stop()
+	gmusic:play()
 	hint = false
 	--musicrev:play()
 end
