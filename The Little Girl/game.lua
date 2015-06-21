@@ -236,6 +236,12 @@ function clickDoor(id)
 				objects.door[i].lock = 0
 				items_delete(getSelectItems())
 				setUserSay(doorOpenTalk[d])
+				
+				if doorUsedKeyMusic[d] ~= 0 then
+					local tempDoorUsedKeyMusic = love.audio.newSource(doorUsedKeyMusic[d]);tempDoorUsedKeyMusic:setVolume(0.8);tempDoorUsedKeyMusic:setLooping(false)
+					tempDoorUsedKeyMusic:play()
+					tempDoorUsedKeyMusic = nil
+				end
 			end
 			break
 		end
@@ -247,6 +253,12 @@ function clickDoor(id)
 			local tmp = objects.door[d]:go()
 			-- playsound
 			moveMap(tmp[1], tmp[2], tmp[3])
+			
+			if doorOpenMusic[d] ~= 0 then
+				local tempDoorOpenMusic = love.audio.newSource(doorOpenMusic[d]);tempDoorOpenMusic:setVolume(0.8);tempDoorOpenMusic:setLooping(false)
+				tempDoorOpenMusic:play()
+				tempDoorOpenMusic = nil
+			end
 		end
 	end
 end

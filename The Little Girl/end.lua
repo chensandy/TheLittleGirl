@@ -89,6 +89,8 @@ function end_load()
 	--music:stop()
 	--musicrev:play()
 	end1Id = 3
+	playGunMusic = true
+	playAxMusic = true
 	
 	if endId==1 then
 		gmusic:stop()
@@ -127,8 +129,20 @@ function end_draw()
 			love.graphics.print("～ＴＲＵＥ　ＥＮＤ～", 100, 250)
 		elseif endId == 2 then
 			love.graphics.print("～ＧＵＮ　ＥＮＤ～", 120, 250)
+			if playGunMusic then
+				local gunMusic = love.audio.newSource("sounds/gun.mp3");gunMusic:setVolume(1);gunMusic:setLooping(false)
+				gunMusic:play()
+				gunMusic = nil
+				playGunMusic = false
+			end
 		elseif endId == 3 then
 			love.graphics.print("～ＡＸＥ　ＥＮＤ～", 120, 250)
+			if playAxMusic then
+				local gunMusic = love.audio.newSource("sounds/Ax.mp3");gunMusic:setVolume(1);gunMusic:setLooping(false)
+				gunMusic:play()
+				gunMusic = nil
+				playAxMusic = false
+			end
 		end
 	elseif endId == 1 and textStart == 1 then
 		love.graphics.draw(background[1][1], 0, 0)

@@ -157,6 +157,17 @@ function item_load()
 						true, true, true, false, false, true, true,
 						false, true, true, false, false, false,
 						false}
+	itemMusic = {"sounds/pickup.mp3", "sounds/kyusu1_Japanese_pod.mp3", "sounds/pickup.mp3", 0,
+				 "sounds/pickup.mp3", "sounds/pickup.mp3",
+				 "sounds/pickup.mp3", "sounds/pickup.mp3",
+				 "sounds/pickup.mp3",
+				 "sounds/pickup.mp3", "sounds/pickup.mp3",
+				 "sounds/pickup.mp3", 0, 0, 0, 0, 0, 0, 0, 0,
+				 0, 0, 0, 0, 0, 0,
+				 "sounds/pickup.mp3", "sounds/pickup.mp3", "sounds/Ax.mp3", "sounds/pickup.mp3",
+				 0, 0, "sounds/scissors2.mp3", "sounds/pickup.mp3", "sounds/pickup.mp3", 0, 0,
+				 "sounds/pickup.mp3", 0, 0, "sounds/pickup.mp3", "sounds/pickup.mp3", "sounds/pickup.mp3",
+				 "sounds/pickup.mp3"}				
 	item_initial()
 	item_initialLockBranch()
 end
@@ -277,6 +288,11 @@ function item_chang(d)
 			end
 			
 			setUserSay(itemTalk[d])
+			if itemMusic[d] ~= 0 then
+				local tempItemMusic = love.audio.newSource(itemMusic[d]);tempItemMusic:setVolume(1);tempItemMusic:setLooping(false)
+				tempItemMusic:play()
+				tempItemMusic = nil
+			end
 			
 			--眼睛 + 蝴蝶結
 			if itemMap1[d] == 10 and itemMap2[d] == 2 and itemMap3[d] == 1 and itemStatus[d] == -2 and itemLast[d] == 998 then
