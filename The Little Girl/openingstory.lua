@@ -36,9 +36,11 @@ function openingstory_load()
 	endCount = 1
 	letterCount = 0
 	printx = 80
-	printy = 150
+	printy = 120
 	dd = 0;
+	ddd = 0
 	music:stop()
+	hint = false
 	--musicrev:play()
 end
 
@@ -48,10 +50,20 @@ function openingstory_update(dt)
 		dd = dd-150
 		letterCount = letterCount+3
 	end
+	ddd = ddd+1;
+	if(ddd>500) then
+		ddd = ddd-500
+		hint = not hint
+	end
 end
 
 function openingstory_draw()
+	if endCount < #openingText and hint then
+		love.graphics.setColor(185, 230, 240)
+		love.graphics.print("（滑鼠左鍵繼續劇情，滑鼠右鍵直接進入遊戲）", 380, 560)
+	end
 	if endCount < #openingText+1 then
+		love.graphics.setColor(255, 255, 255)
 		local c = letterCount
 		for i=textStart, endCount do
 			if openingText[i] == false then
@@ -86,6 +98,9 @@ function openingstory_mousepressed(x, y, button)
 		else
 			letterCount = #openingText[endCount]
 		end
+	end
+	if button=='r' then
+		changegamestate("game")
 	end
 end
 

@@ -76,8 +76,8 @@ function game_draw()
 	love.graphics.setFont(mainFont);
 
 	--for debug
-	love.graphics.print("Map"..mainMap[1].." "..mainMap[2].." "..mainMap[3], 180, 150)
-	love.graphics.print(clickMessage, 180, 180)
+	--love.graphics.print("Map"..mainMap[1].." "..mainMap[2].." "..mainMap[3], 180, 150)
+	--love.graphics.print(clickMessage, 180, 180)
 	--for debug
 	
 	love.graphics.setColor(0, 0, 0, 255*screendarkness)
