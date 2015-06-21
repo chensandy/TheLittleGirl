@@ -67,7 +67,7 @@ function door_load() --15
 				"", "", "電子門，看來不能使用之前的磁卡開它。",
 				"", "",
 				"好大的寶箱啊，寶箱上有鎖頭打不開。"}
-	doorOpenMusic = {"sounds/opendoor.mp3", "sounds/opendoor.mp3", "sounds/openDoor2.mp3", "sounds/opendoor.mp3",
+	doorOpenMusic = {"sounds/opendoor.mp3", "sounds/openDoor2.mp3", "sounds/openDoor2.mp3", "sounds/opendoor.mp3",
 					 "sounds/opendoor.mp3", "sounds/opendoor.mp3", "sounds/opendoor.mp3", "sounds/opendoor.mp3", "sounds/opendoor.mp3", "sounds/opendoor.mp3",
 					 0,
 					 "sounds/opendoor.mp3",
