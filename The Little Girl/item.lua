@@ -577,7 +577,9 @@ end
 function item_USBleave()
 	for i=1,#itemMap1 do
 		--已插入愛洛的隨身碟
-		if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -2 and itemLast[i] == 998 then
+		if itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -1 and itemLast[i] == 998 then
+			itemLast[i] = 995
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -2 and itemLast[i] == 998 then
 			itemLast[i] = 999
 			items_add("Items/4-1-1-1.png")
 		--已插入馬克的隨身碟
@@ -599,6 +601,8 @@ function item_USBleave()
 		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -8 then
 			itemLast[i] = 996
 		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -9 then
+			itemLast[i] = 996
+		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -10 then
 			itemLast[i] = 996
 		elseif itemMap1[i] == 8 and itemMap2[i] == 1 and itemMap3[i] == 3 and itemStatus[i] == -11 then
 			itemLast[i] = 995
