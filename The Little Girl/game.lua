@@ -144,6 +144,7 @@ function game_mousepressed(x, y, button)
 end
 
 function game_keypressed(key)
+--[[
 	--有話要說或有問題要回答時，對鍵盤無效
 	if have_talk_or_question() == false then
 		if key == 'a' then
@@ -167,6 +168,7 @@ function game_keypressed(key)
 			talk_keypressed(key)
 		end
 	end
+]]--
 end
 
 function moveMap(id1, id2, id3)
@@ -235,6 +237,9 @@ function clickDoor(id)
 			if objects.door[i].lock == 1 and getSelectItems() == objects.door[i].key then
 				objects.door[i].lock = 0
 				items_delete(getSelectItems())
+				if d==11 then
+					moveMap(5,3,0)
+				end
 				setUserSay(doorOpenTalk[d])
 				
 				if doorUsedKeyMusic[d] ~= 0 then

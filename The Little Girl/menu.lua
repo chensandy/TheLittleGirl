@@ -7,7 +7,7 @@ function menu_load()
 	menubackground = love.graphics.newImage("event/menu.png");
 	m_menuSelect = 0
 	noise = 0
-	
+	gmusic:stop()
 	music2:stop()
 	music:play()
 end
