@@ -247,6 +247,7 @@ function clickDoor(id)
 					tempDoorUsedKeyMusic:play()
 					tempDoorUsedKeyMusic = nil
 				end
+				return
 			end
 			break
 		end
